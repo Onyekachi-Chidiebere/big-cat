@@ -2032,7 +2032,7 @@ function renderNews(){
         </div>
       </div>
     </a>`;
-  });
+  }).join('');
 }
 
 function filterNews(cat,btn){
@@ -2045,12 +2045,12 @@ function filterNews(cat,btn){
 renderNews();
 
 
-// Fallback: reveal all after 2.5s if observer didn't fire
-setTimeout(()=>{
-  document.querySelectorAll('.f-reveal,.f-reveal-x,.f-reveal-scale,.reveal.animate').forEach(el=>{
-    el.classList.add('f-in','visible');
-  });
-}, 2500);
+// // Fallback: reveal all after 2.5s if observer didn't fire
+// setTimeout(()=>{
+//   document.querySelectorAll('.f-reveal,.f-reveal-x,.f-reveal-scale,.reveal.animate').forEach(el=>{
+//     el.classList.add('f-in','visible');
+//   });
+// }, 2500);
 
 </script>
 </body>
