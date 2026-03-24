@@ -52,7 +52,7 @@ export async function htmlForRoute(routePath: string): Promise<string | null> {
   const filename = htmlPathForRoute(routePath);
   if (!filename) return null;
 
-  const filePath = path.join(process.cwd(), '..', filename);
+  const filePath = path.join(process.cwd(), './html', filename);
   const html = await readFile(filePath, 'utf8');
   return normalizeLinks(html);
 }
