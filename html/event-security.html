@@ -163,6 +163,7 @@ body::before{
 }
 .navbar.scrolled .logo-mark{background:var(--ink);border-color:var(--ink)}
 .logo-mark svg{width:14px;height:14px;fill:var(--white);transition:fill .4s}
+.logo img{height:48px;width:auto;object-fit:contain;display:block}
 
 nav{display:flex;align-items:center;gap:40px;position:relative;z-index:1}
 nav a{
@@ -969,6 +970,7 @@ section{padding:140px 7vw}
   color:rgba(255,255,255,.75);
 }
 .footer-logo span{color:var(--sea-light)}
+.footer-logo img{height:56px;width:auto;object-fit:contain;display:block}
 .footer-center{display:flex;flex-direction:column;align-items:center;gap:16px}
 .footer-social{display:flex;gap:10px}
 .soc-btn{
@@ -1749,8 +1751,7 @@ section{padding:140px 7vw}
 <!-- NAVBAR -->
 <header class="navbar" id="navbar">
   <a href="bigcat-security.html" class="logo">
-    <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7l-9-5z"/></svg></div>
-    Big<span>Cat</span>
+    <img src="/logo.png" alt="Big Cat Security Ltd" />
   </a>
   <nav id="nav">
     <a href="bigcat-security.html">Home</a>
@@ -1993,7 +1994,7 @@ section{padding:140px 7vw}
 
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-logo">Big<span>Cat</span> Security Ltd</div>
+    <div class="footer-logo"><img src="/logo.png" alt="Big Cat Security Ltd" /></div>
 
     <div class="footer-center">
       <div class="footer-social">
