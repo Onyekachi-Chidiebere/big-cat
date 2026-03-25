@@ -7,9 +7,9 @@ const ROUTE_TO_FILE: Record<string, string> = {
   '/home': 'bigcat-security.html',
   '/home.html': 'bigcat-security.html',
 
-  '/about': 'who-we-are-bigcat-security.html',
-  '/about.html': 'who-we-are-bigcat-security.html',
-  '/who-we-are': 'who-we-are-bigcat-security.html',
+  '/about': 'about.html',
+  '/about.html': 'about.html',
+  '/who-we-are': 'about.html',
 
   '/what-we-do': 'what-we-do.html',
   '/what-we-do.html': 'what-we-do.html',
