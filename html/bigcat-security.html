@@ -128,7 +128,8 @@ body::before{
 .announce-text::before{content:'◈';opacity:.4}
 .announce-close{font-size:1rem;color:rgba(255,255,255,.3);cursor:pointer;background:none;border:none;line-height:1;transition:color .2s;flex-shrink:0}
 .announce-close:hover{color:#fff}
-@media (max-width: 768px) {.announce-bar {transform:translateY(-100%)}}
+
+@media (max-width: 768px) {.announce-bar {transform:translateY(-100%)} .navbar{top:0 !important}.navbar.no-bar{top:0 !important}}
 
 /* ── NAVBAR ── */
 .navbar{
@@ -847,7 +848,6 @@ section{padding:140px 7vw}
 .news-card-date{color:var(--ink-dim)}
 
 
-
 @media(max-width:900px){
   .news-grid{grid-template-columns:repeat(2,1fr)}
 }
@@ -856,7 +856,6 @@ section{padding:140px 7vw}
   .news-filters{width:100%}
   .news-filter{flex:1;text-align:center}
 }
-
 
 .cta-strip{
   background:var(--ink);
@@ -1030,7 +1029,6 @@ section{padding:140px 7vw}
   width:5px;height:5px;border-radius:50%;background:var(--sea);
   animation:blink 2s ease-in-out infinite;
 }
-
 
 /* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
@@ -1454,7 +1452,6 @@ section{padding:140px 7vw}
   </div>
 </div>
 
-
 <!-- WHAT WE DO -->
 <section class="wwd-section" id="wwd-section">
   <div class="wwd-header reveal">
@@ -1670,7 +1667,6 @@ section{padding:140px 7vw}
   </div>
 </section>
 
-
 <!-- CTA STRIP -->
 <section class="cta-strip">
   <div class="cta-left f-reveal">
@@ -1783,7 +1779,6 @@ if(hrTime){
   },1000);
 }
 
-
 // Framer-style reveals
 const fEls = document.querySelectorAll('.f-reveal,.f-reveal-x,.f-reveal-scale');
 const fObs = new IntersectionObserver(entries=>{
@@ -1792,8 +1787,6 @@ const fObs = new IntersectionObserver(entries=>{
   });
 },{threshold:0,rootMargin:'0px 0px 0px 0px'});
 fEls.forEach(el=>fObs.observe(el));
-
-
 
 
 
@@ -2044,7 +2037,6 @@ function filterNews(cat,btn){
 }
 
 renderNews();
-
 
 // // Fallback: reveal all after 2.5s if observer didn't fire
 // setTimeout(()=>{

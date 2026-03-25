@@ -139,6 +139,7 @@ body::before{
   transition:background .5s,box-shadow .5s,height .4s,top .4s,backdrop-filter .5s;
 }
 .navbar.no-bar{top:0}
+@media (max-width: 768px) {.announce-bar {transform:translateY(-100%)} .navbar{top:0 !important}.navbar.no-bar{top:0 !important}}
 .navbar.scrolled{
   background:rgba(240,236,228,.96);
   backdrop-filter:blur(18px);
