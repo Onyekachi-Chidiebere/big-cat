@@ -2583,6 +2583,10 @@ document.querySelectorAll('a,button,.wwd-svc-card,.wwd-strat-card,.wwd-tag').for
   });
 });
 
+// Mobile nav
+document.getElementById('menu-toggle').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));
+
 // ── HERO ENTRANCE (Framer-style stagger) ───────────────────────
 function animEl(id, delay){
   const el = document.getElementById(id);

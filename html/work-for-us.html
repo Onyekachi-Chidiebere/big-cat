@@ -1447,6 +1447,7 @@ section{padding:140px 7vw}
   border:1px solid rgba(42,127,165,.22); padding:22px 28px;
   opacity:0; transform:translateY(20px);
 }
+@media (max-width: 768px) {.careers-badge  {position:relative; bottom:0; right:0; }}
 .careers-badge::before {
   content:''; position:absolute; top:0; left:0; right:0; height:1px;
   background:linear-gradient(to right,var(--sea),transparent);
@@ -2133,6 +2134,10 @@ document.querySelectorAll('a,button,.careers-role-card,.careers-why-item').forEa
     [curTL,curTR,curBL,curBR].filter(Boolean).forEach(t=>t.classList.remove('big'));
   });
 });
+
+// Mobile nav
+document.getElementById('menu-toggle').addEventListener('click',()=>document.getElementById('nav').classList.toggle('open'));
+document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));
 
 // ── HERO ENTRANCE ───────────────────────────────────────────────
 function animEl(id,delay){
