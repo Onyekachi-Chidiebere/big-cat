@@ -2,11 +2,14 @@
 
 import "./site.css";
 import styles from "./styles.module.css";
+import { ClientsMarquee } from "./ClientsMarquee";
+import { HomePageEffects } from "./HomePageEffects";
+import { SecurityNewsSection } from "./SecurityNewsSection";
 
 const HomePage = () => {
   return (
     <div>
-
+      <HomePageEffects />
 
       <div className={styles.cursor} id="cur"></div>
       <div className={styles['cursor-ring']} id="curR"></div>
@@ -15,7 +18,6 @@ const HomePage = () => {
       <div className={styles['cursor-tr']} id="curTR"></div>
       <div className={styles['cursor-bl']} id="curBL"></div>
       <div className={styles['cursor-br']} id="curBR"></div>
-      <div className={styles['cursor-ring']} id="curR"></div>
       <div id="progress-bar"></div>
       <a href="#contact" className={styles['floating-cta']}>Get a Quote</a>
 
@@ -44,7 +46,7 @@ const HomePage = () => {
       </header>
 
       {/* <!-- HERO --> */}
-      <section className={styles.hero}>
+      <section className={styles.hero} id="hero-section">
         <div className={styles['hero-bg']}></div>
         <div className={styles['hero-phosphor']}></div>
         <div className={styles['hero-overlay']}></div>
@@ -67,7 +69,11 @@ const HomePage = () => {
         <div className={styles['hero-bracket-tl']}></div>
               <div className={styles['hero-bracket-br']}></div>
               <div className={styles['hero-scan']}></div>
-              <div className={styles['hero-dots']} id="hero-dots"></div>
+              <div className={styles['hero-dots']} id="hero-dots">
+                {Array.from({ length: 25 }, (_, i) => (
+                  <span key={i} />
+                ))}
+              </div>
               <div className={styles['hero-reticle']} id="reticle">
                 <div className={styles['hero-reticle-tl']}></div>
                 <div className={styles['hero-reticle-tr']}></div>
@@ -201,13 +207,7 @@ const HomePage = () => {
             </section>
 
             {/* <!-- CLIENTS --> */}
-            <div className={styles['clients-section']}>
-              <div className={styles['clients-label']}>Trusted by Leading Organisations</div>
-              <div className={styles['marquee-wrap']}>
-                <div className={styles['marquee-track']} id="t1"></div>
-                <div className={styles['marquee-track']} id="t2"></div>
-              </div>
-            </div>
+            <ClientsMarquee />
 
             {/* <!-- SERVICES --> */}
             <section id="services" className={styles.services}>
@@ -337,51 +337,7 @@ const HomePage = () => {
             </section>
 
             {/* <!-- NEWS --> */}
-            <section id="news" className={styles.news}>
-              <div style={{ padding: "140px 8vw 0" }}>
-                <div className={`${styles['news-head']} ${styles.reveal}`}>
-                  <div>
-                    <div className={styles.eyebrow}>Security Intelligence</div>
-                    <h2 className={styles['section-h']}><em>Security</em><br />News</h2>
-                  </div>
-                </div>
-                <div className={`${styles['news-filters']} ${styles.reveal}`}>
-                  <button
-                    type="button"
-                    className={`${styles['news-filter']} ${styles.active}`}
-                    onClick={(e) => {
-                      const w = window as Window & { filterNews?: (cat: string, el: HTMLElement) => void };
-                      w.filterNews?.("all", e.currentTarget);
-                    }}
-                  >
-                    All
-                  </button>
-                  <button
-                    type="button"
-                    className={styles['news-filter']}
-                    onClick={(e) => {
-                      const w = window as Window & { filterNews?: (cat: string, el: HTMLElement) => void };
-                      w.filterNews?.("uk", e.currentTarget);
-                    }}
-                  >
-                    UK Security
-                  </button>
-                  <button
-                    type="button"
-                    className={styles['news-filter']}
-                    onClick={(e) => {
-                      const w = window as Window & { filterNews?: (cat: string, el: HTMLElement) => void };
-                      w.filterNews?.("world", e.currentTarget);
-                    }}
-                  >
-                    World Security
-                  </button>
-                </div>
-              </div>
-              <div style={{ padding: "0 8vw 140px" }}>
-                <div className={`${styles['news-grid']} ${styles.reveal}`} id="news-grid"></div>
-              </div>
-            </section>
+            <SecurityNewsSection />
 
             {/* <!-- CTA STRIP --> */}
             <section className={styles['cta-strip']}>
