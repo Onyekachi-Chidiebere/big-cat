@@ -1,25 +1,11 @@
-import { cache } from "react";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { LegacyMarketingPage } from "@/app/components/legacy/LegacyMarketingPage";
-import {
-  parseLegacyDocument,
-  metadataFromLegacyData,
-} from "@/app/lib/legacy/loadLegacyPage";
+import { metadataFromLegacyData } from "@/app/lib/legacy/loadLegacyPage";
+import { doorSupervisorsLegacyData } from "@/app/(site)/legacy-content/door-supervisors";
 
-const FILE = path.join(process.cwd(), "app/(site)/_html/door-supervisors.html");
-
-const getDocument = cache(async () => {
-  const raw = await readFile(FILE, "utf8");
-  return parseLegacyDocument(raw);
-});
-
-export async function generateMetadata() {
-  const data = await getDocument();
-  return metadataFromLegacyData(data);
+export function generateMetadata() {
+  return metadataFromLegacyData(doorSupervisorsLegacyData);
 }
 
-export default async function DoorSupervisorsPage() {
-  const data = await getDocument();
-  return <LegacyMarketingPage data={data} />;
+export default function DoorSupervisorsPage() {
+  return <LegacyMarketingPage data={doorSupervisorsLegacyData} />;
 }

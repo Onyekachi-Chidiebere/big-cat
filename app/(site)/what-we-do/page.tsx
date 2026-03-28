@@ -1,10 +1,13 @@
 "use client";
 import "../site.css";
 import styles from "../styles.module.css";
+import { WhatWeDoEffects } from "../WhatWeDoEffects";
+
 export default function WhatWeDoPage() {
 
   return (
     <div>
+      <WhatWeDoEffects />
       <div className={styles['cursor']} id="cur"></div>
       <div className={styles['cursor-ring']} id="curR"></div>
       <div className={styles['cursor-pulse']} id="curPulse"></div>

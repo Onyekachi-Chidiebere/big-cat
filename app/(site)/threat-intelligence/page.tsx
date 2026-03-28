@@ -1,25 +1,11 @@
-import { cache } from "react";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { LegacyMarketingPage } from "@/app/components/legacy/LegacyMarketingPage";
-import {
-  parseLegacyDocument,
-  metadataFromLegacyData,
-} from "@/app/lib/legacy/loadLegacyPage";
+import { metadataFromLegacyData } from "@/app/lib/legacy/loadLegacyPage";
+import { threatIntelligenceLegacyData } from "@/app/(site)/legacy-content/threat-intelligence";
 
-const FILE = path.join(process.cwd(), "app/(site)/_html/threat-intelligence.html");
-
-const getDocument = cache(async () => {
-  const raw = await readFile(FILE, "utf8");
-  return parseLegacyDocument(raw);
-});
-
-export async function generateMetadata() {
-  const data = await getDocument();
-  return metadataFromLegacyData(data);
+export function generateMetadata() {
+  return metadataFromLegacyData(threatIntelligenceLegacyData);
 }
 
-export default async function ThreatIntelligencePage() {
-  const data = await getDocument();
-  return <LegacyMarketingPage data={data} />;
+export default function ThreatIntelligencePage() {
+  return <LegacyMarketingPage data={threatIntelligenceLegacyData} />;
 }
