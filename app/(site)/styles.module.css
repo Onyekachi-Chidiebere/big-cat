@@ -4474,3 +4474,306 @@ body::before{
   .ds-stats-inner{grid-template-columns:1fr}
   .ds-stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
 }
+
+
+/* --- threat-intelligence page (from legacy) --- */
+/* ── HERO — FULL BLEED CINEMATIC ───────────────────────────── */
+.ti-hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex; align-items: flex-end;
+  padding: 0 8vw 10vh;
+  overflow: hidden;
+}
+.ti-hero-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center 30%;
+  filter: saturate(.12) brightness(.18);
+  transition: filter 1.6s ease;
+}
+.ti-hero:hover .ti-hero-bg { filter: saturate(.32) brightness(.26); }
+.ti-hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(8,14,26,1) 0%, rgba(8,14,26,.72) 40%, rgba(8,14,26,.12) 100%),
+    linear-gradient(112deg, rgba(8,14,26,.95) 0%, transparent 56%);
+}
+.ti-grid-overlay {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(42,127,165,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42,127,165,.07) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+/* Animated data-stream lines */
+.ti-dataline {
+  position: absolute; left: 0; right: 0; height: 1px; pointer-events: none; z-index: 2;
+  background: linear-gradient(to right, transparent, rgba(42,127,165,.6), transparent);
+  opacity: 0;
+}
+.ti-dataline:nth-child(1) { animation: heroScan 9s 0s ease-in-out infinite; }
+.ti-dataline:nth-child(2) { animation: heroScan 9s 3s ease-in-out infinite; opacity: 0; filter: hue-rotate(30deg); }
+@keyframes heroScan { 0%{top:5%;opacity:0}5%{opacity:.8}95%{opacity:.3}100%{top:95%;opacity:0} }
+
+/* Corner brackets */
+.ti-corner-tl {
+  position: absolute; top: 9vh; left: 7vw;
+  width: 40px; height: 40px;
+  border-top: 1px solid rgba(42,127,165,.6); border-left: 1px solid rgba(42,127,165,.6);
+  z-index: 3;
+}
+.ti-corner-br {
+  position: absolute; bottom: 9vh; right: 7vw;
+  width: 40px; height: 40px;
+  border-bottom: 1px solid rgba(42,127,165,.35); border-right: 1px solid rgba(42,127,165,.35);
+  z-index: 3;
+}
+/* Top-right readout panel */
+.ti-readout {
+  position: absolute; top: 9vh; right: 7vw; z-index: 3; text-align: right;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .52rem; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(42,127,165,.5); line-height: 2.2;
+  opacity: 0; animation: fadeIn .7s 2.2s forwards;
+}
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+/* Bottom-left threat gauge */
+.ti-gauge {
+  position: absolute; bottom: 9vh; left: 7vw; z-index: 3;
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0; animation: fadeIn .7s 2.6s forwards;
+}
+.ti-gauge-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .56rem; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(42,127,165,.45);
+}
+.ti-gauge-bar {
+  display: flex; gap: 3px; align-items: center;
+}
+.ti-gauge-seg {
+  width: 16px; height: 4px; background: rgba(42,127,165,.18);
+  transition: background .3s;
+}
+.ti-gauge-seg:global(.active) { background: var(--sea); }
+.ti-gauge-seg:global(.lo) { background: rgba(42,127,165,.5); }
+
+/* Hero content */
+.ti-hero-content { position: relative; z-index: 4; max-width: 900px; }
+.ti-hero-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .65rem; font-weight: 500; letter-spacing: .42em; text-transform: uppercase;
+  color: var(--sea); margin-bottom: 28px;
+  display: flex; align-items: center; gap: 14px;
+  opacity: 0; transform: translateY(14px);
+}
+.ti-hero-label::before { content: ''; width: 32px; height: 1px; background: var(--sea); flex-shrink: 0; }
+.ti-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.6rem, 7.5vw, 10rem);
+  font-weight: 300; line-height: .9; letter-spacing: -.025em;
+  color: var(--white); margin-bottom: 36px;
+  opacity: 0; transform: translateY(28px);
+}
+.ti-hero h1 em { font-style: italic; color: var(--sea-light); display: block; font-size: .7em; }
+.ti-hero h1 strong { font-weight: 600; display: block; }
+.ti-hero-sub {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .95rem; font-weight: 300; line-height: 1.88;
+  color: rgba(255,255,255,.42); max-width: 520px; letter-spacing: .02em;
+  margin-bottom: 52px; opacity: 0; transform: translateY(14px);
+}
+.ti-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; transform: translateY(14px); }
+
+/* Floating intel card */
+.ti-intel-card {
+  position: absolute; bottom: 44px; right: 8vw; z-index: 4;
+  background: rgba(8,14,26,.82); backdrop-filter: blur(14px);
+  border: 1px solid rgba(42,127,165,.22); padding: 22px 28px; min-width: 210px;
+  opacity: 0; transform: translateY(20px);
+}
+.ti-intel-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, var(--sea), transparent);
+}
+.ti-intel-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.8rem; font-weight: 300; color: var(--white); line-height: 1;
+}
+.ti-intel-n em { font-style: normal; color: var(--sea-light); font-size: .55em; }
+.ti-intel-l {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .6rem; font-weight: 400; letter-spacing: .2em;
+  text-transform: uppercase; color: rgba(255,255,255,.3); margin-top: 5px;
+}
+
+/* ── CAPABILITY STRIP ────────────────────────────────────────── */
+.ti-cap-strip {
+  background: var(--navy);
+  border-top: 1px solid rgba(42,127,165,.2);
+  border-bottom: 1px solid rgba(42,127,165,.1);
+}
+.ti-cap-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
+.ti-cap-item {
+  padding: 30px 28px; border-right: 1px solid rgba(255,255,255,.05);
+  transition: background .3s; opacity: 0; transform: translateY(12px);
+}
+.ti-cap-item:last-child { border-right: none; }
+.ti-cap-item:hover { background: rgba(42,127,165,.06); }
+.ti-cap-icon {
+  width: 40px; height: 40px; border: 1px solid rgba(42,127,165,.25);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 14px;
+  transition: border-color .3s;
+}
+.ti-cap-item:hover .ti-cap-icon { border-color: var(--sea); }
+.ti-cap-icon svg { width: 18px; height: 18px; stroke: var(--sea-light); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.ti-cap-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+.ti-cap-text { font-family: 'Barlow Condensed', sans-serif; font-size: .8rem; font-weight: 300; color: rgba(255,255,255,.32); line-height: 1.65; letter-spacing: .01em; }
+
+/* ── OVERVIEW ─────────────────────────────────────────────────── */
+.ti-overview {
+  background: var(--linen); padding: 100px 8vw; position: relative;
+}
+.ti-overview::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(13,21,37,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,21,37,.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.ti-overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+.ti-overview-left .eyebrow { font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; letter-spacing: .3em; color: var(--sea); margin-bottom: 20px; }
+.ti-overview-left h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5vw, 6.5rem); font-weight: 300; line-height: .92; letter-spacing: -.02em; color: var(--ink); margin-bottom: 32px; }
+.ti-overview-left h2 em { font-style: italic; color: var(--sea); }
+.ti-overview-left p { font-family: 'Barlow Condensed', sans-serif; font-size: .93rem; font-weight: 300; line-height: 1.9; color: var(--ink-soft); letter-spacing: .01em; margin-bottom: 16px; }
+/* Intel tags */
+.ti-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.ti-tag { font-family: 'Barlow Condensed', sans-serif; font-size: .62rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ink); border: 1px solid var(--border-dk); padding: 7px 16px; transition: all .3s; }
+.ti-tag:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+/* Right: CCTV panorama + quote */
+.ti-overview-right { position: relative; }
+.ti-overview-img { overflow: hidden; position: relative; }
+.ti-overview-img img { width: 100%; display: block; filter: saturate(.25) brightness(.7); transition: filter .8s, transform .8s cubic-bezier(.25,.46,.45,.94); }
+.ti-overview-img:hover img { filter: saturate(.85) brightness(.85); transform: scale(1.03); }
+.ti-overview-img-cap { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(8,14,26,.72); backdrop-filter: blur(6px); border-left: 2px solid var(--sea); padding: 14px 20px; }
+.ti-overview-img-cap p { font-family: 'Barlow Condensed', sans-serif; font-size: .78rem; font-weight: 300; color: rgba(255,255,255,.55); letter-spacing: .06em; }
+.ti-overview-quote { margin-top: 24px; border-left: 2px solid var(--sea); padding: 20px 0 20px 24px; }
+.ti-overview-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; font-style: italic; line-height: 1.45; color: var(--ink); }
+
+/* ── INTELLIGENCE SERVICES ────────────────────────────────────── */
+.ti-services {
+  background: var(--linen-dk); padding: 100px 8vw; position: relative;
+}
+.ti-services::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(13,21,37,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,21,37,.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.ti-svc-header { display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; align-items: end; margin-bottom: 72px; }
+.ti-svc-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 4.5vw, 5.5rem); font-weight: 300; line-height: .92; letter-spacing: -.02em; color: var(--ink); margin-top: 14px; }
+.ti-svc-header h2 em { font-style: italic; color: var(--sea); }
+.ti-svc-header p { font-family: 'Barlow Condensed', sans-serif; font-size: .93rem; font-weight: 300; line-height: 1.9; color: var(--ink-soft); letter-spacing: .02em; }
+/* 2×2 service cards */
+.ti-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border); }
+.ti-card { background: var(--linen-dk); padding: 44px 40px 40px; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: background .35s; opacity: 0; transform: translateY(24px); }
+.ti-card:hover { background: var(--white); }
+.ti-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--sea), transparent); opacity: 0; transition: opacity .35s; }
+.ti-card:hover::before { opacity: 1; }
+.ti-card-n { position: absolute; top: 20px; right: 26px; font-family: 'Cormorant Garamond', serif; font-size: 4.5rem; font-weight: 300; color: rgba(13,21,37,.05); line-height: 1; user-select: none; }
+.ti-card-icon { width: 46px; height: 46px; border: 1px solid var(--border-dk); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; transition: border-color .3s; }
+.ti-card:hover .ti-card-icon { border-color: var(--sea); }
+.ti-card-icon svg { width: 20px; height: 20px; stroke: var(--sea); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.ti-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: var(--ink); margin-bottom: 14px; line-height: 1.05; }
+.ti-card p { font-family: 'Barlow Condensed', sans-serif; font-size: .88rem; font-weight: 300; line-height: 1.82; color: var(--ink-soft); flex: 1; margin-bottom: 24px; letter-spacing: .01em; }
+.ti-card-link { font-family: 'Barlow Condensed', sans-serif; font-size: .65rem; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--ink); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; transition: gap .3s, color .3s; }
+.ti-card-link::after { content: '→'; color: var(--sea); }
+.ti-card-link:hover { gap: 14px; color: var(--sea); }
+
+/* ── HOW IT WORKS — PROCESS SECTION ──────────────────────────── */
+.ti-process {
+  background: var(--ink); padding: 100px 8vw; position: relative; overflow: hidden;
+  border-top: 1px solid rgba(42,127,165,.15);
+}
+.ti-process::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(42,127,165,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42,127,165,.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.ti-process::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, var(--sea), transparent); opacity: .5; }
+.ti-process-header { text-align: center; max-width: 640px; margin: 0 auto 72px; position: relative; }
+.ti-process-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 4.5vw, 5.5rem); font-weight: 300; line-height: .92; letter-spacing: -.02em; color: var(--white); margin: 14px 0 16px; }
+.ti-process-header h2 em { font-style: italic; color: var(--sea-light); }
+.ti-process-header p { font-family: 'Barlow Condensed', sans-serif; font-size: .93rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,.38); letter-spacing: .02em; }
+/* Process steps — 4 col */
+.ti-steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+/* Connecting line */
+.ti-steps::before { content: ''; position: absolute; top: 30px; left: 12.5%; right: 12.5%; height: 1px; background: linear-gradient(to right, rgba(42,127,165,.3), rgba(42,127,165,.3)); pointer-events: none; }
+.ti-step { padding: 0 20px 0; position: relative; opacity: 0; transform: translateY(20px); }
+.ti-step-num {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(42,127,165,.1); border: 1px solid rgba(42,127,165,.3);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300;
+  color: var(--sea-light); margin: 0 auto 24px; position: relative; z-index: 1;
+  transition: background .3s, border-color .3s;
+}
+.ti-step:hover .ti-step-num { background: rgba(42,127,165,.2); border-color: var(--sea); }
+.ti-step h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: var(--white); margin-bottom: 10px; text-align: center; }
+.ti-step p { font-family: 'Barlow Condensed', sans-serif; font-size: .84rem; font-weight: 300; line-height: 1.72; color: rgba(255,255,255,.35); letter-spacing: .01em; text-align: center; }
+
+/* ── ACCREDITATION + IMAGE SECTION ───────────────────────────── */
+.ti-accred {
+  background: var(--linen); padding: 100px 8vw; position: relative;
+}
+.ti-accred::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(13,21,37,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,21,37,.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.ti-accred-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 88px; align-items: center; }
+.ti-accred-left h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.6rem, 4vw, 5rem); font-weight: 300; line-height: .92; letter-spacing: -.02em; color: var(--ink); margin: 14px 0 28px; }
+.ti-accred-left h2 em { font-style: italic; color: var(--sea); }
+.ti-accred-left p { font-family: 'Barlow Condensed', sans-serif; font-size: .93rem; font-weight: 300; line-height: 1.9; color: var(--ink-soft); letter-spacing: .02em; margin-bottom: 14px; }
+/* SIA logos */
+.ti-sia-logos { display: flex; align-items: center; gap: 28px; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border-dk); }
+.ti-sia-logos img { height: 56px; width: auto; filter: grayscale(1) brightness(.6); transition: filter .4s; opacity: .7; }
+.ti-sia-logos img:hover { filter: none; opacity: 1; }
+.ti-sia-logos img:global(.sm) { height: 40px; }
+/* Checklist */
+.ti-accred-checks { border-top: 1px solid var(--border-dk); }
+.ti-accred-check { padding: 20px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 14px; opacity: 0; transform: translateX(20px); }
+.ti-accred-check-dot { width: 5px; height: 5px; background: var(--sea); flex-shrink: 0; margin-top: 7px; }
+.ti-accred-check span { font-family: 'Barlow Condensed', sans-serif; font-size: .88rem; font-weight: 400; color: var(--ink); letter-spacing: .04em; }
+
+/* ── CTA ─────────────────────────────────────────────────────── */
+.ti-cta {
+  background: var(--black); padding: 88px 8vw; position: relative; overflow: hidden;
+  border-top: 1px solid rgba(42,127,165,.2);
+}
+.ti-cta::before { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(rgba(42,127,165,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(42,127,165,.04) 1px, transparent 1px); background-size: 60px 60px; }
+.ti-cta::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, var(--sea), transparent); opacity: .45; }
+.ti-cta-inner { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 60px; flex-wrap: wrap; }
+.ti-cta-left h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.6rem, 4.5vw, 5.5rem); font-weight: 300; line-height: .92; letter-spacing: -.02em; color: var(--white); margin-top: 12px; }
+.ti-cta-left h2 em { font-style: italic; color: var(--sea-light); }
+.ti-cta-right { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+.ti-cta-right p { font-family: 'Barlow Condensed', sans-serif; font-size: .92rem; font-weight: 300; line-height: 1.85; color: rgba(255,255,255,.4); max-width: 420px; letter-spacing: .02em; }
+
+
+/* ── RESPONSIVE ─────────────────────────────────────────────── */
+@media(max-width:960px){
+  .ti-cap-inner{grid-template-columns:repeat(2,1fr)}
+  .ti-cap-item:nth-child(2){border-right:none}
+  .ti-overview-grid{grid-template-columns:1fr;gap:60px}
+  .ti-svc-header{grid-template-columns:1fr;gap:24px}
+  .ti-cards{grid-template-columns:1fr}
+  .ti-steps{grid-template-columns:repeat(2,1fr);gap:40px}
+  .ti-steps::before{display:none}
+  .ti-accred-grid{grid-template-columns:1fr;gap:60px}
+  .ti-cta-inner{flex-direction:column}
+}
