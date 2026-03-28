@@ -2766,3 +2766,443 @@ body::before{
 }
 
 
+
+/* ════════════════════════════════════════════════════════════════
+   WORK FOR US — CAREERS PAGE
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── HERO ────────────────────────────────────────────────────── */
+.careers-hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 8vw 10vh;
+  overflow: hidden;
+}
+.careers-hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('data:image/jpeg;base64,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');
+  background-size: cover;
+  background-position: center 30%;
+  filter: saturate(.2) brightness(.25);
+  transition: filter 1.4s ease;
+}
+.careers-hero:hover .careers-hero-bg {
+  filter: saturate(.45) brightness(.32);
+}
+.careers-hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top,  rgba(8,14,26,.99) 0%, rgba(8,14,26,.7) 40%, rgba(8,14,26,.15) 100%),
+    linear-gradient(100deg,  rgba(8,14,26,.9) 0%, transparent 60%);
+}
+/* Blueprint grid */
+.careers-hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(42,127,165,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42,127,165,.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+/* Scan line */
+.careers-scan {
+  position: absolute; left:0; right:0; height:1px; z-index:2;
+  background: linear-gradient(to right, transparent, rgba(42,127,165,.5), transparent);
+  animation: heroScan 9s ease-in-out infinite; opacity:0;
+}
+@keyframes heroScan {
+  0%{top:5%;opacity:0} 5%{opacity:.7} 95%{opacity:.3} 100%{top:95%;opacity:0}
+}
+/* Corner marks */
+.careers-corner-tl {
+  position: absolute; top:9vh; left:7vw;
+  width:36px; height:36px;
+  border-top: 1px solid rgba(42,127,165,.5);
+  border-left: 1px solid rgba(42,127,165,.5);
+  z-index:3;
+}
+.careers-corner-br {
+  position: absolute; bottom:9vh; right:7vw;
+  width:36px; height:36px;
+  border-bottom: 1px solid rgba(42,127,165,.3);
+  border-right: 1px solid rgba(42,127,165,.3);
+  z-index:3;
+}
+/* Readout top-right */
+.careers-readout {
+  position: absolute; top:9vh; right:7vw; z-index:3;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.52rem; letter-spacing:.2em;
+  color:rgba(42,127,165,.5); line-height:2; text-align:right;
+  opacity:0; animation: fadeIn .8s 2s forwards;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* Hero content */
+.careers-hero-content { position:relative; z-index:4; max-width:820px; }
+.careers-hero-label {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.65rem; font-weight:500; letter-spacing:.42em; text-transform:uppercase;
+  color:var(--sea); margin-bottom:28px;
+  display:flex; align-items:center; gap:14px;
+  opacity:0; transform:translateY(14px);
+}
+.careers-hero-label::before { content:''; width:32px; height:1px; background:var(--sea); flex-shrink:0; }
+
+.careers-hero h1 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(4rem,8vw,10rem);
+  font-weight:300; line-height:.9; letter-spacing:-.02em;
+  color:var(--white); margin-bottom:36px;
+  opacity:0; transform:translateY(28px);
+}
+.careers-hero h1 em { font-style:italic; color:var(--sea-light); display:block; font-size:.75em; }
+.careers-hero h1 strong { font-weight:600; display:block; }
+
+.careers-hero-sub {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1rem; font-weight:300; line-height:1.85;
+  color:rgba(255,255,255,.42); max-width:520px; letter-spacing:.02em;
+  margin-bottom:52px; opacity:0; transform:translateY(14px);
+}
+
+.careers-hero-actions {
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  opacity:0; transform:translateY(14px);
+}
+
+/* Floating badge — bottom right */
+.careers-badge {
+  position:absolute; bottom:48px; right:8vw; z-index:4;
+  background:rgba(8,14,26,.7); backdrop-filter:blur(14px);
+  border:1px solid rgba(42,127,165,.22); padding:22px 28px;
+  opacity:0; transform:translateY(20px);
+}
+@media (max-width: 768px) {.careers-badge  {position:relative; bottom:0; right:0; }}
+.careers-badge::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(to right,var(--sea),transparent);
+}
+.careers-badge-text {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem; font-weight:300; font-style:italic;
+  color:rgba(255,255,255,.7); line-height:1.4; max-width:240px;
+}
+.careers-badge-name {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.58rem; font-weight:500; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--sea); margin-top:10px;
+}
+
+/* ── WHY JOIN STRIP ──────────────────────────────────────────── */
+.careers-why {
+  background:var(--navy);
+  border-top:1px solid rgba(42,127,165,.2);
+  border-bottom:1px solid rgba(42,127,165,.1);
+}
+.careers-why-inner {
+  display:grid; grid-template-columns:repeat(4,1fr);
+}
+.careers-why-item {
+  padding:36px 32px;
+  border-right:1px solid rgba(255,255,255,.06);
+  opacity:0; transform:translateY(14px);
+}
+.careers-why-item:last-child { border-right:none; }
+.careers-why-icon {
+  width:40px; height:40px;
+  border:1px solid rgba(42,127,165,.25);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:16px;
+  transition:border-color .3s;
+}
+.careers-why-item:hover .careers-why-icon { border-color:var(--sea); }
+.careers-why-icon svg {
+  width:18px; height:18px; stroke:var(--sea-light); fill:none;
+  stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;
+}
+.careers-why-title {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem; font-weight:600; color:var(--white);
+  margin-bottom:8px; line-height:1.1;
+}
+.careers-why-text {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.82rem; font-weight:300;
+  color:rgba(255,255,255,.35); line-height:1.7; letter-spacing:.01em;
+}
+
+/* ── MISSION SECTION ─────────────────────────────────────────── */
+.careers-mission {
+  background:var(--linen); padding:100px 8vw;
+  position:relative;
+}
+.careers-mission::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(13,21,37,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(13,21,37,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.careers-mission-grid {
+  display:grid; grid-template-columns:1fr 1.1fr;
+  gap:100px; align-items:center;
+}
+/* Left: large decorative number + heading */
+.careers-mission-left { position:relative; }
+.careers-mission-left .eyebrow {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.65rem; letter-spacing:.3em; color:var(--sea); margin-bottom:20px;
+}
+.careers-mission-left h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,5.5vw,7rem);
+  font-weight:300; line-height:.92; letter-spacing:-.02em;
+  color:var(--ink); margin-bottom:36px;
+}
+.careers-mission-left h2 em { font-style:italic; color:var(--sea); }
+
+.careers-mission-quote {
+  border-left:2px solid var(--sea);
+  padding:22px 0 22px 28px; margin-bottom:36px;
+}
+.careers-mission-quote p {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem; font-weight:300; font-style:italic;
+  line-height:1.45; color:var(--ink); letter-spacing:-.005em;
+}
+/* Logo watermark */
+.careers-mission-logo {
+  position:absolute; bottom:-20px; right:-20px;
+  width:120px; opacity:.06; pointer-events:none;
+  filter:grayscale(1);
+}
+
+/* Right: people-first pillars */
+.careers-pillars { display:flex; flex-direction:column; gap:0; }
+.careers-pillar {
+  padding:28px 0; border-bottom:1px solid var(--border);
+  display:grid; grid-template-columns:56px 1fr; gap:20px; align-items:start;
+  opacity:0; transform:translateX(24px);
+}
+.careers-pillar:first-child { border-top:1px solid var(--border); }
+.careers-pillar-n {
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.2rem; font-weight:300;
+  color:rgba(42,127,165,.25); line-height:1;
+}
+.careers-pillar h3 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem; font-weight:600;
+  color:var(--ink); margin-bottom:8px; line-height:1.1;
+}
+.careers-pillar p {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.88rem; font-weight:300;
+  line-height:1.78; color:var(--ink-soft); letter-spacing:.01em;
+}
+
+/* ── ROLES SECTION ───────────────────────────────────────────── */
+.careers-roles {
+  background:var(--linen-dk); padding:100px 8vw; position:relative;
+}
+.careers-roles::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(13,21,37,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(13,21,37,.025) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.careers-roles-header {
+  display:grid; grid-template-columns:1fr 1.3fr;
+  gap:80px; align-items:end; margin-bottom:72px;
+}
+.careers-roles-header h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,5vw,6rem);
+  font-weight:300; line-height:.92; letter-spacing:-.02em;
+  color:var(--ink); margin-top:14px;
+}
+.careers-roles-header h2 em { font-style:italic; color:var(--sea); }
+.careers-roles-header p {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.93rem; font-weight:300; line-height:1.9;
+  color:var(--ink-soft); letter-spacing:.02em;
+}
+/* Role cards — 3 col */
+.careers-roles-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:2px; background:var(--border);
+}
+.careers-role-card {
+  background:var(--linen-dk); padding:44px 36px 40px;
+  display:flex; flex-direction:column;
+  position:relative; overflow:hidden;
+  transition:background .35s;
+  opacity:0; transform:translateY(24px);
+}
+.careers-role-card:hover { background:var(--white); }
+.careers-role-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(to right,transparent,var(--sea),transparent);
+  opacity:0; transition:opacity .35s;
+}
+.careers-role-card:hover::before { opacity:1; }
+.careers-role-n {
+  position:absolute; top:18px; right:22px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:4rem; font-weight:300;
+  color:rgba(13,21,37,.05); line-height:1; user-select:none;
+}
+.careers-role-icon {
+  width:44px; height:44px; border:1px solid var(--border-dk);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:24px; transition:border-color .3s;
+}
+.careers-role-card:hover .careers-role-icon { border-color:var(--sea); }
+.careers-role-icon svg {
+  width:20px; height:20px; stroke:var(--sea); fill:none;
+  stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round;
+}
+.careers-role-card h3 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.6rem; font-weight:600;
+  color:var(--ink); margin-bottom:12px; line-height:1.1;
+}
+.careers-role-card p {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.88rem; font-weight:300; line-height:1.8;
+  color:var(--ink-soft); flex:1; margin-bottom:24px; letter-spacing:.01em;
+}
+.careers-role-req {
+  display:flex; flex-wrap:wrap; gap:6px; margin-bottom:24px;
+}
+.careers-role-req span {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.58rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--sea); border:1px solid rgba(42,127,165,.25);
+  padding:4px 10px;
+}
+.careers-role-cta {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.65rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--ink); text-decoration:none;
+  display:inline-flex; align-items:center; gap:8px; align-self:flex-start;
+  transition:gap .3s, color .3s;
+}
+.careers-role-cta::after { content:'→'; color:var(--sea); }
+.careers-role-cta:hover { gap:14px; color:var(--sea); }
+
+/* ── APPLY / CTA ─────────────────────────────────────────────── */
+.careers-apply {
+  background:var(--black); padding:100px 8vw;
+  position:relative; overflow:hidden;
+  border-top:1px solid rgba(42,127,165,.2);
+}
+.careers-apply::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(42,127,165,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(42,127,165,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+}
+.careers-apply::after {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(to right,transparent,var(--sea),transparent);
+  opacity:.5;
+}
+.careers-apply-inner {
+  position:relative;
+  display:grid; grid-template-columns:1fr 1.1fr;
+  gap:88px; align-items:center;
+}
+.careers-apply-left h2 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3rem,5.5vw,7rem);
+  font-weight:300; line-height:.92; letter-spacing:-.02em;
+  color:var(--white); margin:14px 0 28px;
+}
+.careers-apply-left h2 em { font-style:italic; color:var(--sea-light); }
+.careers-apply-left p {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.93rem; font-weight:300; line-height:1.9;
+  color:rgba(255,255,255,.42); letter-spacing:.02em; margin-bottom:36px;
+}
+.careers-apply-left a.careers-email {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem; font-weight:300;
+  color:var(--sea-light); text-decoration:none; letter-spacing:.01em;
+  display:inline-flex; align-items:center; gap:14px;
+  transition:color .3s;
+}
+.careers-apply-left a.careers-email::before {
+  content:''; width:8px; height:8px; border-radius:50%;
+  background:var(--sea); flex-shrink:0;
+  animation:blink 2s ease-in-out infinite;
+}
+.careers-apply-left a.careers-email:hover { color:var(--white); }
+
+/* Right: application form */
+.careers-form-wrap {
+  border:1px solid rgba(42,127,165,.18); padding:44px; position:relative;
+}
+.careers-form-wrap::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(to right,var(--sea),transparent);
+}
+.careers-form-wrap h3 {
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem; font-weight:400; color:var(--white); margin-bottom:8px;
+}
+.careers-form-wrap .careers-form-sub {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.82rem; font-weight:300; letter-spacing:.05em;
+  color:rgba(255,255,255,.3); margin-bottom:28px;
+}
+.careers-form { display:flex; flex-direction:column; gap:14px; }
+.careers-fg { display:flex; flex-direction:column; gap:6px; }
+.careers-fg label {
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:.6rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase;
+  color:rgba(255,255,255,.3);
+}
+.careers-fg input,
+.careers-fg select,
+.careers-fg textarea {
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(42,127,165,.18);
+  color:var(--white); padding:13px 16px;
+  font-family:'Barlow Condensed',sans-serif; font-size:.92rem; font-weight:300;
+  letter-spacing:.04em; outline:none; transition:border-color .3s; resize:vertical;
+}
+.careers-fg input::placeholder,
+.careers-fg textarea::placeholder { color:rgba(255,255,255,.18); }
+.careers-fg input:focus,
+.careers-fg select:focus,
+.careers-fg textarea:focus { border-color:var(--sea); }
+.careers-fg select option { background:var(--black); }
+.careers-fg textarea { min-height:90px; }
+.careers-form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.careers-submit {
+  background:var(--sea); color:var(--white); border:none;
+  padding:16px 32px; font-family:'Barlow Condensed',sans-serif;
+  font-size:.72rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase;
+  cursor:pointer; transition:background .3s; margin-top:6px; align-self:flex-start;
+}
+.careers-submit:hover { background:var(--sea-light); }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────── */
+@media(max-width:960px){
+  .careers-why-inner{grid-template-columns:repeat(2,1fr)}
+  .careers-why-item:nth-child(2){border-right:none}
+  .careers-mission-grid{grid-template-columns:1fr;gap:60px}
+  .careers-roles-header{grid-template-columns:1fr;gap:24px}
+  .careers-roles-grid{grid-template-columns:1fr}
+  .careers-apply-inner{grid-template-columns:1fr;gap:60px}
+}
+@media(max-width:600px){
+  .careers-why-inner{grid-template-columns:1fr}
+  .careers-form-row{grid-template-columns:1fr}
+}
+
