@@ -31,20 +31,12 @@ export async function middleware(request: NextRequest) {
     }
   );
 
+  const path = request.nextUrl.pathname;
+  const isLogin = path === "/cms/login" || path.startsWith("/cms/login/");
+
   const {
     data: { user },
   } = await supabase.auth.getUser();
-
-  const path = request.nextUrl.pathname;
-  const isLogin = path === "/cms/login" || path.startsWith("/cms/login/");
-  const isCms = path === "/cms" || path.startsWith("/cms/");
-
-  if (!user && isCms && !isLogin) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/cms/login";
-    url.searchParams.set("next", path);
-    return NextResponse.redirect(url);
-  }
 
   if (user && isLogin) {
     const url = request.nextUrl.clone();

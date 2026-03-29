@@ -1,5 +1,3 @@
-import { createClient } from "@/app/lib/supabase/server";
-import { signOut } from "./actions";
 import Link from "next/link";
 
 const PAGES_TO_MIGRATE = [
@@ -13,34 +11,32 @@ const PAGES_TO_MIGRATE = [
   { slug: "/work-for-us", label: "Work for us" },
 ] as const;
 
-export default async function CmsHomePage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
+export default function CmsHomePage() {
   return (
     <div className="space-y-8">
-      <header className="flex flex-wrap items-start justify-between gap-4 border-b border-zinc-800 pb-6">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">CMS</h1>
-          <p className="mt-1 text-sm text-zinc-400">
-            Edit site content stored in Supabase as you migrate each route to
-            React.
-          </p>
-          {user?.email && (
-            <p className="mt-2 text-xs text-zinc-500">Signed in as {user.email}</p>
-          )}
-        </div>
-        <form action={signOut}>
-          <button
-            type="submit"
-            className="rounded-md border border-zinc-700 px-3 py-1.5 text-sm text-zinc-300 hover:bg-zinc-900"
-          >
-            Sign out
-          </button>
-        </form>
+      <header className="border-b border-zinc-800 pb-6">
+        <h1 className="text-2xl font-semibold tracking-tight">CMS</h1>
+        <p className="mt-1 text-sm text-zinc-400">
+          Edit site content stored in Supabase. Saving from the home editor uses
+          the service role on the server (set{" "}
+          <code className="text-zinc-300">SUPABASE_SERVICE_ROLE_KEY</code> in{" "}
+          <code className="text-zinc-300">.env.local</code>).
+        </p>
       </header>
+
+      <section>
+        <h2 className="text-sm font-medium uppercase tracking-wider text-zinc-500">
+          Editable in CMS
+        </h2>
+        <ul className="mt-3 space-y-2">
+          <li>
+            <Link href="/cms/home" className="text-sky-400 hover:underline">
+              Home page
+            </Link>
+            <span className="ml-2 text-xs text-zinc-600">/cms/home</span>
+          </li>
+        </ul>
+      </section>
 
       <section>
         <h2 className="text-sm font-medium uppercase tracking-wider text-zinc-500">
