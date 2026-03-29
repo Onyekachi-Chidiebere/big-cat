@@ -4,13 +4,60 @@ import "../site.css";
 import styles from "../styles.module.css";
 import { SecurityGuardsEffects } from "../SecurityGuardsEffects";
 import { SiteAnnounce, SiteFooter } from "../components/SiteChrome";
-import type { SiteAfContent } from "@/app/lib/site/chrome/types";
+import { SiteServiceNav } from "../components/SiteServiceNav";
+import type { SecurityGuardsContent } from "@/app/lib/site/security-guards/types";
+
+function SgCardIcon({ index }: { index: number }) {
+  switch (index) {
+    case 0:
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+      );
+    case 1:
+      return (
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" />
+          <polygon points="10 8 16 12 10 16 10 8" />
+        </svg>
+      );
+    case 2:
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <circle cx="12" cy="7" r="4" />
+        </svg>
+      );
+    case 3:
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      );
+    default:
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+      );
+  }
+}
+
+const introDelay = ["f-d1", "f-d2", "f-d3", "f-d4"] as const;
+const credDelay = ["f-d1", "f-d2", "f-d3", "f-d4", "f-d5"] as const;
+const cardDelay = ["f-d1", "f-d2", "f-d3", "f-d4"] as const;
+const opsDelay = ["f-d1", "f-d2", "f-d3", "f-d4", "f-d5"] as const;
+const otherDelay = ["f-d1", "f-d2", "f-d3", "f-d4"] as const;
 
 export function SecurityGuardsPageClient({
   content,
 }: {
-  content: SiteAfContent;
+  content: SecurityGuardsContent;
 }) {
+  const m = content.main;
+
   return (
     <div>
       <SecurityGuardsEffects />
@@ -22,282 +69,324 @@ export function SecurityGuardsPageClient({
       <div className={styles["cursor-bl"]} id="curBL"></div>
       <div className={styles["cursor-br"]} id="curBR"></div>
       <div id="progress-bar"></div>
-      <a href="/#contact" className={styles["floating-cta"]} id="float-cta">
-        Get a Quote
+      <a
+        href={content.nav.quoteHref}
+        className={styles["floating-cta"]}
+        id="float-cta"
+      >
+        {content.nav.quoteLabel}
       </a>
       <SiteAnnounce html={content.announce.html} />
+      <SiteServiceNav nav={content.nav} styles={styles} />
 
-      {/* <!-- NAVBAR --> */}
-      <header className={styles["navbar"]} id="navbar">
-        <a href="/" className={styles["logo"]}>
-          <img src="/logo.png" alt="Big Cat Security Ltd" />
-        </a>
-        <nav id="nav">
-          <a href="/">Home</a>
-          <a href="/what-we-do">What We Do</a>
-          <a href="/security-guards" style={{ background: "var(--sea)" }}>
-            Security Guards
-          </a>
-          <a href="/about">About</a>
-          <a href="/work-for-us" className={styles["nav-cta"]}>
-            Work for Us
-          </a>
-        </nav>
-        <div className={styles["nav-right"]}>
-          <a href="tel:+448002440000" className={styles["nav-phone"]}>
-            0800 244 228
-          </a>
-          <a href="/#contact" className={styles["btn-pill"]}>
-            Get a Quote
-          </a>
-        </div>
-        <button id="menu-toggle" aria-label="Menu">
-          ☰
-        </button>
-      </header>
-
-      {/* <!-- ── HERO ─────────────────────────────────────────────────── --> */}
       <section className={styles["sg-hero"]}>
-
-      {/* <!-- LEFT: Editorial dark panel --> */}
-      <div className={styles['sg-hero-left']}>
-        <div className={styles['sg-corner-tl']}></div>
-        <div className={styles['sg-readout']}>SIA: LICENSED<br />TYPE: MANNED GUARDING<br />COVER: LONDON &amp; UK<br /><span id="sg-clock">--:--:--</span></div>
-          <div className={styles['sg-hero-label']} id="sh-label">Manned Guarding</div>
-          <h1 id="sh-h1">
-            <em>Trusted, Trained</em>
-            <strong>Security<br />Guards</strong>
-          </h1>
-          <p className={styles['sg-hero-sub']} id="sh-sub">At Big Cat Security Ltd, we deploy highly trusted and experienced security guards, door supervisors, and ground teams — safeguarding offices, buildings, warehouses, and shared workspaces across London and the surrounding areas.</p>
-          <div className={styles['sg-hero-actions']} id="sh-actions">
-            <a href="/#contact" className={styles['btn-pill-white']}>Recruit a Guard</a>
-            <a href="#sg-services" className={styles['btn-pill']}>Our Services</a>
+        <div className={styles["sg-hero-left"]}>
+          <div className={styles["sg-corner-tl"]}></div>
+          <div className={styles["sg-readout"]}>
+            {m.hero.readout.split("\n").map((line, i) => (
+              <span key={i}>
+                {i > 0 ? <br /> : null}
+                {line}
+              </span>
+            ))}
+            <br />
+            <span id="sg-clock">--:--:--</span>
           </div>
-          <div className={styles['sg-hero-status']} id="sh-status">
-            <div className={styles['sg-status-dot']}></div>
-            <span className={styles['hi']}>SIA Licensed</span>
-            <span>·</span><span>Fully Vetted</span>
-            <span>·</span><span>London &amp; UK</span>
+          <div className={styles["sg-hero-label"]} id="sh-label">
+            {m.hero.label}
+          </div>
+          <h1 id="sh-h1">
+            <em>{m.hero.h1Em}</em>
+            <strong>
+              {m.hero.h1StrongLine1}
+              <br />
+              {m.hero.h1StrongLine2}
+            </strong>
+          </h1>
+          <p className={styles["sg-hero-sub"]} id="sh-sub">
+            {m.hero.sub}
+          </p>
+          <div className={styles["sg-hero-actions"]} id="sh-actions">
+            <a
+              href={m.hero.primaryCta.href}
+              className={styles["btn-pill-white"]}
+            >
+              {m.hero.primaryCta.label}
+            </a>
+            <a href={m.hero.secondaryCta.href} className={styles["btn-pill"]}>
+              {m.hero.secondaryCta.label}
+            </a>
+          </div>
+          <div className={styles["sg-hero-status"]} id="sh-status">
+            <div className={styles["sg-status-dot"]}></div>
+            <span className={styles["hi"]}>{m.hero.statusHi}</span>
+            {m.hero.statusParts.map((part) => (
+              <span key={part}>
+                <span>·</span>
+                <span>{part}</span>
+              </span>
+            ))}
           </div>
         </div>
 
-          {/* <!-- RIGHT: Three-image mosaic --> */}
-          <div className={styles['sg-hero-right']}>
-            <div className={styles['sg-hero-img-main']}>
-              <img src="/images/security-guards/img-1.jpg" alt="Security Officer on duty at large event" />
-            </div>
-            <div className={styles['sg-hero-img-row']}>
-              <div className={styles['sg-hero-img-sm']}>
-                <img src="/images/security-guards/img-2.jpg" alt="Security Guards at building entrance" />
+        <div className={styles["sg-hero-right"]}>
+          <div className={styles["sg-hero-img-main"]}>
+            <img src={m.hero.imageMainSrc} alt={m.hero.imageMainAlt} />
+          </div>
+          <div className={styles["sg-hero-img-row"]}>
+            {m.hero.imageSm.map((img) => (
+              <div key={img.src} className={styles["sg-hero-img-sm"]}>
+                <img src={img.src} alt={img.alt} />
               </div>
-              <div className={styles['sg-hero-img-sm']}>
-                <img src="/images/security-guards/img-3.jpg" alt="Door Supervisor at venue" />
-              </div>
+            ))}
+          </div>
+          <div className={styles["sg-scan"]}></div>
+          <div className={styles["sg-hero-stat"]} id="sh-stat">
+            <div className={styles["sg-hero-stat-n"]}>
+              {m.hero.statN}
+              {m.hero.statNEm != null ? <em>{m.hero.statNEm}</em> : null}
             </div>
-            <div className={styles['sg-scan']}></div>
-            <div className={styles['sg-hero-stat']} id="sh-stat">
-              <div className={styles['sg-hero-stat-n']}>50<em>+</em></div>
-              <div className={styles['sg-hero-stat-l']}>Events Secured</div>
+            <div className={styles["sg-hero-stat-l"]}>{m.hero.statL}</div>
+          </div>
+        </div>
+      </section>
+
+      <div className={styles["sg-intro-strip"]}>
+        <div className={styles["sg-intro-inner"]}>
+          {m.introStrip.map((item, i) => (
+            <div
+              key={item.num}
+              className={`${styles["sg-intro-item"]} ${styles["f-reveal"]} ${styles[introDelay[i] ?? "f-d1"]}`}
+            >
+              <div className={styles["sg-intro-num"]}>{item.num}</div>
+              <div className={styles["sg-intro-title"]}>{item.title}</div>
+              <div className={styles["sg-intro-text"]}>{item.text}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <section className={styles["sg-overview"]}>
+        <div className={styles["sg-overview-grid"]}>
+          <div className={styles["sg-overview-left"]}>
+            <div className={`${styles["eyebrow"]} ${styles["f-reveal"]}`}>
+              {m.overview.eyebrow}
+            </div>
+            <h2 className={`${styles["f-reveal"]} ${styles["f-d1"]}`}>
+              {m.overview.h2Line1}
+              <br />
+              <em>{m.overview.h2Em}</em>
+              <br />
+              {m.overview.h2Line2}
+            </h2>
+            <p className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
+              {m.overview.paragraphs[0]}
+            </p>
+            <p className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
+              {m.overview.paragraphs[1]}
+            </p>
+
+            <div className={styles["sg-creds"]}>
+              {m.overview.creds.map((c, i) => (
+                <div
+                  key={i}
+                  className={`${styles["sg-cred"]} ${styles["f-reveal-l"]} ${styles[credDelay[i] ?? "f-d1"]}`}
+                >
+                  <div className={styles["sg-cred-dot"]}></div>
+                  <span>{c}</span>
+                </div>
+              ))}
             </div>
           </div>
-        </section>
 
-          {/* <!-- ── SERVICE TYPE STRIP ─────────────────────────────────────── --> */}
-          <div className={styles['sg-intro-strip']}>
-            <div className={styles['sg-intro-inner']}>
-              <div className={`${styles['sg-intro-item']} ${styles['f-reveal']} ${styles['f-d1']}`}>
-                <div className={styles['sg-intro-num']}>01</div>
-                <div className={styles['sg-intro-title']}>Professional SIA Security</div>
-                <div className={styles['sg-intro-text']}>SIA-licensed officers combining trusted services with genuine social value</div>
+          <div
+            className={`${styles["sg-overview-right"]} ${styles["f-reveal"]} ${styles["f-d2"]}`}
+          >
+            <div className={styles["sg-overview-img"]}>
+              <img src={m.overview.imageSrc} alt={m.overview.imageAlt} />
+              <div className={styles["sg-overview-img-cap"]}>
+                <p>{m.overview.imageCap}</p>
               </div>
-              <div className={`${styles['sg-intro-item']} ${styles['f-reveal']} ${styles['f-d2']}`}>
-                <div className={styles['sg-intro-num']}>02</div>
-                <div className={styles['sg-intro-title']}>Mobile Security</div>
-                <div className={styles['sg-intro-text']}>Anticipating risks and responding decisively to every incident, minor or critical</div>
-              </div>
-              <div className={`${styles['sg-intro-item']} ${styles['f-reveal']} ${styles['f-d3']}`}>
-                <div className={styles['sg-intro-num']}>03</div>
-                <div className={styles['sg-intro-title']}>Close Protection</div>
-                <div className={styles['sg-intro-text']}>CPOs safeguarding clients with proactive risk assessment and discreet surveillance</div>
-              </div>
-              <div className={`${styles['sg-intro-item']} ${styles['f-reveal']} ${styles['f-d4']}`}>
-                <div className={styles['sg-intro-num']}>04</div>
-                <div className={styles['sg-intro-title']}>Front of House</div>
-                <div className={styles['sg-intro-text']}>Professional, welcoming entry management that reflects your organisation's standard</div>
-              </div>
+            </div>
+            <div className={styles["sg-overview-quote"]}>
+              <p>{m.overview.quote}</p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* <!-- ── OVERVIEW ───────────────────────────────────────────────── --> */}
-          <section className={styles['sg-overview']}>
-            <div className={styles['sg-overview-grid']}>
+      <section className={styles["sg-services"]} id="sg-services">
+        <div className={styles["sg-services-header"]}>
+          <div className={styles["f-reveal"]}>
+            <div className={styles["eyebrow"]}>{m.services.eyebrow}</div>
+            <h2>
+              {m.services.h2Line1}
+              <br />
+              <em>{m.services.h2Em}</em>
+            </h2>
+          </div>
+          <p className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
+            {m.services.intro}
+          </p>
+        </div>
 
-              <div className={styles['sg-overview-left']}>
-                <div className={`${styles['eyebrow']} ${styles['f-reveal']}`}>Recruit Expert SIA Security Guards Today</div>
-                <h2 className={`${styles['f-reveal']} ${styles['f-d1']}`}>Trusted SIA-<br /><em>Certified</em><br />Security</h2>
-                <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>As communities grow, so does the need for strong internal and external security to protect both people and property. At Big Cat Security Ltd, we meet this need by deploying highly trusted and experienced security guards — safeguarding offices, buildings, warehouses, and shared workspaces across London.</p>
-                <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>At Big Cat Security Ltd, we combine trusted security services with genuine social value. As a leading social enterprise in our sector, we are committed to making a real difference and doing the right thing for all.</p>
-
-                <div className={styles['sg-creds']}>
-                  <div className={`${styles['sg-cred']} ${styles['f-reveal-l']} ${styles['f-d1']}`}><div className={styles['sg-cred-dot']}></div><span>Fully SIA-Certified and Licensed Security Professionals</span></div>
-                  <div className={`${styles['sg-cred']} ${styles['f-reveal-l']} ${styles['f-d2']}`}><div className={styles['sg-cred-dot']}></div><span>Experienced Team with a Proven Track Record</span></div>
-                  <div className={`${styles['sg-cred']} ${styles['f-reveal-l']} ${styles['f-d3']}`}><div className={styles['sg-cred-dot']}></div><span>Efficiently Managed Security Operations</span></div>
-                  <div className={`${styles['sg-cred']} ${styles['f-reveal-l']} ${styles['f-d4']}`}><div className={styles['sg-cred-dot']}></div><span>Comprehensive Insurance &amp; Full Legal Compliance</span></div>
-                  <div className={`${styles['sg-cred']} ${styles['f-reveal-l']} ${styles['f-d5']}`}><div className={styles['sg-cred-dot']}></div><span>Featured in TimeOut, Shortlist &amp; Leading Publications</span></div>
-                </div>
+        <div className={styles["sg-cards"]}>
+          {m.services.cards.map((card, i) => (
+            <div
+              key={card.n}
+              className={`${styles["sg-card"]} ${styles["f-reveal"]} ${styles[cardDelay[i] ?? "f-d1"]}`}
+            >
+              <div className={styles["sg-card-n"]}>{card.n}</div>
+              <div className={styles["sg-card-icon"]}>
+                <SgCardIcon index={i} />
               </div>
-
-              <div className={`${styles['sg-overview-right']} ${styles['f-reveal']} ${styles['f-d2']}`}>
-                <div className={styles['sg-overview-img']}>
-                  <img src="/images/security-guards/img-4.jpg" alt="SIA Security Officer with radio" />
-                  <div className={styles['sg-overview-img-cap']}>
-                    <p>SIA-licensed officer — manned guarding deployment, London</p>
-                  </div>
-                </div>
-                <div className={styles['sg-overview-quote']}>
-                  <p>"Our skilled personnel combine professional training with broad practical experience gained from working in leading industries and business settings."</p>
-                </div>
-              </div>
-
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+              <a href={card.ctaHref} className={styles["sg-card-link"]}>
+                {card.ctaLabel}
+              </a>
             </div>
-          </section>
+          ))}
+        </div>
+      </section>
 
-          {/* <!-- ── SERVICE CARDS ──────────────────────────────────────────── --> */}
-          <section className={styles['sg-services']} id="sg-services">
-            <div className={styles['sg-services-header']}>
-              <div className={styles['f-reveal']}>
-                <div className={styles['eyebrow']}>Professional SIA Security Guard Services</div>
-                <h2>What We<br /><em>Offer</em></h2>
-              </div>
-              <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>Our skilled security professionals are trained across multiple disciplines — from static guarding and access control to mobile patrols, event security, close protection, and front-of-house management. Every deployment is tailored to your specific environment and risk profile.</p>
+      <section className={styles["sg-ops"]}>
+        <div className={styles["sg-ops-inner"]}>
+          <div className={`${styles["sg-ops-left"]} ${styles["f-reveal"]}`}>
+            <div
+              className={styles["eyebrow"]}
+              style={{
+                color: "var(--sea-light)",
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontSize: ".65rem",
+                letterSpacing: ".3em",
+                marginBottom: 20,
+              }}
+            >
+              {m.ops.eyebrow}
             </div>
+            <h2>
+              {m.ops.h2Line1}
+              <br />
+              {m.ops.h2Line2}
+              <br />
+              <em>{m.ops.h2Em}</em>
+            </h2>
+            <p>{m.ops.p}</p>
+            <div className={styles["sg-ops-actions"]}>
+              <a
+                href={m.ops.primaryCta.href}
+                className={styles["btn-pill-white"]}
+              >
+                {m.ops.primaryCta.label}
+              </a>
+              <a
+                href={m.ops.secondaryCta.href}
+                className={styles["btn-pill-ghost"]}
+              >
+                {m.ops.secondaryCta.label}
+              </a>
+            </div>
+          </div>
+          <div className={styles["sg-ops-list"]}>
+            {m.ops.items.map((item, i) => (
+              <div
+                key={item.title}
+                className={`${styles["sg-ops-item"]} ${styles["f-reveal-x"]} ${styles[opsDelay[i] ?? "f-d1"]}`}
+              >
+                <div className={styles["sg-ops-dot"]}></div>
+                <div>
+                  <h4>{item.title}</h4>
+                  <p>{item.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className={styles['sg-cards']}>
-              <div className={`${styles['sg-card']} ${styles['f-reveal']} ${styles['f-d1']}`}>
-                <div className={styles['sg-card-n']}>01</div>
-                <div className={styles['sg-card-icon']}>
-                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-                </div>
-                <h3>Professional SIA Security</h3>
-                <p>We combine trusted security services with genuine social value. As the leading social enterprise in our sector, we deploy SIA-licensed officers committed to making a real difference — protecting your premises while upholding the highest professional standards.</p>
-                <a href="/#contact" className={styles['sg-card-link']}>Enquire Now</a>
+      <section className={styles["sg-other"]}>
+        <div className={`${styles["sg-other-header"]} ${styles["f-reveal"]}`}>
+          <div className={styles["eyebrow"]}>{m.other.eyebrow}</div>
+          <h2>
+            {m.other.h2Line1}
+            <br />
+            <em>{m.other.h2Em}</em>
+          </h2>
+          <p>{m.other.intro}</p>
+        </div>
+        <div className={styles["sg-other-grid"]}>
+          {m.other.cards.map((card, i) => (
+            <div
+              key={card.n}
+              className={`${styles["sg-other-card"]} ${styles["f-reveal"]} ${styles[otherDelay[i] ?? "f-d1"]}`}
+              onClick={() => {
+                window.location.href = card.href;
+              }}
+              role="link"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  window.location.href = card.href;
+                }
+              }}
+            >
+              <div className={styles["sg-other-num"]}>{card.n}</div>
+              <div>
+                <h3>{card.title}</h3>
+                <p>{card.body}</p>
               </div>
-              <div className={`${styles['sg-card']} ${styles['f-reveal']} ${styles['f-d2']}`}>
-                <div className={styles['sg-card-n']}>02</div>
-                <div className={styles['sg-card-icon']}>
-                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>
-                </div>
-                <h3>Mobile Security</h3>
-                <p>We combine knowledge, training, and experience to anticipate risks and respond decisively — whether it's a minor incident or a critical breach. Our mobile teams cover multiple sites, conducting regular patrols and maintaining a visible deterrent presence.</p>
-                <a href="/#contact" className={styles['sg-card-link']}>Enquire Now</a>
-              </div>
-              <div className={`${styles['sg-card']} ${styles['f-reveal']} ${styles['f-d3']}`}>
-                <div className={styles['sg-card-n']}>03</div>
-                <div className={styles['sg-card-icon']}>
-                  <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
-                </div>
-                <h3>Close Protection</h3>
-                <p>Our Close Protection Officers (CPOs) safeguard clients against unwanted attention and potential harm — combining proactive risk assessment with discreet surveillance. Deployed for executives, VIPs, and high-profile individuals requiring personal protection.</p>
-                <a href="/#contact" className={styles['sg-card-link']}>Enquire Now</a>
-              </div>
-              <div className={`${styles['sg-card']} ${styles['f-reveal']} ${styles['f-d4']}`}>
-                <div className={styles['sg-card-n']}>04</div>
-                <div className={styles['sg-card-icon']}>
-                  <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
-                </div>
-                <h3>Front of House Security</h3>
-                <p>The entrance is both the first and last impression visitors have of your organisation. Our front-of-house officers ensure entry areas are safe, professional, and welcoming — delivering outstanding guest relations alongside rigorous access control.</p>
-                <a href="/#contact" className={styles['sg-card-link']}>Enquire Now</a>
-              </div>
+              <div className={styles["sg-other-arrow"]}>→</div>
             </div>
-          </section>
+          ))}
+        </div>
+      </section>
 
-          {/* <!-- ── OPERATIONS ─────────────────────────────────────────────── --> */}
-          <section className={styles['sg-ops']}>
-            <div className={styles['sg-ops-inner']}>
-              <div className={`${styles['sg-ops-left']} ${styles['f-reveal']}`}>
-                <div className={styles['eyebrow']} style={{ color: "var(--sea-light)", fontFamily: "'Barlow Condensed', sans-serif", fontSize: ".65rem", letterSpacing: ".3em", marginBottom: 20 }}>Day-to-Day Operations</div>
-                <h2>What Our<br />Guards<br /><em>Do Daily</em></h2>
-                <p>Our security personnel are deployed across a wide range of environments and operational settings — each trained to perform consistently and professionally, regardless of the assignment.</p>
-                <div className={styles['sg-ops-actions']}>
-                  <a href="/#contact" className={styles['btn-pill-white']}>Get a Free Quote</a>
-                  <a href="/what-we-do" className={styles['btn-pill-ghost']}>All Services</a>
-                </div>
-              </div>
-              <div className={styles['sg-ops-list']}>
-                <div className={`${styles['sg-ops-item']} ${styles['f-reveal-x']} ${styles['f-d1']}`}>
-                  <div className={styles['sg-ops-dot']}></div>
-                  <div><h4>Shared Workspaces &amp; Business Centres</h4><p>Providing security for co-working spaces, university campuses, and professional business environments across London.</p></div>
-                </div>
-                <div className={`${styles['sg-ops-item']} ${styles['f-reveal-x']} ${styles['f-d2']}`}>
-                  <div className={styles['sg-ops-dot']}></div>
-                  <div><h4>Shopping Centres, Hotels &amp; Theatres</h4><p>Door supervisor and guard deployments for high-footfall retail and hospitality environments, ensuring guest safety and loss prevention.</p></div>
-                </div>
-                <div className={`${styles['sg-ops-item']} ${styles['f-reveal-x']} ${styles['f-d3']}`}>
-                  <div className={styles['sg-ops-dot']}></div>
-                  <div><h4>Overnight &amp; Construction Security</h4><p>Round-the-clock overnight security for unoccupied commercial buildings and construction sites — protecting assets and deterring trespass.</p></div>
-                </div>
-                <div className={`${styles['sg-ops-item']} ${styles['f-reveal-x']} ${styles['f-d4']}`}>
-                  <div className={styles['sg-ops-dot']}></div>
-                  <div><h4>Site Access &amp; Entry Control</h4><p>Managing and monitoring site access points, verifying credentials, and maintaining a secure, controlled entry environment.</p></div>
-                </div>
-                <div className={`${styles['sg-ops-item']} ${styles['f-reveal-x']} ${styles['f-d5']}`}>
-                  <div className={styles['sg-ops-dot']}></div>
-                  <div><h4>Foot Patrols &amp; Guest Relations</h4><p>Conducting routine foot patrols to maintain visible deterrence, while delivering professional guest relations and customer service at all times.</p></div>
-                </div>
-              </div>
+      <section className={styles["sg-cta"]}>
+        <div className={styles["sg-cta-inner"]}>
+          <div className={styles["f-reveal"]}>
+            <div
+              className={styles["eyebrow"]}
+              style={{
+                color: "var(--sea-light)",
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontSize: ".65rem",
+                letterSpacing: ".3em",
+                marginBottom: 16,
+              }}
+            >
+              {m.cta.eyebrow}
             </div>
-          </section>
+            <h2>
+              {m.cta.h2Line1}
+              <br />
+              <em>{m.cta.h2Em}</em>
+            </h2>
+          </div>
+          <div
+            className={`${styles["sg-cta-right"]} ${styles["f-reveal"]} ${styles["f-d2"]}`}
+          >
+            <p>{m.cta.body}</p>
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <a
+                href={m.cta.primaryCta.href}
+                className={styles["btn-pill-white"]}
+              >
+                {m.cta.primaryCta.label}
+              </a>
+              <a
+                href={m.cta.secondaryCta.href}
+                className={styles["btn-pill-ghost"]}
+              >
+                {m.cta.secondaryCta.label}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          {/* <!-- ── OTHER SERVICES ─────────────────────────────────────────── --> */}
-          <section className={styles['sg-other']}>
-            <div className={`${styles['sg-other-header']} ${styles['f-reveal']}`}>
-              <div className={styles['eyebrow']}>Explore Our Services</div>
-              <h2>More Ways We<br /><em>Protect You</em></h2>
-              <p>Beyond manned guarding, Big Cat Security Ltd offers a full suite of SIA-licensed security services across London and the UK.</p>
-            </div>
-            <div className={styles['sg-other-grid']}>
-              <div className={`${styles['sg-other-card']} ${styles['f-reveal']} ${styles['f-d1']}`} onClick={() => { window.location.href = "/#contact"; }}>
-                <div className={styles['sg-other-num']}>01</div>
-                <div><h3>Event Security</h3><p>Expert event security teams for public gatherings, private functions, film sets and music events.</p></div>
-                <div className={styles['sg-other-arrow']}>→</div>
-              </div>
-              <div className={`${styles['sg-other-card']} ${styles['f-reveal']} ${styles['f-d2']}`} onClick={() => { window.location.href = "/#contact"; }}>
-                <div className={styles['sg-other-num']}>02</div>
-                <div><h3>Door Supervisors</h3><p>SIA-licensed door supervisors for licensed premises, bars, restaurants, hotels and entertainment venues.</p></div>
-                <div className={styles['sg-other-arrow']}>→</div>
-              </div>
-              <div className={`${styles['sg-other-card']} ${styles['f-reveal']} ${styles['f-d3']}`} onClick={() => { window.location.href = "/#contact"; }}>
-                <div className={styles['sg-other-num']}>03</div>
-                <div><h3>Threat Intelligence</h3><p>Intelligence-led security decisions and risk assessments to keep you ahead of emerging threats.</p></div>
-                <div className={styles['sg-other-arrow']}>→</div>
-              </div>
-              <div className={`${styles['sg-other-card']} ${styles['f-reveal']} ${styles['f-d4']}`} onClick={() => { window.location.href = "/#contact"; }}>
-                <div className={styles['sg-other-num']}>04</div>
-                <div><h3>Retail &amp; Asset Protection</h3><p>Reducing shrinkage, deterring theft, and protecting high-value assets across retail and commercial environments.</p></div>
-                <div className={styles['sg-other-arrow']}>→</div>
-              </div>
-            </div>
-          </section>
-
-          {/* <!-- ── CTA ────────────────────────────────────────────────────── --> */}
-          <section className={styles['sg-cta']}>
-            <div className={styles['sg-cta-inner']}>
-              <div className={styles['f-reveal']}>
-                <div className={styles['eyebrow']} style={{ color: "var(--sea-light)", fontFamily: "'Barlow Condensed', sans-serif", fontSize: ".65rem", letterSpacing: ".3em", marginBottom: 16 }}>Get Started Today</div>
-                <h2>Recruit a<br /><em>Security Guard</em></h2>
-              </div>
-              <div className={`${styles['sg-cta-right']} ${styles['f-reveal']} ${styles['f-d2']}`}>
-                <p>Whether you need one officer or a full team, we respond fast and deploy professionals you can trust. All guards are SIA-licensed, fully vetted, and operationally ready.</p>
-                <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-                  <a href="/#contact" className={styles['btn-pill-white']}>Request a Quote</a>
-                  <a href="tel:+447722143162" className={styles['btn-pill-ghost']}>+44 (0)7722 143162</a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <SiteFooter footer={content.footer} />
+      <SiteFooter footer={content.footer} />
     </div>
   );
 }

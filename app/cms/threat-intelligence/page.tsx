@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { getSiteContentForPage } from "@/app/lib/supabase/content";
-import { buildSiteAfContent } from "@/app/lib/site/chrome/build";
-import { CHROME_AF_DEFAULTS } from "@/app/lib/site/chrome/defaults";
+import { buildThreatIntelligenceContent } from "@/app/lib/site/threat-intelligence/build";
+import { THREAT_INTELLIGENCE_DEFAULTS } from "@/app/lib/site/threat-intelligence/defaults";
 import { GenericCmsForm } from "../components/GenericCmsForm";
 
 const SLUG = "threat-intelligence";
 
 export default async function CmsThreatIntelligencePage() {
   const rows = await getSiteContentForPage(SLUG);
-  const initialContent = buildSiteAfContent(rows) as unknown as Record<string, unknown>;
+  const initialContent = buildThreatIntelligenceContent(
+    rows
+  ) as unknown as Record<string, unknown>;
 
   return (
     <div className="space-y-8">
@@ -16,17 +18,25 @@ export default async function CmsThreatIntelligencePage() {
         <Link href="/cms" className="text-sm text-sky-400 hover:underline">
           ← CMS
         </Link>
-        <h1 className="mt-4 text-2xl font-semibold tracking-tight">Threat intelligence</h1>
-        <p className="mt-1 text-sm text-zinc-400">Announce bar and footer.</p>
+        <h1 className="mt-4 text-2xl font-semibold tracking-tight">
+          Threat intelligence
+        </h1>
+        <p className="mt-1 text-sm text-zinc-400">
+          Announce bar, navigation, full page body, and footer.
+        </p>
       </header>
 
       <GenericCmsForm
         pageSlug={SLUG}
         sections={[
           { dbKey: "announce", label: "Announce bar", contentKey: "announce" },
+          { dbKey: "nav", label: "Header / navigation", contentKey: "nav" },
+          { dbKey: "main", label: "Page body", contentKey: "main" },
           { dbKey: "footer", label: "Footer", contentKey: "footer" },
         ]}
-        defaults={CHROME_AF_DEFAULTS as unknown as Record<string, unknown>}
+        defaults={
+          THREAT_INTELLIGENCE_DEFAULTS as unknown as Record<string, unknown>
+        }
         initialContent={initialContent}
       />
     </div>

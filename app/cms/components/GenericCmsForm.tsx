@@ -27,6 +27,30 @@ function mergeFooterLogo(json: string, url: string) {
 /** Image pickers for partial (announce+footer) CMS routes — keyed by page slug + DB section key. */
 const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
   "what-we-do": {
+    nav: [
+      {
+        label: "Header logo",
+        prefix: "what-we-do/nav",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as Record<string, unknown>;
+          return JSON.stringify({ ...o, logoUrl: url }, null, 2);
+        },
+      },
+    ],
+    main: [
+      {
+        label: "Hero image",
+        prefix: "what-we-do/hero",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as { hero?: Record<string, unknown> };
+          return JSON.stringify(
+            { ...o, hero: { ...o.hero, imageSrc: url } },
+            null,
+            2
+          );
+        },
+      },
+    ],
     footer: [
       {
         label: "Footer logo",
@@ -36,6 +60,30 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
     ],
   },
   "door-supervisors": {
+    nav: [
+      {
+        label: "Header logo",
+        prefix: "door-supervisors/nav",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as Record<string, unknown>;
+          return JSON.stringify({ ...o, logoUrl: url }, null, 2);
+        },
+      },
+    ],
+    main: [
+      {
+        label: "Hero image",
+        prefix: "door-supervisors/hero",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as { hero?: Record<string, unknown> };
+          return JSON.stringify(
+            { ...o, hero: { ...o.hero, imageSrc: url } },
+            null,
+            2
+          );
+        },
+      },
+    ],
     footer: [
       {
         label: "Footer logo",
@@ -45,6 +93,42 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
     ],
   },
   "event-security": {
+    nav: [
+      {
+        label: "Header logo",
+        prefix: "event-security/nav",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as Record<string, unknown>;
+          return JSON.stringify({ ...o, logoUrl: url }, null, 2);
+        },
+      },
+    ],
+    main: [
+      {
+        label: "Hero background image",
+        prefix: "event-security/hero",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as { hero?: Record<string, unknown> };
+          return JSON.stringify(
+            { ...o, hero: { ...o.hero, bgImage: url } },
+            null,
+            2
+          );
+        },
+      },
+      {
+        label: "Overview image",
+        prefix: "event-security/overview",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as { overview?: Record<string, unknown> };
+          return JSON.stringify(
+            { ...o, overview: { ...o.overview, imageSrc: url } },
+            null,
+            2
+          );
+        },
+      },
+    ],
     footer: [
       {
         label: "Footer logo",
@@ -54,6 +138,86 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
     ],
   },
   "security-guards": {
+    nav: [
+      {
+        label: "Header logo",
+        prefix: "security-guards/nav",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as Record<string, unknown>;
+          return JSON.stringify({ ...o, logoUrl: url }, null, 2);
+        },
+      },
+    ],
+    main: [
+      {
+        label: "Hero main image",
+        prefix: "security-guards/hero-main",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as { hero?: Record<string, unknown> };
+          return JSON.stringify(
+            { ...o, hero: { ...o.hero, imageMainSrc: url } },
+            null,
+            2
+          );
+        },
+      },
+      {
+        label: "Hero small image 1",
+        prefix: "security-guards/hero-sm-1",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as {
+            hero?: { imageSm?: [{ src: string; alt: string }, { src: string; alt: string }] };
+          };
+          const sm = o.hero?.imageSm ?? [
+            { src: "", alt: "" },
+            { src: "", alt: "" },
+          ];
+          const next: typeof sm = [
+            { ...sm[0], src: url },
+            sm[1] ?? { src: "", alt: "" },
+          ];
+          return JSON.stringify(
+            { ...o, hero: { ...o.hero, imageSm: next } },
+            null,
+            2
+          );
+        },
+      },
+      {
+        label: "Hero small image 2",
+        prefix: "security-guards/hero-sm-2",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as {
+            hero?: { imageSm?: [{ src: string; alt: string }, { src: string; alt: string }] };
+          };
+          const sm = o.hero?.imageSm ?? [
+            { src: "", alt: "" },
+            { src: "", alt: "" },
+          ];
+          const next: typeof sm = [
+            sm[0] ?? { src: "", alt: "" },
+            { ...sm[1], src: url },
+          ];
+          return JSON.stringify(
+            { ...o, hero: { ...o.hero, imageSm: next } },
+            null,
+            2
+          );
+        },
+      },
+      {
+        label: "Overview image",
+        prefix: "security-guards/overview",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as { overview?: Record<string, unknown> };
+          return JSON.stringify(
+            { ...o, overview: { ...o.overview, imageSrc: url } },
+            null,
+            2
+          );
+        },
+      },
+    ],
     footer: [
       {
         label: "Footer logo",
@@ -63,6 +227,100 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
     ],
   },
   "threat-intelligence": {
+    nav: [
+      {
+        label: "Header logo",
+        prefix: "threat-intelligence/nav",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as Record<string, unknown>;
+          return JSON.stringify({ ...o, logoUrl: url }, null, 2);
+        },
+      },
+    ],
+    main: [
+      {
+        label: "Hero background image",
+        prefix: "threat-intelligence/hero",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as { hero?: Record<string, unknown> };
+          return JSON.stringify(
+            { ...o, hero: { ...o.hero, bgImage: url } },
+            null,
+            2
+          );
+        },
+      },
+      {
+        label: "Overview image",
+        prefix: "threat-intelligence/overview",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as { overview?: Record<string, unknown> };
+          return JSON.stringify(
+            { ...o, overview: { ...o.overview, imageSrc: url } },
+            null,
+            2
+          );
+        },
+      },
+      {
+        label: "Accreditation logo 1",
+        prefix: "threat-intelligence/accred-1",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as {
+            accred?: {
+              logos?: [
+                { src: string; alt: string },
+                { src: string; alt: string; small?: boolean },
+              ];
+            };
+          };
+          const logos = o.accred?.logos ?? [
+            { src: "", alt: "" },
+            { src: "", alt: "", small: true },
+          ];
+          return JSON.stringify(
+            {
+              ...o,
+              accred: {
+                ...o.accred,
+                logos: [{ ...logos[0], src: url }, logos[1]],
+              },
+            },
+            null,
+            2
+          );
+        },
+      },
+      {
+        label: "Accreditation logo 2",
+        prefix: "threat-intelligence/accred-2",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as {
+            accred?: {
+              logos?: [
+                { src: string; alt: string },
+                { src: string; alt: string; small?: boolean },
+              ];
+            };
+          };
+          const logos = o.accred?.logos ?? [
+            { src: "", alt: "" },
+            { src: "", alt: "", small: true },
+          ];
+          return JSON.stringify(
+            {
+              ...o,
+              accred: {
+                ...o.accred,
+                logos: [logos[0], { ...logos[1], src: url }],
+              },
+            },
+            null,
+            2
+          );
+        },
+      },
+    ],
     footer: [
       {
         label: "Footer logo",
@@ -72,6 +330,30 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
     ],
   },
   "work-for-us": {
+    nav: [
+      {
+        label: "Header logo",
+        prefix: "work-for-us/nav",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as Record<string, unknown>;
+          return JSON.stringify({ ...o, logoUrl: url }, null, 2);
+        },
+      },
+    ],
+    main: [
+      {
+        label: "Mission section logo",
+        prefix: "work-for-us/mission-logo",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as { mission?: Record<string, unknown> };
+          return JSON.stringify(
+            { ...o, mission: { ...o.mission, logoSrc: url } },
+            null,
+            2
+          );
+        },
+      },
+    ],
     footer: [
       {
         label: "Footer logo",

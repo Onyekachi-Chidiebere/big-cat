@@ -1,15 +1,100 @@
 "use client";
+
 import "../site.css";
 import styles from "../styles.module.css";
 import { ThreatIntelligenceEffects } from "../ThreatIntelligenceEffects";
 import { SiteAnnounce, SiteFooter } from "../components/SiteChrome";
-import type { SiteAfContent } from "@/app/lib/site/chrome/types";
+import { SiteServiceNav } from "../components/SiteServiceNav";
+import type { ThreatIntelligenceContent } from "@/app/lib/site/threat-intelligence/types";
+
+function TiCapIcon({ index }: { index: number }) {
+  switch (index) {
+    case 0:
+      return (
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M20.188 10.934a8.497 8.497 0 0 1 0 2.132m-2.272 4.53a8.5 8.5 0 0 1-1.508 1.508M13.066 21.812a8.5 8.5 0 0 1-2.132 0M6.404 19.54a8.497 8.497 0 0 1-1.508-1.508M2.188 13.066a8.5 8.5 0 0 1 0-2.132m2.272-4.53a8.497 8.497 0 0 1 1.508-1.508M10.934 2.188a8.5 8.5 0 0 1 2.132 0m4.53 2.272a8.5 8.5 0 0 1 1.508 1.508" />
+        </svg>
+      );
+    case 1:
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+          <line x1="12" y1="9" x2="12" y2="13" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
+        </svg>
+      );
+    case 2:
+      return (
+        <svg viewBox="0 0 24 24">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+      );
+    case 3:
+      return (
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="11" width="18" height="11" rx="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+      );
+    default:
+      return (
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      );
+  }
+}
+
+function TiSvcIcon({ index }: { index: number }) {
+  switch (index) {
+    case 0:
+      return (
+        <svg viewBox="0 0 24 24">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <path d="M8 21h8M12 17v4" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+      );
+    case 1:
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+          <line x1="12" y1="9" x2="12" y2="13" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
+        </svg>
+      );
+    case 2:
+      return (
+        <svg viewBox="0 0 24 24">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+        </svg>
+      );
+    case 3:
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+      );
+    default:
+      return (
+        <svg viewBox="0 0 24 24">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+        </svg>
+      );
+  }
+}
+
+const d4 = ["f-d1", "f-d2", "f-d3", "f-d4"] as const;
+const d5 = ["f-d1", "f-d2", "f-d3", "f-d4", "f-d5"] as const;
 
 export function ThreatIntelligencePageClient({
   content,
 }: {
-  content: SiteAfContent;
+  content: ThreatIntelligenceContent;
 }) {
+  const m = content.main;
+
   return (
     <div>
       <ThreatIntelligenceEffects />
@@ -21,256 +106,320 @@ export function ThreatIntelligencePageClient({
       <div className={styles["cursor-bl"]} id="curBL"></div>
       <div className={styles["cursor-br"]} id="curBR"></div>
       <div id="progress-bar"></div>
-      <a href="/#contact" className={styles["floating-cta"]} id="float-cta">
-        Get a Quote
+      <a
+        href={content.nav.quoteHref}
+        className={styles["floating-cta"]}
+        id="float-cta"
+      >
+        {content.nav.quoteLabel}
       </a>
-    <SiteAnnounce html={content.announce.html} />
+      <SiteAnnounce html={content.announce.html} />
+      <SiteServiceNav nav={content.nav} styles={styles} />
 
-      {/* <!-- NAVBAR --> */}
-    <header className={styles['navbar']} id="navbar">
-      <a href="/" className={styles['logo']}>
-        <img src="/logo.png" alt="Big Cat Security Ltd" />
-      </a>
-      <nav id="nav">
-        <a href="/">Home</a>
-        <a href="/what-we-do">What We Do</a>
-        <a href="/threat-intelligence" style={{ background: "var(--sea)" }}>
-          Threat Intelligence
-        </a>
-        <a href="/about">About</a>
-        <a href="/work-for-us" className={styles['nav-cta']}>
-          Work for Us
-        </a>
-      </nav>
-      <div className={styles['nav-right']}>
-        <a href="tel:+448002440000" className={styles['nav-phone']}>0800 244 228</a>
-        <a href="/#contact" className={styles['btn-pill']}>Get a Quote</a>
-      </div>
-      <button id="menu-toggle" aria-label="Menu">☰</button>
-    </header>
-
-
-
-    {/* <!-- ── HERO ─────────────────────────────────────────────────── --> */}
-    <section className={styles['ti-hero']}>
-      <div className={styles['ti-hero-bg']} style={{ backgroundImage: `url('/images/threat-intelligence/img-1.jpg')` }}></div>
-      <div className={styles['ti-hero-overlay']}></div>
-      <div className={styles['ti-grid-overlay']}></div>
-      <div className={styles['ti-dataline']}></div>
-      <div className={styles['ti-dataline']}></div>
-      <div className={styles['ti-corner-tl']}></div>
-      <div className={styles['ti-corner-br']}></div>
-      <div className={styles['ti-readout']}>
-        INTEL: ACTIVE<br />
-        CCTV: MONITORING<br />
-          THREAT: ASSESSED<br />
-            <span id="ti-clock">--:--:--</span>
+      <section className={styles["ti-hero"]}>
+        <div
+          className={styles["ti-hero-bg"]}
+          style={{ backgroundImage: `url('${m.hero.bgImage}')` }}
+        ></div>
+        <div className={styles["ti-hero-overlay"]}></div>
+        <div className={styles["ti-grid-overlay"]}></div>
+        <div className={styles["ti-dataline"]}></div>
+        <div className={styles["ti-dataline"]}></div>
+        <div className={styles["ti-corner-tl"]}></div>
+        <div className={styles["ti-corner-br"]}></div>
+        <div className={styles["ti-readout"]}>
+          {m.hero.readout.split("\n").map((line, i) => (
+            <span key={i}>
+              {i > 0 ? <br /> : null}
+              {line}
+            </span>
+          ))}
+          <br />
+          <span id="ti-clock">--:--:--</span>
+        </div>
+        <div className={styles["ti-gauge"]}>
+          <div className={styles["ti-gauge-label"]}>{m.hero.gaugeTopLabel}</div>
+          <div className={styles["ti-gauge-bar"]}>
+            <div
+              className={`${styles["ti-gauge-seg"]} ${styles["active"]}`}
+            ></div>
+            <div
+              className={`${styles["ti-gauge-seg"]} ${styles["active"]}`}
+            ></div>
+            <div className={`${styles["ti-gauge-seg"]} ${styles["lo"]}`}></div>
+            <div className={styles["ti-gauge-seg"]}></div>
+            <div className={styles["ti-gauge-seg"]}></div>
           </div>
-          <div className={styles['ti-gauge']}>
-            <div className={styles['ti-gauge-label']}>Threat Level</div>
-            <div className={styles['ti-gauge-bar']}>
-              <div className={`${styles['ti-gauge-seg']} ${styles['active']}`}></div>
-              <div className={`${styles['ti-gauge-seg']} ${styles['active']}`}></div>
-              <div className={`${styles['ti-gauge-seg']} ${styles['lo']}`}></div>
-              <div className={styles['ti-gauge-seg']}></div>
-              <div className={styles['ti-gauge-seg']}></div>
-            </div>
-            <div className={styles['ti-gauge-label']}>Low</div>
-          </div>
+          <div className={styles["ti-gauge-label"]}>{m.hero.gaugeBottomLabel}</div>
+        </div>
 
-          <div className={styles['ti-hero-content']}>
-            <div className={styles['ti-hero-label']} id="th-label">Threat Intelligence</div>
-            <h1 id="th-h1">
-              <em>Intelligence for</em>
-              <strong>Informed<br />Security</strong>
-            </h1>
-            <p className={styles['ti-hero-sub']} id="th-sub">Stay ahead of threats with intelligence-led security decisions. Our specialist teams combine real-time CCTV monitoring, risk assessment, and proactive threat analysis to keep your people and property protected at all times.</p>
-            <div className={styles['ti-hero-actions']} id="th-actions">
-              <a href="/#contact" className={styles['btn-pill-white']}>Request an Assessment</a>
-              <a href="#ti-services" className={styles['btn-pill']}>Our Intelligence Services</a>
-            </div>
+        <div className={styles["ti-hero-content"]}>
+          <div className={styles["ti-hero-label"]} id="th-label">
+            {m.hero.label}
           </div>
-
-          <div className={styles['ti-intel-card']} id="th-card">
-            <div className={styles['ti-intel-n']}>24<em>/7</em></div>
-            <div className={styles['ti-intel-l']}>Active Monitoring</div>
-          </div>
-        </section>
-
-        {/* <!-- ── CAPABILITY STRIP ───────────────────────────────────────── --> */}
-        <div className={styles['ti-cap-strip']}>
-          <div className={styles['ti-cap-inner']}>
-            <div className={`${styles['ti-cap-item']} ${styles['f-reveal']} ${styles['f-d1']}`}>
-              <div className={styles['ti-cap-icon']}><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M20.188 10.934a8.497 8.497 0 0 1 0 2.132m-2.272 4.53a8.5 8.5 0 0 1-1.508 1.508M13.066 21.812a8.5 8.5 0 0 1-2.132 0M6.404 19.54a8.497 8.497 0 0 1-1.508-1.508M2.188 13.066a8.5 8.5 0 0 1 0-2.132m2.272-4.53a8.497 8.497 0 0 1 1.508-1.508M10.934 2.188a8.5 8.5 0 0 1 2.132 0m4.53 2.272a8.5 8.5 0 0 1 1.508 1.508" /></svg></div>
-              <div className={styles['ti-cap-title']}>CCTV Monitoring</div>
-              <div className={styles['ti-cap-text']}>24/7 real-time surveillance and remote monitoring of your premises</div>
-            </div>
-            <div className={`${styles['ti-cap-item']} ${styles['f-reveal']} ${styles['f-d2']}`}>
-              <div className={styles['ti-cap-icon']}><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
-              <div className={styles['ti-cap-title']}>Risk Assessment</div>
-              <div className={styles['ti-cap-text']}>Proactive identification and analysis of potential threats before they escalate</div>
-            </div>
-            <div className={`${styles['ti-cap-item']} ${styles['f-reveal']} ${styles['f-d3']}`}>
-              <div className={styles['ti-cap-icon']}><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg></div>
-              <div className={styles['ti-cap-title']}>Threat Analysis</div>
-              <div className={styles['ti-cap-text']}>Intelligence-led decisions powered by real-time data and expert assessment</div>
-            </div>
-            <div className={`${styles['ti-cap-item']} ${styles['f-reveal']} ${styles['f-d4']}`}>
-              <div className={styles['ti-cap-icon']}><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg></div>
-              <div className={styles['ti-cap-title']}>Access Intelligence</div>
-              <div className={styles['ti-cap-text']}>Smart access control systems integrated with real-time security intelligence</div>
-            </div>
+          <h1 id="th-h1">
+            <em>{m.hero.h1Em}</em>
+            <strong>
+              {m.hero.h1StrongLine1}
+              <br />
+              {m.hero.h1StrongLine2}
+            </strong>
+          </h1>
+          <p className={styles["ti-hero-sub"]} id="th-sub">
+            {m.hero.sub}
+          </p>
+          <div className={styles["ti-hero-actions"]} id="th-actions">
+            <a
+              href={m.hero.primaryCta.href}
+              className={styles["btn-pill-white"]}
+            >
+              {m.hero.primaryCta.label}
+            </a>
+            <a href={m.hero.secondaryCta.href} className={styles["btn-pill"]}>
+              {m.hero.secondaryCta.label}
+            </a>
           </div>
         </div>
 
-        {/* <!-- ── OVERVIEW ───────────────────────────────────────────────── --> */}
-        <section className={styles['ti-overview']}>
-          <div className={styles['ti-overview-grid']}>
-            <div className={styles['ti-overview-left']}>
-              <div className={`${styles['eyebrow']} ${styles['f-reveal']}`}>Intelligence for Informed Security Decisions</div>
-              <h2 className={`${styles['f-reveal']} ${styles['f-d1']}`}>See More.<br /><em>Know More.</em><br />Act Faster.</h2>
-              <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>Our threat intelligence service combines the expertise of our security professionals with world-class monitoring technology — giving you a complete operational picture of your environment at all times.</p>
-              <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>From CCTV integration and access control systems to real-time communication tools and proactive risk assessments, our intelligence-led approach keeps you ahead of emerging threats before they become incidents.</p>
-              <p className={`${styles['f-reveal']} ${styles['f-d3']}`}>All intelligence operations are conducted by SIA-licensed security professionals with extensive frontline experience — ensuring every assessment, recommendation, and response decision is grounded in real-world expertise.</p>
-              <div className={`${styles['ti-tags']} ${styles['f-reveal']} ${styles['f-d3']}`}>
-                <span className={styles['ti-tag']}>CCTV Integration</span>
-                <span className={styles['ti-tag']}>Real-Time Monitoring</span>
-                <span className={styles['ti-tag']}>Risk Assessment</span>
-                <span className={styles['ti-tag']}>Threat Analysis</span>
-                <span className={styles['ti-tag']}>Access Control</span>
-                <span className={styles['ti-tag']}>Incident Response</span>
-                <span className={styles['ti-tag']}>Surveillance</span>
-                <span className={styles['ti-tag']}>Patrol Coordination</span>
-              </div>
-            </div>
-            <div className={`${styles['f-reveal']} ${styles['f-d2']}`}>
-              <div className={styles['ti-overview-img']}>
-                <img src="/images/threat-intelligence/img-2.jpg" alt="Security Intelligence Operations — CCTV monitoring centre" />
-                <div className={styles['ti-overview-img-cap']}><p>Security Intelligence Operations — real-time CCTV monitoring</p></div>
-              </div>
-              <div className={styles['ti-overview-quote']}>
-                <p>"We combine knowledge, training, and experience to anticipate risks and respond decisively — whether it's a minor incident or a critical breach."</p>
-              </div>
-            </div>
+        <div className={styles["ti-intel-card"]} id="th-card">
+          <div className={styles["ti-intel-n"]}>
+            {m.hero.intelCardN}
+            {m.hero.intelCardNEm ? <em>{m.hero.intelCardNEm}</em> : null}
           </div>
-        </section>
+          <div className={styles["ti-intel-l"]}>{m.hero.intelCardL}</div>
+        </div>
+      </section>
 
-        {/* <!-- ── INTELLIGENCE SERVICES ─────────────────────────────────── --> */}
-        <section className={styles['ti-services']} id="ti-services">
-          <div className={styles['ti-svc-header']}>
-            <div className={styles['f-reveal']}>
-              <div className={styles['eyebrow']}>What We Deliver</div>
-              <h2>Our Intelligence<br /><em>Services</em></h2>
-            </div>
-            <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>Every intelligence service is delivered by our SIA-licensed professionals, combining modern technology with hands-on security expertise. We tailor every solution to your specific environment, risk profile, and operational requirements.</p>
-          </div>
-          <div className={styles['ti-cards']}>
-            <div className={`${styles['ti-card']} ${styles['f-reveal']} ${styles['f-d1']}`}>
-              <div className={styles['ti-card-n']}>01</div>
-              <div className={styles['ti-card-icon']}><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /><circle cx="12" cy="10" r="3" /></svg></div>
-              <h3>CCTV Integration &amp; Monitoring</h3>
-              <p>Complete security solutions for 24/7 surveillance — seamlessly integrating CCTV systems, access control, and real-time monitoring of your premises. Our operators provide continuous oversight across multiple feeds, ensuring nothing goes undetected.</p>
-              <a href="/#contact" className={styles['ti-card-link']}>Request This Service</a>
-            </div>
-            <div className={`${styles['ti-card']} ${styles['f-reveal']} ${styles['f-d2']}`}>
-              <div className={styles['ti-card-n']}>02</div>
-              <div className={styles['ti-card-icon']}><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg></div>
-              <h3>Proactive Risk Assessment</h3>
-              <p>Our security consultants highlight any risks or threats to your security and provide practical solutions before incidents occur. We assess your environment, identify vulnerabilities, and deliver a comprehensive risk mitigation strategy tailored to your operations.</p>
-              <a href="/#contact" className={styles['ti-card-link']}>Request This Service</a>
-            </div>
-            <div className={`${styles['ti-card']} ${styles['f-reveal']} ${styles['f-d3']}`}>
-              <div className={styles['ti-card-n']}>03</div>
-              <div className={styles['ti-card-icon']}><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg></div>
-              <h3>Real-Time Threat Analysis</h3>
-              <p>Intelligence-led security operations with real-time communication tools that keep your entire security team connected and coordinated. We monitor patterns, assess behaviours, and provide actionable intelligence that informs every security decision on the ground.</p>
-              <a href="/#contact" className={styles['ti-card-link']}>Request This Service</a>
-            </div>
-            <div className={`${styles['ti-card']} ${styles['f-reveal']} ${styles['f-d4']}`}>
-              <div className={styles['ti-card-n']}>04</div>
-              <div className={styles['ti-card-icon']}><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg></div>
-              <h3>Security Consultancy</h3>
-              <p>Our expert consultants work directly with your team to review current security arrangements, identify gaps, and recommend targeted improvements. From access control design to patrol route optimisation, we deliver intelligence that strengthens every layer of your security.</p>
-              <a href="/#contact" className={styles['ti-card-link']}>Request This Service</a>
-            </div>
-          </div>
-        </section>
-
-        {/* <!-- ── HOW IT WORKS ───────────────────────────────────────────── --> */}
-        <section className={styles['ti-process']}>
-          <div className={`${styles['ti-process-header']} ${styles['f-reveal']}`}>
-            <div className={styles['eyebrow']} style={{ color: "var(--sea-light)", fontFamily: "'Barlow Condensed', sans-serif", fontSize: ".65rem", letterSpacing: ".3em", marginBottom: 16 }}>How It Works</div>
-            <h2>Our Intelligence<br /><em>Process</em></h2>
-            <p>From initial assessment to active monitoring, every step is executed by SIA-licensed professionals with a single focus — keeping you safe.</p>
-          </div>
-          <div className={styles['ti-steps']}>
-            <div className={`${styles['ti-step']} ${styles['f-reveal']} ${styles['f-d1']}`}>
-              <div className={styles['ti-step-num']}>01</div>
-              <h4>Assess</h4>
-              <p>We conduct a thorough assessment of your environment, identifying risks, vulnerabilities, and current security gaps.</p>
-            </div>
-            <div className={`${styles['ti-step']} ${styles['f-reveal']} ${styles['f-d2']}`}>
-              <div className={styles['ti-step-num']}>02</div>
-              <h4>Plan</h4>
-              <p>We design an intelligence-led security plan tailored to your specific needs — integrating CCTV, access control, and personnel.</p>
-            </div>
-            <div className={`${styles['ti-step']} ${styles['f-reveal']} ${styles['f-d3']}`}>
-              <div className={styles['ti-step-num']}>03</div>
-              <h4>Deploy</h4>
-              <p>Our SIA-licensed team deploys your security solution — fully briefed, equipped, and coordinated for seamless operation.</p>
-            </div>
-            <div className={`${styles['ti-step']} ${styles['f-reveal']} ${styles['f-d4']}`}>
-              <div className={styles['ti-step-num']}>04</div>
-              <h4>Monitor</h4>
-              <p>Continuous real-time monitoring with regular reporting keeps you informed and your security posture current at all times.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* <!-- ── ACCREDITATION ──────────────────────────────────────────── --> */}
-        <section className={styles['ti-accred']}>
-          <div className={styles['ti-accred-grid']}>
-            <div className={styles['f-reveal']}>
-              <div className={styles['eyebrow']} style={{ fontFamily: "'Barlow Condensed', sans-serif", fontSize: ".65rem", letterSpacing: ".3em", color: "var(--sea)", marginBottom: 20 }}>Certified &amp; Compliant</div>
-              <h2>Licensed,<br />Registered &amp;<br /><em>Ready</em></h2>
-              <p>At Big Cat Security Ltd, professionalism and compliance sit at the heart of everything we do. We are officially licensed by the Security Industry Authority, ensuring all our operations meet the highest legal and professional standards.</p>
-              <p>Every member of our intelligence and security team is fully vetted, certified, and SIA-licensed — giving you the confidence that your safety, property, and reputation are in trusted hands.</p>
-              <div className={styles['ti-sia-logos']}>
-                <img src="/images/threat-intelligence/img-3.png" alt="SIA Licensed Security Guards" />
-                <img src="/images/threat-intelligence/img-4.png" alt="Security Industry Authority" className="sm" />
+      <div className={styles["ti-cap-strip"]}>
+        <div className={styles["ti-cap-inner"]}>
+          {m.capStrip.map((item, i) => (
+            <div
+              key={item.title}
+              className={`${styles["ti-cap-item"]} ${styles["f-reveal"]} ${styles[d4[i] ?? "f-d1"]}`}
+            >
+              <div className={styles["ti-cap-icon"]}>
+                <TiCapIcon index={i} />
               </div>
+              <div className={styles["ti-cap-title"]}>{item.title}</div>
+              <div className={styles["ti-cap-text"]}>{item.text}</div>
             </div>
-            <div className={styles['ti-accred-checks']}>
-              <div className={`${styles['ti-accred-check']} ${styles['f-reveal-x']} ${styles['f-d1']}`}><div className={styles['ti-accred-check-dot']}></div><span>All staff are fully SIA-licensed security professionals — without exception</span></div>
-              <div className={`${styles['ti-accred-check']} ${styles['f-reveal-x']} ${styles['f-d2']}`}><div className={styles['ti-accred-check-dot']}></div><span>Highly trained, experienced teams with expertise across multiple security disciplines</span></div>
-              <div className={`${styles['ti-accred-check']} ${styles['f-reveal-x']} ${styles['f-d3']}`}><div className={styles['ti-accred-check-dot']}></div><span>Proven track record with over 50 events and deployments successfully managed</span></div>
-              <div className={`${styles['ti-accred-check']} ${styles['f-reveal-x']} ${styles['f-d4']}`}><div className={styles['ti-accred-check-dot']}></div><span>Dedicated mobile patrol management team and real-time communication infrastructure</span></div>
-              <div className={`${styles['ti-accred-check']} ${styles['f-reveal-x']} ${styles['f-d5']}`} style={{ transitionDelay: ".48s" }}><div className={styles['ti-accred-check-dot']}></div><span>Comprehensive insurance and full legal compliance for complete peace of mind</span></div>
-              <div className={`${styles['ti-accred-check']} ${styles['f-reveal-x']}`} style={{ transitionDelay: ".58s" }}><div className={styles['ti-accred-check-dot']}></div><span>Featured in TimeOut, Shortlist, and other leading UK publications</span></div>
-            </div>
-          </div>
-        </section>
-
-        {/* <!-- ── CTA ────────────────────────────────────────────────────── --> */}
-        <section className={styles['ti-cta']}>
-          <div className={styles['ti-cta-inner']}>
-            <div className={styles['ti-cta-left']}>
-              <div className={styles['f-reveal']}>
-                <div className={styles['eyebrow']} style={{ color: "var(--sea-light)", fontFamily: "'Barlow Condensed', sans-serif", fontSize: ".65rem", letterSpacing: ".3em", marginBottom: 16 }}>Intelligence That Protects</div>
-                <h2>Start Your<br /><em>Assessment</em></h2>
-              </div>
-            </div>
-            <div className={`${styles['ti-cta-right']} ${styles['f-reveal']} ${styles['f-d2']}`}>
-              <p>Our team will assess your security environment, identify threats, and recommend the right intelligence-led solution for your organisation. All consultations are fully confidential.</p>
-              <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-                <a href="/#contact" className={styles['btn-pill-white']}>Request an Assessment</a>
-                <a href="tel:+447722143162" className={styles['btn-pill-ghost']}>+44 (0)7722 143162</a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <SiteFooter footer={content.footer} />
+          ))}
+        </div>
       </div>
+
+      <section className={styles["ti-overview"]}>
+        <div className={styles["ti-overview-grid"]}>
+          <div className={styles["ti-overview-left"]}>
+            <div className={`${styles["eyebrow"]} ${styles["f-reveal"]}`}>
+              {m.overview.eyebrow}
+            </div>
+            <h2 className={`${styles["f-reveal"]} ${styles["f-d1"]}`}>
+              {m.overview.h2Line1}
+              <br />
+              <em>{m.overview.h2Em}</em>
+              <br />
+              {m.overview.h2Line2}
+            </h2>
+            <p className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
+              {m.overview.paragraphs[0]}
+            </p>
+            <p className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
+              {m.overview.paragraphs[1]}
+            </p>
+            <p className={`${styles["f-reveal"]} ${styles["f-d3"]}`}>
+              {m.overview.paragraphs[2]}
+            </p>
+            <div
+              className={`${styles["ti-tags"]} ${styles["f-reveal"]} ${styles["f-d3"]}`}
+            >
+              {m.overview.tags.map((t) => (
+                <span key={t} className={styles["ti-tag"]}>
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
+            <div className={styles["ti-overview-img"]}>
+              <img src={m.overview.imageSrc} alt={m.overview.imageAlt} />
+              <div className={styles["ti-overview-img-cap"]}>
+                <p>{m.overview.imageCap}</p>
+              </div>
+            </div>
+            <div className={styles["ti-overview-quote"]}>
+              <p>{m.overview.quote}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles["ti-services"]} id="ti-services">
+        <div className={styles["ti-svc-header"]}>
+          <div className={styles["f-reveal"]}>
+            <div className={styles["eyebrow"]}>{m.services.eyebrow}</div>
+            <h2>
+              {m.services.h2Line1}
+              <br />
+              <em>{m.services.h2Em}</em>
+            </h2>
+          </div>
+          <p className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
+            {m.services.intro}
+          </p>
+        </div>
+        <div className={styles["ti-cards"]}>
+          {m.services.cards.map((card, i) => (
+            <div
+              key={card.n}
+              className={`${styles["ti-card"]} ${styles["f-reveal"]} ${styles[d4[i] ?? "f-d1"]}`}
+            >
+              <div className={styles["ti-card-n"]}>{card.n}</div>
+              <div className={styles["ti-card-icon"]}>
+                <TiSvcIcon index={i} />
+              </div>
+              <h3>{card.title}</h3>
+              <p>{card.body}</p>
+              <a href={card.ctaHref} className={styles["ti-card-link"]}>
+                {card.ctaLabel}
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles["ti-process"]}>
+        <div className={`${styles["ti-process-header"]} ${styles["f-reveal"]}`}>
+          <div
+            className={styles["eyebrow"]}
+            style={{
+              color: "var(--sea-light)",
+              fontFamily: "'Barlow Condensed', sans-serif",
+              fontSize: ".65rem",
+              letterSpacing: ".3em",
+              marginBottom: 16,
+            }}
+          >
+            {m.process.eyebrow}
+          </div>
+          <h2>
+            {m.process.h2Line1}
+            <br />
+            <em>{m.process.h2Em}</em>
+          </h2>
+          <p>{m.process.intro}</p>
+        </div>
+        <div className={styles["ti-steps"]}>
+          {m.process.steps.map((step, i) => (
+            <div
+              key={step.n}
+              className={`${styles["ti-step"]} ${styles["f-reveal"]} ${styles[d4[i] ?? "f-d1"]}`}
+            >
+              <div className={styles["ti-step-num"]}>{step.n}</div>
+              <h4>{step.title}</h4>
+              <p>{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles["ti-accred"]}>
+        <div className={styles["ti-accred-grid"]}>
+          <div className={styles["f-reveal"]}>
+            <div
+              className={styles["eyebrow"]}
+              style={{
+                fontFamily: "'Barlow Condensed', sans-serif",
+                fontSize: ".65rem",
+                letterSpacing: ".3em",
+                color: "var(--sea)",
+                marginBottom: 20,
+              }}
+            >
+              {m.accred.eyebrow}
+            </div>
+            <h2>
+              {m.accred.h2Line1}
+              <br />
+              {m.accred.h2Line2}
+              <br />
+              <em>{m.accred.h2Em}</em>
+            </h2>
+            <p>{m.accred.paragraphs[0]}</p>
+            <p>{m.accred.paragraphs[1]}</p>
+            <div className={styles["ti-sia-logos"]}>
+              <img src={m.accred.logos[0].src} alt={m.accred.logos[0].alt} />
+              <img
+                src={m.accred.logos[1].src}
+                alt={m.accred.logos[1].alt}
+                className={m.accred.logos[1].small ? "sm" : undefined}
+              />
+            </div>
+          </div>
+          <div className={styles["ti-accred-checks"]}>
+            {m.accred.checks.map((text, i) => (
+              <div
+                key={i}
+                className={`${styles["ti-accred-check"]} ${styles["f-reveal-x"]} ${i < d5.length ? styles[d5[i]!] : ""}`}
+                style={
+                  i >= 4
+                    ? { transitionDelay: i === 4 ? ".48s" : ".58s" }
+                    : undefined
+                }
+              >
+                <div className={styles["ti-accred-check-dot"]}></div>
+                <span>{text}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={styles["ti-cta"]}>
+        <div className={styles["ti-cta-inner"]}>
+          <div className={styles["ti-cta-left"]}>
+            <div className={styles["f-reveal"]}>
+              <div
+                className={styles["eyebrow"]}
+                style={{
+                  color: "var(--sea-light)",
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontSize: ".65rem",
+                  letterSpacing: ".3em",
+                  marginBottom: 16,
+                }}
+              >
+                {m.cta.eyebrow}
+              </div>
+              <h2>
+                {m.cta.h2Line1}
+                <br />
+                <em>{m.cta.h2Em}</em>
+              </h2>
+            </div>
+          </div>
+          <div
+            className={`${styles["ti-cta-right"]} ${styles["f-reveal"]} ${styles["f-d2"]}`}
+          >
+            <p>{m.cta.body}</p>
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <a
+                href={m.cta.primaryCta.href}
+                className={styles["btn-pill-white"]}
+              >
+                {m.cta.primaryCta.label}
+              </a>
+              <a
+                href={m.cta.secondaryCta.href}
+                className={styles["btn-pill-ghost"]}
+              >
+                {m.cta.secondaryCta.label}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter footer={content.footer} />
+    </div>
   );
 }

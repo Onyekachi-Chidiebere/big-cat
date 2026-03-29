@@ -3,280 +3,332 @@ import "../site.css";
 import styles from "../styles.module.css";
 import { EventSecurityEffects } from "../EventSecurityEffects";
 import { SiteAnnounce, SiteFooter } from "../components/SiteChrome";
-import type { SiteAfContent } from "@/app/lib/site/chrome/types";
+import { SiteServiceNav } from "../components/SiteServiceNav";
+import type { EventSecurityContent } from "@/app/lib/site/event-security/types";
+
+function EsCardIcon({ index }: { index: number }) {
+  switch (index) {
+    case 0:
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </svg>
+      );
+    case 1:
+      return (
+        <svg viewBox="0 0 24 24">
+          <rect x="2" y="7" width="20" height="14" rx="2" />
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+        </svg>
+      );
+    case 2:
+      return (
+        <svg viewBox="0 0 24 24">
+          <polygon points="23 7 16 12 23 17 23 7" />
+          <rect x="1" y="5" width="15" height="14" rx="2" />
+        </svg>
+      );
+    case 3:
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M9 18V5l12-2v13" />
+          <circle cx="6" cy="18" r="3" />
+          <circle cx="18" cy="16" r="3" />
+        </svg>
+      );
+    case 4:
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+        </svg>
+      );
+    default:
+      return (
+        <svg viewBox="0 0 24 24">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+          <polyline points="9 22 9 12 15 12 15 22" />
+        </svg>
+      );
+  }
+}
 
 export function EventSecurityPageClient({
   content,
 }: {
-  content: SiteAfContent;
+  content: EventSecurityContent;
 }) {
+  const m = content.main;
+
   return (
     <div>
       <EventSecurityEffects />
-      <div className={styles['cursor']} id="cur"></div>
-    <div className={styles['cursor-ring']} id="curR"></div>
-    <div className={styles['cursor-pulse']} id="curPulse"></div>
-    <div className={styles['cursor-tl']} id="curTL"></div>
-    <div className={styles['cursor-tr']} id="curTR"></div>
-    <div className={styles['cursor-bl']} id="curBL"></div>
-    <div className={styles['cursor-br']} id="curBR"></div>
-    <div id="progress-bar"></div>
-    <a href="/#contact" className={styles['floating-cta']} id="float-cta">Get a Quote</a>
-    <SiteAnnounce html={content.announce.html} />
-
-      {/* <!-- NAVBAR --> */}
-    <header className={styles['navbar']} id="navbar">
-      <a href="/" className={styles['logo']}>
-        <img src="/logo.png" alt="Big Cat Security Ltd" />
+      <div className={styles["cursor"]} id="cur"></div>
+      <div className={styles["cursor-ring"]} id="curR"></div>
+      <div className={styles["cursor-pulse"]} id="curPulse"></div>
+      <div className={styles["cursor-tl"]} id="curTL"></div>
+      <div className={styles["cursor-tr"]} id="curTR"></div>
+      <div className={styles["cursor-bl"]} id="curBL"></div>
+      <div className={styles["cursor-br"]} id="curBR"></div>
+      <div id="progress-bar"></div>
+      <a href="/#contact" className={styles["floating-cta"]} id="float-cta">
+        Get a Quote
       </a>
-      <nav id="nav">
-        <a href="/">Home</a>
-        <a href="/what-we-do">What We Do</a>
-        <a href="/event-security" style={{ background: "var(--sea)" }}>Event Security</a>
-        <a href="/about">About</a>
-        <a href="/work-for-us" className={styles['nav-cta']}>Work for Us</a>
-      </nav>
-      <div className={styles['nav-right']}>
-        <a href="tel:+448002440000" className={styles['nav-phone']}>0800 244 228</a>
-        <a href="/#contact" className={styles['btn-pill']}>Get a Quote</a>
+      <SiteAnnounce html={content.announce.html} />
+      <SiteServiceNav nav={content.nav} styles={styles} />
+
+      <section className={styles["es-hero"]}>
+        <div
+          className={styles["es-hero-bg"]}
+          style={{ backgroundImage: `url('${m.hero.bgImage}')` }}
+        ></div>
+        <div className={styles["es-hero-overlay"]}></div>
+        <div className={styles["es-grid-overlay"]}></div>
+        <div className={styles["es-scan"]}></div>
+        <div className={styles["es-corner-tl"]}></div>
+        <div className={styles["es-corner-br"]}></div>
+        <div
+          className={styles["es-readout"]}
+          style={{ whiteSpace: "pre-line" }}
+        >
+          {m.hero.readout}
+          <br />
+          <span id="es-clock">--:--:--</span>
+        </div>
+
+        <div className={styles["es-hero-content"]}>
+          <div className={styles["es-hero-label"]} id="eh-label">
+            {m.hero.label}
+          </div>
+          <h1 id="eh-h1">
+            <em>{m.hero.h1Em}</em>
+            <strong>
+              {m.hero.h1StrongLine1}
+              <br />
+              {m.hero.h1StrongLine2}
+            </strong>
+          </h1>
+          <p className={styles["es-hero-sub"]} id="eh-sub">
+            {m.hero.sub}
+          </p>
+          <div className={styles["es-hero-actions"]} id="eh-actions">
+            <a href={m.hero.primaryCta.href} className={styles["btn-pill-white"]}>
+              {m.hero.primaryCta.label}
+            </a>
+            <a href={m.hero.secondaryCta.href} className={styles["btn-pill"]}>
+              {m.hero.secondaryCta.label}
+            </a>
+          </div>
+        </div>
+
+        <div className={styles["es-hero-stat"]} id="eh-stat">
+          <div className={styles["es-stat-n"]}>
+            {m.hero.statN}
+            {m.hero.statNEm ? <em>{m.hero.statNEm}</em> : null}
+          </div>
+          <div className={styles["es-stat-l"]}>{m.hero.statL}</div>
+        </div>
+      </section>
+
+      <div className={styles["es-types-strip"]}>
+        <div className={styles["es-types-inner"]}>
+          {m.typesStrip.map((t, i) => (
+            <div
+              key={t.label}
+              className={`${styles["es-type-item"]} ${styles["f-reveal"]} ${styles[`f-d${i + 1}`]}`}
+            >
+              <div className={styles["es-type-icon"]}>{t.icon}</div>
+              <div className={styles["es-type-label"]}>{t.label}</div>
+            </div>
+          ))}
+        </div>
       </div>
-      <button id="menu-toggle" aria-label="Menu">☰</button>
-    </header>
 
-
-
-    {/* <!-- ── HERO ─────────────────────────────────────────── --> */}
-    <section className={styles['es-hero']}>
-      <div className={styles['es-hero-bg']} style={{ backgroundImage: `url('/images/event-security/img-1.jpg')` }}></div>
-      <div className={styles['es-hero-overlay']}></div>
-      <div className={styles['es-grid-overlay']}></div>
-      <div className={styles['es-scan']}></div>
-      <div className={styles['es-corner-tl']}></div>
-      <div className={styles['es-corner-br']}></div>
-      <div className={styles['es-readout']}>
-        TYPE: EVENT SECURITY<br/>
-          SIA: LICENSED &amp; VETTED<br />
-            COVERAGE: LONDON &amp; UK<br />
-              <span id="es-clock">--:--:--</span>
+      <section className={styles["es-overview"]}>
+        <div className={styles["es-overview-grid"]}>
+          <div className={styles["es-overview-left"]}>
+            <div className={`${styles["eyebrow"]} ${styles["f-reveal"]}`}>
+              {m.overview.eyebrow}
             </div>
-
-            <div className={styles['es-hero-content']}>
-              <div className={styles['es-hero-label']} id="eh-label">Event Security</div>
-              <h1 id="eh-h1">
-                <em>Setting the Standard</em>
-                <strong>in Event<br/>Security</strong>
-              </h1>
-              <p className={styles['es-hero-sub']} id="eh-sub">As a premier full-service security provider, our professional event security teams have successfully managed events of all sizes and types — with guest enjoyment at the core of everything we do.</p>
-              <div className={styles['es-hero-actions']} id="eh-actions">
-                <a href="/#contact" className={styles['btn-pill-white']}>Book Event Security</a>
-                <a href="#es-events" className={styles['btn-pill']}>Event Types</a>
-              </div>
-            </div>
-
-            <div className={styles['es-hero-stat']} id="eh-stat">
-              <div className={styles['es-stat-n']}>50<em>+</em></div>
-              <div className={styles['es-stat-l']}>Events Secured</div>
-            </div>
-          </section>
-
-          {/* <!-- ── EVENT TYPE QUICK STRIP ─────────────────────────── --> */}
-          <div className={styles['es-types-strip']}>
-            <div className={styles['es-types-inner']}>
-              <div className={`${styles['es-type-item']} ${styles['f-reveal']} ${styles['f-d1']}`}>
-                <div className={styles['es-type-icon']}>🎤</div>
-                <div className={styles['es-type-label']}>Concerts</div>
-              </div>
-              <div className={`${styles['es-type-item']} ${styles['f-reveal']} ${styles['f-d2']}`}>
-                <div className={styles['es-type-icon']}>🏛</div>
-                <div className={styles['es-type-label']}>Corporate</div>
-              </div>
-              <div className={`${styles['es-type-item']} ${styles['f-reveal']} ${styles['f-d3']}`}>
-                <div className={styles['es-type-icon']}>🎬</div>
-                <div className={styles['es-type-label']}>Film &amp; TV</div>
-              </div>
-              <div className={`${styles['es-type-item']} ${styles['f-reveal']} ${styles['f-d4']}`}>
-                <div className={styles['es-type-icon']}>🎵</div>
-                <div className={styles['es-type-label']}>Album Launches</div>
-              </div>
-              <div className={`${styles['es-type-item']} ${styles['f-reveal']} ${styles['f-d5']}`}>
-                <div className={styles['es-type-icon']}>🏟</div>
-                <div className={styles['es-type-label']}>Public Events</div>
-              </div>
-              <div className={`${styles['es-type-item']} ${styles['f-reveal']} ${styles['f-d6']}`}>
-                <div className={styles['es-type-icon']}>🍸</div>
-                <div className={styles['es-type-label']}>Bars &amp; Venues</div>
-              </div>
+            <h2 className={`${styles["f-reveal"]} ${styles["f-d1"]}`}>
+              {m.overview.h2Line1}
+              <br />
+              <em>{m.overview.h2Em}</em>
+              <br />
+              {m.overview.h2Line2}
+            </h2>
+            <p className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
+              {m.overview.paragraphs[0]}
+            </p>
+            <p className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
+              {m.overview.paragraphs[1]}
+            </p>
+            <p className={`${styles["f-reveal"]} ${styles["f-d3"]}`}>
+              {m.overview.paragraphs[2]}
+            </p>
+            <div className={`${styles["es-caps"]} ${styles["f-reveal"]} ${styles["f-d3"]}`}>
+              {m.overview.caps.map((c) => (
+                <span key={c} className={styles["es-cap"]}>
+                  {c}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* <!-- ── OVERVIEW ───────────────────────────────────────── --> */}
-          <section className={styles['es-overview']}>
-            <div className={styles['es-overview-grid']}>
-
-              <div className={styles['es-overview-left']}>
-                <div className={`${styles['eyebrow']} ${styles['f-reveal']}`}>Delivering Outstanding Event Security</div>
-                <h2 className={`${styles['f-reveal']} ${styles['f-d1']}`}>Secure.<br/><em>Seamless.</em><br />Unforgettable.</h2>
-                  <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>Our focus is on delivering secure and seamless events, with guest enjoyment at the core of everything we do. We assemble the right team tailored to your specific requirements, ensuring a seamless service from start to finish.</p>
-                  <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>All our security personnel are SIA-licensed, registered, and rigorously vetted — with credentials validated by the Security Industry Authority.</p>
-                  <p className={`${styles['f-reveal']} ${styles['f-d3']}`}>While security needs and events may vary, we are fully trained to handle the vast majority with confidence. From festivals and concerts to intimate private screenings, our teams adapt to your environment.</p>
-                  <div className={`${styles['es-caps']} ${styles['f-reveal']} ${styles['f-d3']}`}>
-                    <span className={styles['es-cap']}>Crowd Management</span>
-                    <span className={styles['es-cap']}>Access Control</span>
-                    <span className={styles['es-cap']}>VIP Protection</span>
-                    <span className={styles['es-cap']}>Emergency Response</span>
-                    <span className={styles['es-cap']}>Bag Checks</span>
-                    <span className={styles['es-cap']}>Conflict Resolution</span>
-                    <span className={styles['es-cap']}>Crowd Flow</span>
-                    <span className={styles['es-cap']}>Guest Relations</span>
-                  </div>
+          <div className={styles["es-overview-right"]}>
+            <div className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
+              <div className={styles["es-overview-img"]}>
+                <img src={m.overview.imageSrc} alt={m.overview.imageAlt} />
+                <div className={styles["es-overview-img-cap"]}>
+                  <p>{m.overview.imageCap}</p>
                 </div>
-
-                  <div className={styles['es-overview-right']}>
-                  <div className={`${styles['f-reveal']} ${styles['f-d2']}`}>
-                    <div className={styles['es-overview-img']}>
-                      <img src="/images/event-security/img-2.jpg" alt="Security team monitoring event via CCTV operations centre"/>
-                        <div className={styles['es-overview-img-cap']}>
-                          <p>SIA-licensed event security — CCTV & operations coordination</p>
-                        </div>
-                    </div>
-                    <div className={styles['es-sia-badge']}>
-                      <div className={styles['es-sia-dot']}></div>
-                      <p><strong>Licensed, Registered &amp; Ready to Serve.</strong> Every officer is SIA-licensed, fully vetted, and validated by the Security Industry Authority.</p>
-                    </div>
-                  </div>
-                  </div>
-
               </div>
-          </section>
-
-          {/* <!-- ── EVENT TYPE CARDS ────────────────────────────────── --> */}
-          <section className={styles['es-events']} id="es-events">
-            <div className={styles['es-events-header']}>
-              <div className={styles['f-reveal']}>
-                <div className={styles['eyebrow']}>Events We Secure</div>
-                <h2>Every Type<br/>of <em>Event</em></h2>
-              </div>
-              <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>From high-energy public festivals to exclusive private screenings, our specialist teams are trained and equipped for every environment. We tailor each deployment to the unique risk profile of your event.</p>
-            </div>
-
-            <div className={styles['es-cards']}>
-              <div className={`${styles['es-card']} ${styles['f-reveal']} ${styles['f-d1']}`}>
-                <div className={styles['es-card-n']}>01</div>
-                <div className={styles['es-card-icon']}>
-                  <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
-                </div>
-                <h3>Public Events</h3>
-                <p>We ensure public events run smoothly and safely by combining highly trained SIA-licensed staff with proven crowd management expertise. From entry control and bag checks to crowd flow monitoring and emergency response — festivals, concerts, sporting events, and community gatherings.</p>
-                <a href="/#contact" className={styles['es-card-link']}>Book for Your Event</a>
-              </div>
-              <div className={`${styles['es-card']} ${styles['f-reveal']} ${styles['f-d2']}`}>
-                <div className={styles['es-card-n']}>02</div>
-                <div className={styles['es-card-icon']}>
-                  <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></svg>
-                </div>
-                <h3>Corporate Events</h3>
-                <p>Discreet, professional security tailored to the unique needs of corporate events. Our SIA-licensed staff ensure smooth access control, protect VIPs, monitor venues, and manage risks without disrupting the guest experience — conferences, product launches, shareholder meetings, and private functions.</p>
-                <a href="/#contact" className={styles['es-card-link']}>Book for Your Event</a>
-              </div>
-              <div className={`${styles['es-card']} ${styles['f-reveal']} ${styles['f-d3']}`}>
-                <div className={styles['es-card-n']}>03</div>
-                <div className={styles['es-card-icon']}>
-                  <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7" /><rect x="1" y="5" width="15" height="14" rx="2" /></svg>
-                </div>
-                <h3>Film Screenings</h3>
-                <p>Professional security designed for film screenings, premieres, and private viewings. Our SIA-licensed staff manage access control, protect VIPs, monitor audiences, and ensure a safe and enjoyable experience — from red-carpet events to exclusive private screenings.</p>
-                <a href="/#contact" className={styles['es-card-link']}>Book for Your Event</a>
-              </div>
-              <div className={`${styles['es-card']} ${styles['f-reveal']} ${styles['f-d4']}`}>
-                <div className={styles['es-card-n']}>04</div>
-                <div className={styles['es-card-icon']}>
-                  <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
-                </div>
-                <h3>Album Launch Parties</h3>
-                <p>Specialist security for album launch parties — ensuring artists, guests, and venues remain safe throughout. Our staff handle crowd management, access control, VIP protection, and emergency response while maintaining a professional yet welcoming atmosphere.</p>
-                <a href="/#contact" className={styles['es-card-link']}>Book for Your Event</a>
-              </div>
-              <div className={`${styles['es-card']} ${styles['f-reveal']} ${styles['f-d5']}`}>
-                <div className={styles['es-card-n']}>05</div>
-                <div className={styles['es-card-icon']}>
-                  <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
-                </div>
-                <h3>Promotional Events</h3>
-                <p>Promotional events are all about impact — and we make sure the spotlight stays on your brand. Our experienced staff manage crowds, control access, and keep everything running smoothly. Product launches, pop-up activations, or high-street brand experiences — visible yet discreet.</p>
-                <a href="/#contact" className={styles['es-card-link']}>Book for Your Event</a>
-              </div>
-              <div className={`${styles['es-card']} ${styles['f-reveal']} ${styles['f-d6']}`}>
-                <div className={styles['es-card-n']}>06</div>
-                <div className={styles['es-card-icon']}>
-                  <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
-                </div>
-                <h3>Restaurants, Bars &amp; Music Venues</h3>
-                <p>SIA-licensed security staff with deep understanding of the hospitality and nightlife sector. From safe, welcoming restaurant entrances to managing the energy of busy late bars and live music venues — authority with approachability, every time.</p>
-                <a href="/#contact" className={styles['es-card-link']}>Book for Your Event</a>
+              <div className={styles["es-sia-badge"]}>
+                <div className={styles["es-sia-dot"]}></div>
+                <p>
+                  <strong>{m.overview.badgeStrong}</strong>
+                  {m.overview.badgeRest}
+                </p>
               </div>
             </div>
-          </section>
+          </div>
+        </div>
+      </section>
 
-          {/* <!-- ── LICENSED & READY ────────────────────────────────── --> */}
-          <section className={styles['es-licensed']}>
-            <div className={styles['es-licensed-inner']}>
-              <div className={styles['es-licensed-left']}>
-              <div className={styles['f-reveal']}>
-                <div className={styles['eyebrow']} style={{ color: "var(--sea-light)", fontFamily: "'Barlow Condensed', sans-serif", fontSize: ".65rem", letterSpacing: ".3em", marginBottom: 20 }}>Licensed, Registered &amp; Ready</div>
-                <h2>Why Choose<br/>Big Cat<br/><em>Security?</em></h2>
-                  <p>To deliver the best results, we assemble the right team tailored to your specific requirements — ensuring a seamless service from start to finish. All personnel are SIA-licensed and rigorously vetted.</p>
-                  <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 32 }}>
-                    <a href="/#contact" className={styles['btn-pill-white']}>Book Now</a>
-                    <a href="/about" className={styles['btn-pill-ghost']}>About Us</a>
-                  </div>
-                </div>
-              </div>
-                  <div className={styles['es-checklist']}>
-                    <div className={`${styles['es-check-item']} ${styles['f-reveal-x']} ${styles['f-d1']}`}>
-                      <div className={styles['es-check-dot']}></div>
-                      <div><h4>Fully SIA-Licensed Personnel</h4><p>Every officer holds a valid SIA licence, validated and registered with the Security Industry Authority — no exceptions.</p></div>
-                    </div>
-                    <div className={`${styles['es-check-item']} ${styles['f-reveal-x']} ${styles['f-d2']}`}>
-                      <div className={styles['es-check-dot']}></div>
-                      <div><h4>Tailored Team Assembly</h4><p>We build the right team for your specific event type, size, and risk profile — never a one-size-fits-all deployment.</p></div>
-                    </div>
-                    <div className={`${styles['es-check-item']} ${styles['f-reveal-x']} ${styles['f-d3']}`}>
-                      <div className={styles['es-check-dot']}></div>
-                      <div><h4>Proven Crowd Management Expertise</h4><p>Highly trained staff with hands-on experience across festivals, concerts, corporate events, and high-footfall public venues.</p></div>
-                    </div>
-                    <div className={`${styles['es-check-item']} ${styles['f-reveal-x']} ${styles['f-d4']}`}>
-                      <div className={styles['es-check-dot']}></div>
-                      <div><h4>Guest Experience at the Core</h4><p>Security that's firm when needed and warm when appropriate — protecting your guests while preserving the atmosphere you've created.</p></div>
-                    </div>
-                    <div className={`${styles['es-check-item']} ${styles['f-reveal-x']} ${styles['f-d5']}`}>
-                      <div className={styles['es-check-dot']}></div>
-                      <div><h4>Social Enterprise &amp; Social Value</h4><p>As the leading social enterprise in UK security, choosing Big Cat creates positive impact beyond your event — in the communities we serve.</p></div>
-                    </div>
-                  </div>
-              </div>
-          </section>
+      <section className={styles["es-events"]} id="es-events">
+        <div className={styles["es-events-header"]}>
+          <div className={styles["f-reveal"]}>
+            <div className={styles["eyebrow"]}>{m.events.eyebrow}</div>
+            <h2>
+              {m.events.h2Line1}
+              <br />
+              {m.events.h2Line2} <em>{m.events.h2Em}</em>
+            </h2>
+          </div>
+          <p className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
+            {m.events.intro}
+          </p>
+        </div>
 
-          {/* <!-- ── CTA ────────────────────────────────────────────── --> */}
-          <section className={styles['es-cta']}>
-            <div className={styles['es-cta-inner']}>
-              <div className={styles['es-cta-left']}>
-              <div className={styles['f-reveal']}>
-                <div className={styles['eyebrow']} style={{ color: "var(--sea-light)", fontFamily: "'Barlow Condensed', sans-serif", fontSize: ".65rem", letterSpacing: ".3em", marginBottom: 16 }}>Plan Your Event Security</div>
-                <h2>Book Your<br/><em>Event Team</em></h2>
+        <div className={styles["es-cards"]}>
+          {m.events.cards.map((c, i) => (
+            <div
+              key={c.n}
+              className={`${styles["es-card"]} ${styles["f-reveal"]} ${styles[`f-d${i + 1}`]}`}
+            >
+              <div className={styles["es-card-n"]}>{c.n}</div>
+              <div className={styles["es-card-icon"]}>
+                <EsCardIcon index={i} />
               </div>
+              <h3>{c.title}</h3>
+              <p>{c.body}</p>
+              <a href={c.ctaHref} className={styles["es-card-link"]}>
+                {c.ctaLabel}
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles["es-licensed"]}>
+        <div className={styles["es-licensed-inner"]}>
+          <div className={styles["es-licensed-left"]}>
+            <div className={styles["f-reveal"]}>
+              <div
+                className={styles["eyebrow"]}
+                style={{
+                  color: "var(--sea-light)",
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontSize: ".65rem",
+                  letterSpacing: ".3em",
+                  marginBottom: 20,
+                }}
+              >
+                {m.licensed.eyebrow}
               </div>
-              <div className={`${styles['es-cta-right']} ${styles['f-reveal']} ${styles['f-d2']}`}>
-                <p>Tell us about your event and we'll put together the perfect security team. We respond fast, deploy professionals, and make sure your event runs without incident.</p>
-                <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-                  <a href="/#contact" className={styles['btn-pill-white']}>Request a Quote</a>
-                  <a href="tel:+447722143162" className={styles['btn-pill-ghost']}>+44 (0)7722 143162</a>
-                </div>
+              <h2>
+                {m.licensed.h2Line1}
+                <br />
+                {m.licensed.h2Line2}
+                <br />
+                <em>{m.licensed.h2Em}</em>
+              </h2>
+              <p>{m.licensed.p}</p>
+              <div
+                style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 32 }}
+              >
+                <a href={m.licensed.primaryCta.href} className={styles["btn-pill-white"]}>
+                  {m.licensed.primaryCta.label}
+                </a>
+                <a href={m.licensed.secondaryCta.href} className={styles["btn-pill-ghost"]}>
+                  {m.licensed.secondaryCta.label}
+                </a>
               </div>
             </div>
-          </section>
+          </div>
+          <div className={styles["es-checklist"]}>
+            {m.licensed.checks.map((ch, i) => (
+              <div
+                key={ch.title}
+                className={`${styles["es-check-item"]} ${styles["f-reveal-x"]} ${styles[`f-d${i + 1}`]}`}
+              >
+                <div className={styles["es-check-dot"]}></div>
+                <div>
+                  <h4>{ch.title}</h4>
+                  <p>{ch.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <SiteFooter footer={content.footer} />
+      <section className={styles["es-cta"]}>
+        <div className={styles["es-cta-inner"]}>
+          <div className={styles["es-cta-left"]}>
+            <div className={styles["f-reveal"]}>
+              <div
+                className={styles["eyebrow"]}
+                style={{
+                  color: "var(--sea-light)",
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontSize: ".65rem",
+                  letterSpacing: ".3em",
+                  marginBottom: 16,
+                }}
+              >
+                {m.cta.eyebrow}
+              </div>
+              <h2>
+                {m.cta.h2Line1}
+                <br />
+                <em>{m.cta.h2Em}</em>
+                {m.cta.h2Line2 ? (
+                  <>
+                    <br />
+                    {m.cta.h2Line2}
+                  </>
+                ) : null}
+              </h2>
+            </div>
+          </div>
+          <div className={`${styles["es-cta-right"]} ${styles["f-reveal"]} ${styles["f-d2"]}`}>
+            <p>{m.cta.body}</p>
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+              <a href={m.cta.primaryCta.href} className={styles["btn-pill-white"]}>
+                {m.cta.primaryCta.label}
+              </a>
+              <a href={m.cta.secondaryCta.href} className={styles["btn-pill-ghost"]}>
+                {m.cta.secondaryCta.label}
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter footer={content.footer} />
     </div>
   );
 }
-

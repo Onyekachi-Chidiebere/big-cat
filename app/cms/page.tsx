@@ -3,12 +3,12 @@ import Link from "next/link";
 const CMS_EDITORS = [
   { href: "/cms/home", label: "Home", note: "full page sections" },
   { href: "/cms/about", label: "About", note: "full page sections" },
-  { href: "/cms/what-we-do", label: "What we do", note: "announce + footer" },
-  { href: "/cms/security-guards", label: "Security guards", note: "announce + footer" },
-  { href: "/cms/event-security", label: "Event security", note: "announce + footer" },
-  { href: "/cms/door-supervisors", label: "Door supervisors", note: "announce + footer" },
-  { href: "/cms/threat-intelligence", label: "Threat intelligence", note: "announce + footer" },
-  { href: "/cms/work-for-us", label: "Work for us", note: "announce + footer" },
+  { href: "/cms/what-we-do", label: "What we do", note: "full page sections" },
+  { href: "/cms/security-guards", label: "Security guards", note: "full page sections" },
+  { href: "/cms/event-security", label: "Event security", note: "full page sections" },
+  { href: "/cms/door-supervisors", label: "Door supervisors", note: "full page sections" },
+  { href: "/cms/threat-intelligence", label: "Threat intelligence", note: "full page sections" },
+  { href: "/cms/work-for-us", label: "Work for us", note: "full page sections" },
 ] as const;
 
 export default function CmsHomePage() {
