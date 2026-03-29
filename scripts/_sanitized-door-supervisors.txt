@@ -1,0 +1,391 @@
+"use client";
+import "../site.css";
+import styles from "../styles.module.css";
+import { DoorSupervisorsEffects } from "../DoorSupervisorsEffects";
+
+export default function DoorSupervisorsPage() {
+  return (
+    <div>
+      <DoorSupervisorsEffects />
+      <div className={styles["cursor"]} id="cur"></div>
+      <div className={styles["cursor-ring"]} id="curR"></div>
+      <div className={styles["cursor-pulse"]} id="curPulse"></div>
+      <div className={styles["cursor-tl"]} id="curTL"></div>
+      <div className={styles["cursor-tr"]} id="curTR"></div>
+      <div className={styles["cursor-bl"]} id="curBL"></div>
+      <div className={styles["cursor-br"]} id="curBR"></div>
+      <div id="progress-bar"></div>
+      <a href="/#contact" className={styles["floating-cta"]} id="float-cta">
+        Get a Quote
+      </a>
+      {/* <!-- ANNOUNCE --> */}
+      <div className={styles["announce-bar"]} id="announce-bar">
+        <div className={styles["announce-text"]}>
+          📞 Mon–Fri: 9am–6pm &nbsp;|&nbsp; Sat–Sun: 10am–5pm &nbsp;|&nbsp;{" "}
+          <strong>+44 (0)7722 143162</strong> &nbsp;
+          <a href="/#contact" style={{ color: "var(--sea-light)", marginLeft: 8 }}>
+            Get a Free Quote →
+          </a>
+        </div>
+        <button className={styles["announce-close"]} id="ann-close" aria-label="Close">
+          ✕
+        </button>
+      </div>
+
+      {/* <!-- NAVBAR --> */}
+      <header className={styles["navbar"]} id="navbar">
+        <a href="/" className={styles["logo"]}>
+          <img src="/logo.png" alt="Big Cat Security Ltd" />
+        </a>
+        <nav id="nav">
+          <a href="/">Home</a>
+          <a href="/what-we-do">What We Do</a>
+          <a href="/door-supervisors" style={{ background: "var(--sea)" }}>
+            Door Supervisors
+          </a>
+          <a href="/about">About</a>
+          <a href="/work-for-us" className={styles["nav-cta"]}>
+            Work for Us
+          </a>
+        </nav>
+        <div className={styles["nav-right"]}>
+          <a href="tel:+448002440000" className={styles["nav-phone"]}>
+            0800 244 228
+          </a>
+          <a href="/#contact" className={styles["btn-pill"]}>
+            Get a Quote
+          </a>
+        </div>
+        <button id="menu-toggle" aria-label="Menu">
+          ☰
+        </button>
+      </header>
+
+
+
+    {/* <!-- ── HERO ─────────────────────────────────────────────────── --> */}
+    <section className={styles['ds-hero']}>
+
+      {/* <!-- LEFT: Editorial dark --> */}
+      <div className={styles['ds-hero-left']}>
+        <div className={styles['ds-corner-tl']}></div>
+        <div className={styles['ds-readout']}>TYPE: DOOR SUPERVISION<br />SIA: LICENSED &amp; VETTED<br/>COVER: 24/7 · 365<br/><span id="ds-clock">--:--:--</span></div>
+
+          <div className={styles['ds-hero-label']} id="dh-label">Licensed Premises</div>
+          <h1 id="dh-h1">
+            <em>Expert SIA</em>
+            <strong>Door<br />Supervisors</strong>
+          </h1>
+          <p className={styles['ds-hero-sub']} id="dh-sub">With over three years of frontline experience, Big Cat Security Ltd has built a strong reputation for delivering professional, SIA-licensed door supervisors for festivals, theatres, shows, pop-ups, bars, and nightclubs — 24/7, 365 days a year.</p>
+          <div className={styles['ds-hero-actions']} id="dh-actions">
+            <a href="/#contact" className={styles['btn-pill-white']}>Hire a Supervisor</a>
+            <a href="#ds-venues" className={styles['btn-pill']}>Venue Types</a>
+          </div>
+
+          <div className={styles['ds-badge']} id="dh-badge">
+            <div className={styles['ds-badge-big']}>24/7</div>
+            <div className={styles['ds-badge-label']}>365 Days</div>
+          </div>
+        </div>
+
+        {/* <!-- RIGHT: Door supervisor image --> */}
+        <div className={styles['ds-hero-right']}>
+          <div className={styles['ds-hero-img']}>
+            <img src="/images/door-supervisors/[img]" alt="SIA Door Supervisor at venue entrance" />
+          </div>
+          <div className={styles['ds-scan']}></div>
+          <div className={styles['ds-corner-br']}></div>
+          <div className={styles['ds-readout-r']}>SECTOR: LICENSED PREMISES<br/>STATUS: ON DUTY<br/>SIA: VERIFIED</div>
+            <div className={styles['ds-img-cap']} id="dh-cap">
+              <div className={styles['ds-img-cap-inner']}>
+                <div className={styles['ds-img-cap-text']}>SIA Door Supervisor — London venue entrance</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* <!-- ── STATS STRIP ───────────────────────────────────────────── --> */}
+        <div className={styles['ds-stats-strip']}>
+          <div className={styles['ds-stats-inner']}>
+            <div className={`${styles['ds-stat-item']} ${styles['f-reveal']} ${styles['f-d1']}`}>
+              <div className={styles['ds-stat-n']}>3<em>+ yrs</em></div>
+              <div className={styles['ds-stat-l']}>Frontline Experience</div>
+            </div>
+            <div className={`${styles['ds-stat-item']} ${styles['f-reveal']} ${styles['f-d2']}`}>
+              <div className={styles['ds-stat-n']}>24<em>/7</em></div>
+              <div className={styles['ds-stat-l']}>365 Days Coverage</div>
+            </div>
+            <div className={`${styles['ds-stat-item']} ${styles['f-reveal']} ${styles['f-d3']}`}>
+              <div className={styles['ds-stat-n']}>50<em>+</em></div>
+              <div className={styles['ds-stat-l']}>Events Secured</div>
+            </div>
+            <div className={`${styles['ds-stat-item']} ${styles['f-reveal']} ${styles['f-d4']}`}>
+              <div className={styles['ds-stat-n']}>100<em>%</em></div>
+              <div className={styles['ds-stat-l']}>SIA Licensed Staff</div>
+            </div>
+          </div>
+        </div>
+
+        {/* <!-- ── OVERVIEW + DUTIES ─────────────────────────────────────── --> */}
+        <section className={styles['ds-overview']}>
+          <div className={styles['ds-overview-grid']}>
+
+            <div className={styles['ds-overview-left']}>
+              <div className={`${styles['eyebrow']} ${styles['f-reveal']}`}>Reliable SIA-Licensed Door Supervisors</div>
+              <h2 className={`${styles['f-reveal']} ${styles['f-d1']}`}>Robust.<br /><em>Adaptable.</em><br/>Trusted.</h2>
+              <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>At Big Cat Security Ltd, we tailor our services to meet every client's door supervision needs. All our staff are fully SIA-licensed and trusted by long-term clients as well as high-profile events.</p>
+              <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>With a dedicated roster of professional door supervisors, we provide reliable, on-demand security you can count on — whether it's a small bar night or a multi-stage festival.</p>
+              <p className={`${styles['f-reveal']} ${styles['f-d3']}`}>Security requirements vary widely across different events and environments, but we are proud to be fully trained and equipped to manage the vast majority with confidence. Every member of our security staff is fully registered, SIA-licensed, and rigorously vetted.</p>
+              <div className={`${styles['ds-trust-badge']} ${styles['f-reveal']} ${styles['f-d3']}`}>
+                <div className={styles['ds-trust-dot']}></div>
+                <div className={styles['ds-trust-text']}><strong>All credentials validated by the Security Industry Authority</strong> — ensuring compliance, professionalism, and peace of mind at all times.</div>
+              </div>
+            </div>
+
+            <div>
+              <div
+                className={`${styles["eyebrow"]} ${styles["f-reveal"]}`}
+                style={{
+                  fontFamily: "'Barlow Condensed', sans-serif",
+                  fontSize: ".65rem",
+                  letterSpacing: ".3em",
+                  color: "var(--sea)",
+                  marginBottom: 16,
+                }}
+              >
+                Our Duties Include
+              </div>
+              <div className={styles['ds-duties']}>
+                <div className={`${styles['ds-duty']} ${styles['f-reveal-x']} ${styles['f-d1']}`}>
+                  <div className={styles['ds-duty-n']}>01</div>
+                  <div><h4>Entry Management &amp; Searches</h4><p>Managing entry points and conducting thorough body and bag searches to ensure venue safety from the moment guests arrive.</p></div>
+                </div>
+                <div className={`${styles['ds-duty']} ${styles['f-reveal-x']} ${styles['f-d2']}`}>
+                  <div className={styles['ds-duty-n']}>02</div>
+                  <div><h4>Recording &amp; Access Control</h4><p>Recording entries and supporting smooth, efficient access — maintaining accurate logs and ensuring only authorised individuals gain entry.</p></div>
+                </div>
+                <div className={`${styles['ds-duty']} ${styles['f-reveal-x']} ${styles['f-d3']}`}>
+                  <div className={styles['ds-duty-n']}>03</div>
+                  <div><h4>Preventing Unauthorised Entry</h4><p>Decisively preventing unauthorised individuals from entering the venue while maintaining a professional, welcoming atmosphere for legitimate guests.</p></div>
+                </div>
+                <div className={`${styles['ds-duty']} ${styles['f-reveal-x']} ${styles['f-d4']}`}>
+                  <div className={styles['ds-duty-n']}>04</div>
+                  <div><h4>Safe Environment Maintenance</h4><p>Maintaining a safe, secure environment for all attendees to enjoy — monitoring behaviour, managing conflict, and responding swiftly to incidents.</p></div>
+                </div>
+                <div className={`${styles['ds-duty']} ${styles['f-reveal-x']} ${styles['f-d5']}`}>
+                  <div className={styles['ds-duty-n']}>05</div>
+                  <div><h4>Stakeholder Liaison</h4><p>Liaising closely with the DPS, clients, promoters, and venue management to ensure seamless coordination throughout every event.</p></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* <!-- ── VENUE TYPES ────────────────────────────────────────────── --> */}
+        <section className={styles['ds-venues']} id="ds-venues">
+          <div className={styles['ds-venues-header']}>
+            <div className={styles['f-reveal']}>
+              <div className={styles['eyebrow']}>Where We Operate</div>
+              <h2>Every<br /><em>Venue Type</em></h2>
+            </div>
+            <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>From high-energy nightclubs to intimate theatre productions, our door supervisors are trained, experienced, and equipped for every environment. We assemble the right team for your specific venue and risk profile.</p>
+          </div>
+
+          <div className={styles['ds-venue-grid']}>
+            <div className={`${styles['ds-venue-card']} ${styles['f-reveal']} ${styles['f-d1']}`}>
+              <div className={styles['ds-venue-n']}>01</div>
+              <div className={styles['ds-venue-icon']}>
+                <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13" /><circle cx="6" cy="18" r="3" /><circle cx="18" cy="16" r="3" /></svg>
+              </div>
+              <h3>Bars &amp; Nightclubs</h3>
+              <p>High-energy late-night environments demand confident, experienced door supervisors. Our staff manage queues, conduct searches, handle conflict resolution, and maintain a welcoming but safe door policy throughout the night.</p>
+              <a href="/#contact" className={styles['ds-venue-link']}>Enquire Now</a>
+            </div>
+            <div className={`${styles['ds-venue-card']} ${styles['f-reveal']} ${styles['f-d2']}`}>
+              <div className={styles['ds-venue-n']}>02</div>
+              <div className={styles['ds-venue-icon']}>
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" /></svg>
+              </div>
+              <h3>Festivals &amp; Concerts</h3>
+              <p>Large-scale events with thousands of attendees require a coordinated, experienced security presence. Our door supervisors manage access points, crowd flow, and emergency response across festival and concert environments.</p>
+              <a href="/#contact" className={styles['ds-venue-link']}>Enquire Now</a>
+            </div>
+            <div className={`${styles['ds-venue-card']} ${styles['f-reveal']} ${styles['f-d3']}`}>
+              <div className={styles['ds-venue-n']}>03</div>
+              <div className={styles['ds-venue-icon']}>
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>
+              </div>
+              <h3>Theatres &amp; Shows</h3>
+              <p>A more formal environment requiring a professional, discreet security presence. Our supervisors ensure smooth entry, manage audience flow, and maintain safety without disrupting the guest experience.</p>
+              <a href="/#contact" className={styles['ds-venue-link']}>Enquire Now</a>
+            </div>
+            <div className={`${styles['ds-venue-card']} ${styles['f-reveal']} ${styles['f-d4']}`}>
+              <div className={styles['ds-venue-n']}>04</div>
+              <div className={styles['ds-venue-icon']}>
+                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+              </div>
+              <h3>Hotels &amp; Hospitality</h3>
+              <p>Hotels and hospitality venues require a balance of authority and warmth. Our supervisors provide discreet, professional security that protects guests and staff while maintaining the welcoming environment your brand demands.</p>
+              <a href="/#contact" className={styles['ds-venue-link']}>Enquire Now</a>
+            </div>
+            <div className={`${styles['ds-venue-card']} ${styles['f-reveal']} ${styles['f-d5']}`}>
+              <div className={styles['ds-venue-n']}>05</div>
+              <div className={styles['ds-venue-icon']}>
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+              </div>
+              <h3>Pop-Ups &amp; Activations</h3>
+              <p>Pop-up events and brand activations move fast and attract unpredictable crowds. Our supervisors adapt quickly, manage access, and keep your activation safe, smooth, and on-brand from start to finish.</p>
+              <a href="/#contact" className={styles['ds-venue-link']}>Enquire Now</a>
+            </div>
+            <div className={`${styles['ds-venue-card']} ${styles['f-reveal']} ${styles['f-d6']}`}>
+              <div className={styles['ds-venue-n']}>06</div>
+              <div className={styles['ds-venue-icon']}>
+                <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></svg>
+              </div>
+              <h3>Corporate &amp; Private Events</h3>
+              <p>Discreet, professional supervision for corporate dinners, award ceremonies, private parties, and VIP functions — protecting guests and property while preserving the exclusive atmosphere of your event.</p>
+              <a href="/#contact" className={styles['ds-venue-link']}>Enquire Now</a>
+            </div>
+          </div>
+        </section>
+
+        {/* <!-- ── WHY US ──────────────────────────────────────────────────── --> */}
+        <section className={styles["ds-why"]}>
+          <div className={styles["ds-why-inner"]}>
+            <div className={styles["ds-why-left"]}>
+              <div className={styles["f-reveal"]}>
+                <div
+                  className={styles["eyebrow"]}
+                  style={{
+                    color: "var(--sea-light)",
+                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontSize: ".65rem",
+                    letterSpacing: ".3em",
+                    marginBottom: 20,
+                  }}
+                >
+                  Consistent, Professional SIA Door Supervisors
+                </div>
+                <h2>
+                  What Sets
+                  <br />
+                  Us <em>Apart</em>
+                </h2>
+                <p>
+                  We assemble the right team for each client — tailoring our services to meet your unique needs from start to finish. Every officer is SIA-licensed, registered, and rigorously vetted.
+                </p>
+                <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginTop: 32 }}>
+                  <a href="/#contact" className={styles["btn-pill-white"]}>
+                    Book Now
+                  </a>
+                  <a href="/about" className={styles["btn-pill-ghost"]}>
+                    About Us
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className={styles["ds-why-list"]}>
+              <div className={`${styles['ds-why-item']} ${styles['f-reveal-x']} ${styles['f-d1']}`}>
+                <div className={styles['ds-why-dot']}></div>
+                <div><h4>All-Year Reliability</h4><p>We provide on-demand, year-round door supervision — 24/7, 365 days. When you need us, we're there.</p></div>
+              </div>
+              <div className={`${styles['ds-why-item']} ${styles['f-reveal-x']} ${styles['f-d2']}`}>
+                <div className={styles['ds-why-dot']}></div>
+                <div><h4>Tailored Team Assembly</h4><p>We build the right team for your specific venue type, event size, and risk profile — never a generic deployment.</p></div>
+              </div>
+              <div className={`${styles['ds-why-item']} ${styles['f-reveal-x']} ${styles['f-d3']}`}>
+                <div className={styles['ds-why-dot']}></div>
+                <div><h4>Long-Term Client Trust</h4><p>Trusted by long-term clients and high-profile events alike — our reputation is built on consistent, professional delivery.</p></div>
+              </div>
+              <div className={`${styles['ds-why-item']} ${styles['f-reveal-x']} ${styles['f-d4']}`}>
+                <div className={styles['ds-why-dot']}></div>
+                <div><h4>Authority with Approachability</h4><p>Our supervisors combine firm authority with genuine approachability — protecting your venue while creating a welcoming atmosphere.</p></div>
+              </div>
+              <div className={`${styles['ds-why-item']} ${styles['f-reveal-x']} ${styles['f-d5']}`}>
+                <div className={styles['ds-why-dot']}></div>
+                <div><h4>Social Enterprise Values</h4><p>As the leading social enterprise in UK security, every deployment creates positive impact — for your guests and the communities we serve.</p></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* <!-- ── CTA ────────────────────────────────────────────────────── --> */}
+        <section className={styles["ds-cta"]}>
+          <div className={styles["ds-cta-inner"]}>
+            <div className={styles["ds-cta-left"]}>
+              <div className={styles["f-reveal"]}>
+                <div
+                  className={styles["eyebrow"]}
+                  style={{
+                    color: "var(--sea-light)",
+                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontSize: ".65rem",
+                    letterSpacing: ".3em",
+                    marginBottom: 16,
+                  }}
+                >
+                  Hire SIA Door Supervisors
+                </div>
+                <h2>
+                  Book Your
+                  <br />
+                  <em>Team Today</em>
+                </h2>
+              </div>
+            </div>
+            <div className={`${styles["ds-cta-right"]} ${styles["f-reveal"]} ${styles["f-d2"]}`}>
+              <p>
+                Whether you need a single supervisor for a quiet evening or a full team for a major event, we respond fast and deploy professionals you can trust — 24/7, 365 days a year.
+              </p>
+              <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+                <a href="/#contact" className={styles["btn-pill-white"]}>
+                  Request a Quote
+                </a>
+                <a href="tel:+447722143162" className={styles["btn-pill-ghost"]}>
+                  +44 (0)7722 143162
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer className={styles['footer']}>
+          <div className={styles['footer-inner']}>
+            <div className={styles['footer-logo']}><img src="/logo.png" alt="Big Cat Security Ltd" /></div>
+
+            <div className={styles['footer-center']}>
+              <div className={styles['footer-social']}>
+                <a href="https://facebook.com/bigcatsecurity" target="_blank" rel="noopener" className={styles['soc-btn']} aria-label="Facebook">
+                  <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+                </a>
+                <a href="https://instagram.com/bigcatsecurity" target="_blank" rel="noopener" className={styles['soc-btn']} aria-label="Instagram">
+                  <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
+                </a>
+                <a href="https://linkedin.com/company/bigcatsecurity" target="_blank" rel="noopener" className={styles['soc-btn']} aria-label="LinkedIn">
+                  <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+                </a>
+              </div>
+              <div className={styles['footer-copy']}>© 2022–2026 Big Cat Security Ltd. All Rights Reserved.</div>
+            </div>
+
+            <div className={styles['footer-links']}>
+              <a href="#services">Services</a>
+              <a href="/about">About</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </div>
+
+          <div className={styles['footer-bottom']}>
+            <div className={styles['footer-bottom-left']}>
+              SIA Licensed · Reg. No. 16568339 · 4 Radcot Point, London SE23 2AZ
+            </div>
+            <div className={styles['footer-signal']}>
+              <div className={styles['footer-signal-dot']}></div>
+              System Active · UK Coverage
+            </div>
+          </div>
+        </footer>
+    </div>
+  );
+}

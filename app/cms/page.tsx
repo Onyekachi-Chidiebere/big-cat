@@ -1,14 +1,14 @@
 import Link from "next/link";
 
-const PAGES_TO_MIGRATE = [
-  { slug: "/", label: "Home (bigcat-security)" },
-  { slug: "/about", label: "About" },
-  { slug: "/what-we-do", label: "What we do" },
-  { slug: "/security-guards", label: "Security guards" },
-  { slug: "/event-security", label: "Event security" },
-  { slug: "/door-supervisors", label: "Door supervisors" },
-  { slug: "/threat-intelligence", label: "Threat intelligence" },
-  { slug: "/work-for-us", label: "Work for us" },
+const CMS_EDITORS = [
+  { href: "/cms/home", label: "Home", note: "full page sections" },
+  { href: "/cms/about", label: "About", note: "full page sections" },
+  { href: "/cms/what-we-do", label: "What we do", note: "announce + footer" },
+  { href: "/cms/security-guards", label: "Security guards", note: "announce + footer" },
+  { href: "/cms/event-security", label: "Event security", note: "announce + footer" },
+  { href: "/cms/door-supervisors", label: "Door supervisors", note: "announce + footer" },
+  { href: "/cms/threat-intelligence", label: "Threat intelligence", note: "announce + footer" },
+  { href: "/cms/work-for-us", label: "Work for us", note: "announce + footer" },
 ] as const;
 
 export default function CmsHomePage() {
@@ -17,8 +17,8 @@ export default function CmsHomePage() {
       <header className="border-b border-zinc-800 pb-6">
         <h1 className="text-2xl font-semibold tracking-tight">CMS</h1>
         <p className="mt-1 text-sm text-zinc-400">
-          Edit site content stored in Supabase. Saving from the home editor uses
-          the service role on the server (set{" "}
+          Content is stored in Supabase (<code className="text-zinc-300">site_content</code>
+          ). Saving uses the service role on the server (set{" "}
           <code className="text-zinc-300">SUPABASE_SERVICE_ROLE_KEY</code> in{" "}
           <code className="text-zinc-300">.env.local</code>).
         </p>
@@ -26,52 +26,31 @@ export default function CmsHomePage() {
 
       <section>
         <h2 className="text-sm font-medium uppercase tracking-wider text-zinc-500">
-          Editable in CMS
+          Page editors
         </h2>
         <ul className="mt-3 space-y-2">
-          <li>
-            <Link href="/cms/home" className="text-sky-400 hover:underline">
-              Home page
-            </Link>
-            <span className="ml-2 text-xs text-zinc-600">/cms/home</span>
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h2 className="text-sm font-medium uppercase tracking-wider text-zinc-500">
-          Routes to migrate
-        </h2>
-        <ul className="mt-3 space-y-2">
-          {PAGES_TO_MIGRATE.map((p) => (
-            <li key={p.slug}>
-              <Link
-                href={p.slug}
-                className="text-sky-400 hover:underline"
-              >
+          {CMS_EDITORS.map((p) => (
+            <li key={p.href}>
+              <Link href={p.href} className="text-sky-400 hover:underline">
                 {p.label}
               </Link>
-              <span className="ml-2 text-xs text-zinc-600">{p.slug}</span>
+              <span className="ml-2 text-xs text-zinc-600">{p.href}</span>
+              <span className="ml-2 text-xs text-zinc-500">({p.note})</span>
             </li>
           ))}
         </ul>
       </section>
 
       <section className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-4">
-        <h2 className="text-sm font-medium text-zinc-300">Next steps</h2>
+        <h2 className="text-sm font-medium text-zinc-300">Setup</h2>
         <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm text-zinc-400">
           <li>
-            Run the SQL in <code className="text-zinc-300">supabase/migrations/</code>{" "}
-            in the Supabase SQL editor.
+            Run SQL in <code className="text-zinc-300">supabase/migrations/</code> in the
+            Supabase SQL editor.
           </li>
           <li>
-            Create a Storage bucket (e.g. <code className="text-zinc-300">cms</code>)
-            for images and store public URLs in{" "}
-            <code className="text-zinc-300">site_content.content</code>.
-          </li>
-          <li>
-            Replace each static HTML route with a React page that reads from{" "}
-            <code className="text-zinc-300">site_content</code>.
+            Ensure Storage bucket <code className="text-zinc-300">cms</code> exists for image
+            uploads (see migration <code className="text-zinc-300">002_cms_storage.sql</code>).
           </li>
         </ol>
       </section>

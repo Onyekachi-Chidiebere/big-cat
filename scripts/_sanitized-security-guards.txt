@@ -1,0 +1,344 @@
+"use client";
+
+import "../site.css";
+import styles from "../styles.module.css";
+import { SecurityGuardsEffects } from "../SecurityGuardsEffects";
+
+export default function SecurityGuardsPage() {
+  return (
+    <div>
+      <SecurityGuardsEffects />
+      <div className={styles["cursor"]} id="cur"></div>
+      <div className={styles["cursor-ring"]} id="curR"></div>
+      <div className={styles["cursor-pulse"]} id="curPulse"></div>
+      <div className={styles["cursor-tl"]} id="curTL"></div>
+      <div className={styles["cursor-tr"]} id="curTR"></div>
+      <div className={styles["cursor-bl"]} id="curBL"></div>
+      <div className={styles["cursor-br"]} id="curBR"></div>
+      <div id="progress-bar"></div>
+      <a href="/#contact" className={styles["floating-cta"]} id="float-cta">
+        Get a Quote
+      </a>
+      {/* <!-- ANNOUNCE --> */}
+      <div className={styles["announce-bar"]} id="announce-bar">
+        <div className={styles["announce-text"]}>
+          📞 Mon–Fri: 9am–6pm &nbsp;|&nbsp; Sat–Sun: 10am–5pm &nbsp;|&nbsp;{" "}
+          <strong>+44 (0)7722 143162</strong> &nbsp;
+          <a href="/#contact" style={{ color: "var(--sea-light)", marginLeft: 8 }}>
+            Get a Free Quote →
+          </a>
+        </div>
+        <button className={styles["announce-close"]} id="ann-close" aria-label="Close">
+          ✕
+        </button>
+      </div>
+
+      {/* <!-- NAVBAR --> */}
+      <header className={styles["navbar"]} id="navbar">
+        <a href="/" className={styles["logo"]}>
+          <img src="/logo.png" alt="Big Cat Security Ltd" />
+        </a>
+        <nav id="nav">
+          <a href="/">Home</a>
+          <a href="/what-we-do">What We Do</a>
+          <a href="/security-guards" style={{ background: "var(--sea)" }}>
+            Security Guards
+          </a>
+          <a href="/about">About</a>
+          <a href="/work-for-us" className={styles["nav-cta"]}>
+            Work for Us
+          </a>
+        </nav>
+        <div className={styles["nav-right"]}>
+          <a href="tel:+448002440000" className={styles["nav-phone"]}>
+            0800 244 228
+          </a>
+          <a href="/#contact" className={styles["btn-pill"]}>
+            Get a Quote
+          </a>
+        </div>
+        <button id="menu-toggle" aria-label="Menu">
+          ☰
+        </button>
+      </header>
+
+      {/* <!-- ── HERO ─────────────────────────────────────────────────── --> */}
+      <section className={styles["sg-hero"]}>
+
+      {/* <!-- LEFT: Editorial dark panel --> */}
+      <div className={styles['sg-hero-left']}>
+        <div className={styles['sg-corner-tl']}></div>
+        <div className={styles['sg-readout']}>SIA: LICENSED<br />TYPE: MANNED GUARDING<br />COVER: LONDON &amp; UK<br /><span id="sg-clock">--:--:--</span></div>
+          <div className={styles['sg-hero-label']} id="sh-label">Manned Guarding</div>
+          <h1 id="sh-h1">
+            <em>Trusted, Trained</em>
+            <strong>Security<br />Guards</strong>
+          </h1>
+          <p className={styles['sg-hero-sub']} id="sh-sub">At Big Cat Security Ltd, we deploy highly trusted and experienced security guards, door supervisors, and ground teams — safeguarding offices, buildings, warehouses, and shared workspaces across London and the surrounding areas.</p>
+          <div className={styles['sg-hero-actions']} id="sh-actions">
+            <a href="/#contact" className={styles['btn-pill-white']}>Recruit a Guard</a>
+            <a href="#sg-services" className={styles['btn-pill']}>Our Services</a>
+          </div>
+          <div className={styles['sg-hero-status']} id="sh-status">
+            <div className={styles['sg-status-dot']}></div>
+            <span className={styles['hi']}>SIA Licensed</span>
+            <span>·</span><span>Fully Vetted</span>
+            <span>·</span><span>London &amp; UK</span>
+          </div>
+        </div>
+
+          {/* <!-- RIGHT: Three-image mosaic --> */}
+          <div className={styles['sg-hero-right']}>
+            <div className={styles['sg-hero-img-main']}>
+              <img src="/images/security-guards/[img]" alt="Security Officer on duty at large event" />
+            </div>
+            <div className={styles['sg-hero-img-row']}>
+              <div className={styles['sg-hero-img-sm']}>
+                <img src="/images/security-guards/[img]" alt="Security Guards at building entrance" />
+              </div>
+              <div className={styles['sg-hero-img-sm']}>
+                <img src="/images/security-guards/[img]" alt="Door Supervisor at venue" />
+              </div>
+            </div>
+            <div className={styles['sg-scan']}></div>
+            <div className={styles['sg-hero-stat']} id="sh-stat">
+              <div className={styles['sg-hero-stat-n']}>50<em>+</em></div>
+              <div className={styles['sg-hero-stat-l']}>Events Secured</div>
+            </div>
+          </div>
+        </section>
+
+          {/* <!-- ── SERVICE TYPE STRIP ─────────────────────────────────────── --> */}
+          <div className={styles['sg-intro-strip']}>
+            <div className={styles['sg-intro-inner']}>
+              <div className={`${styles['sg-intro-item']} ${styles['f-reveal']} ${styles['f-d1']}`}>
+                <div className={styles['sg-intro-num']}>01</div>
+                <div className={styles['sg-intro-title']}>Professional SIA Security</div>
+                <div className={styles['sg-intro-text']}>SIA-licensed officers combining trusted services with genuine social value</div>
+              </div>
+              <div className={`${styles['sg-intro-item']} ${styles['f-reveal']} ${styles['f-d2']}`}>
+                <div className={styles['sg-intro-num']}>02</div>
+                <div className={styles['sg-intro-title']}>Mobile Security</div>
+                <div className={styles['sg-intro-text']}>Anticipating risks and responding decisively to every incident, minor or critical</div>
+              </div>
+              <div className={`${styles['sg-intro-item']} ${styles['f-reveal']} ${styles['f-d3']}`}>
+                <div className={styles['sg-intro-num']}>03</div>
+                <div className={styles['sg-intro-title']}>Close Protection</div>
+                <div className={styles['sg-intro-text']}>CPOs safeguarding clients with proactive risk assessment and discreet surveillance</div>
+              </div>
+              <div className={`${styles['sg-intro-item']} ${styles['f-reveal']} ${styles['f-d4']}`}>
+                <div className={styles['sg-intro-num']}>04</div>
+                <div className={styles['sg-intro-title']}>Front of House</div>
+                <div className={styles['sg-intro-text']}>Professional, welcoming entry management that reflects your organisation's standard</div>
+              </div>
+            </div>
+          </div>
+
+          {/* <!-- ── OVERVIEW ───────────────────────────────────────────────── --> */}
+          <section className={styles['sg-overview']}>
+            <div className={styles['sg-overview-grid']}>
+
+              <div className={styles['sg-overview-left']}>
+                <div className={`${styles['eyebrow']} ${styles['f-reveal']}`}>Recruit Expert SIA Security Guards Today</div>
+                <h2 className={`${styles['f-reveal']} ${styles['f-d1']}`}>Trusted SIA-<br /><em>Certified</em><br />Security</h2>
+                <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>As communities grow, so does the need for strong internal and external security to protect both people and property. At Big Cat Security Ltd, we meet this need by deploying highly trusted and experienced security guards — safeguarding offices, buildings, warehouses, and shared workspaces across London.</p>
+                <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>At Big Cat Security Ltd, we combine trusted security services with genuine social value. As a leading social enterprise in our sector, we are committed to making a real difference and doing the right thing for all.</p>
+
+                <div className={styles['sg-creds']}>
+                  <div className={`${styles['sg-cred']} ${styles['f-reveal-l']} ${styles['f-d1']}`}><div className={styles['sg-cred-dot']}></div><span>Fully SIA-Certified and Licensed Security Professionals</span></div>
+                  <div className={`${styles['sg-cred']} ${styles['f-reveal-l']} ${styles['f-d2']}`}><div className={styles['sg-cred-dot']}></div><span>Experienced Team with a Proven Track Record</span></div>
+                  <div className={`${styles['sg-cred']} ${styles['f-reveal-l']} ${styles['f-d3']}`}><div className={styles['sg-cred-dot']}></div><span>Efficiently Managed Security Operations</span></div>
+                  <div className={`${styles['sg-cred']} ${styles['f-reveal-l']} ${styles['f-d4']}`}><div className={styles['sg-cred-dot']}></div><span>Comprehensive Insurance &amp; Full Legal Compliance</span></div>
+                  <div className={`${styles['sg-cred']} ${styles['f-reveal-l']} ${styles['f-d5']}`}><div className={styles['sg-cred-dot']}></div><span>Featured in TimeOut, Shortlist &amp; Leading Publications</span></div>
+                </div>
+              </div>
+
+              <div className={`${styles['sg-overview-right']} ${styles['f-reveal']} ${styles['f-d2']}`}>
+                <div className={styles['sg-overview-img']}>
+                  <img src="/images/security-guards/[img]" alt="SIA Security Officer with radio" />
+                  <div className={styles['sg-overview-img-cap']}>
+                    <p>SIA-licensed officer — manned guarding deployment, London</p>
+                  </div>
+                </div>
+                <div className={styles['sg-overview-quote']}>
+                  <p>"Our skilled personnel combine professional training with broad practical experience gained from working in leading industries and business settings."</p>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          {/* <!-- ── SERVICE CARDS ──────────────────────────────────────────── --> */}
+          <section className={styles['sg-services']} id="sg-services">
+            <div className={styles['sg-services-header']}>
+              <div className={styles['f-reveal']}>
+                <div className={styles['eyebrow']}>Professional SIA Security Guard Services</div>
+                <h2>What We<br /><em>Offer</em></h2>
+              </div>
+              <p className={`${styles['f-reveal']} ${styles['f-d2']}`}>Our skilled security professionals are trained across multiple disciplines — from static guarding and access control to mobile patrols, event security, close protection, and front-of-house management. Every deployment is tailored to your specific environment and risk profile.</p>
+            </div>
+
+            <div className={styles['sg-cards']}>
+              <div className={`${styles['sg-card']} ${styles['f-reveal']} ${styles['f-d1']}`}>
+                <div className={styles['sg-card-n']}>01</div>
+                <div className={styles['sg-card-icon']}>
+                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                </div>
+                <h3>Professional SIA Security</h3>
+                <p>We combine trusted security services with genuine social value. As the leading social enterprise in our sector, we deploy SIA-licensed officers committed to making a real difference — protecting your premises while upholding the highest professional standards.</p>
+                <a href="/#contact" className={styles['sg-card-link']}>Enquire Now</a>
+              </div>
+              <div className={`${styles['sg-card']} ${styles['f-reveal']} ${styles['f-d2']}`}>
+                <div className={styles['sg-card-n']}>02</div>
+                <div className={styles['sg-card-icon']}>
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><polygon points="10 8 16 12 10 16 10 8" /></svg>
+                </div>
+                <h3>Mobile Security</h3>
+                <p>We combine knowledge, training, and experience to anticipate risks and respond decisively — whether it's a minor incident or a critical breach. Our mobile teams cover multiple sites, conducting regular patrols and maintaining a visible deterrent presence.</p>
+                <a href="/#contact" className={styles['sg-card-link']}>Enquire Now</a>
+              </div>
+              <div className={`${styles['sg-card']} ${styles['f-reveal']} ${styles['f-d3']}`}>
+                <div className={styles['sg-card-n']}>03</div>
+                <div className={styles['sg-card-icon']}>
+                  <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                </div>
+                <h3>Close Protection</h3>
+                <p>Our Close Protection Officers (CPOs) safeguard clients against unwanted attention and potential harm — combining proactive risk assessment with discreet surveillance. Deployed for executives, VIPs, and high-profile individuals requiring personal protection.</p>
+                <a href="/#contact" className={styles['sg-card-link']}>Enquire Now</a>
+              </div>
+              <div className={`${styles['sg-card']} ${styles['f-reveal']} ${styles['f-d4']}`}>
+                <div className={styles['sg-card-n']}>04</div>
+                <div className={styles['sg-card-icon']}>
+                  <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+                </div>
+                <h3>Front of House Security</h3>
+                <p>The entrance is both the first and last impression visitors have of your organisation. Our front-of-house officers ensure entry areas are safe, professional, and welcoming — delivering outstanding guest relations alongside rigorous access control.</p>
+                <a href="/#contact" className={styles['sg-card-link']}>Enquire Now</a>
+              </div>
+            </div>
+          </section>
+
+          {/* <!-- ── OPERATIONS ─────────────────────────────────────────────── --> */}
+          <section className={styles['sg-ops']}>
+            <div className={styles['sg-ops-inner']}>
+              <div className={`${styles['sg-ops-left']} ${styles['f-reveal']}`}>
+                <div className={styles['eyebrow']} style={{ color: "var(--sea-light)", fontFamily: "'Barlow Condensed', sans-serif", fontSize: ".65rem", letterSpacing: ".3em", marginBottom: 20 }}>Day-to-Day Operations</div>
+                <h2>What Our<br />Guards<br /><em>Do Daily</em></h2>
+                <p>Our security personnel are deployed across a wide range of environments and operational settings — each trained to perform consistently and professionally, regardless of the assignment.</p>
+                <div className={styles['sg-ops-actions']}>
+                  <a href="/#contact" className={styles['btn-pill-white']}>Get a Free Quote</a>
+                  <a href="/what-we-do" className={styles['btn-pill-ghost']}>All Services</a>
+                </div>
+              </div>
+              <div className={styles['sg-ops-list']}>
+                <div className={`${styles['sg-ops-item']} ${styles['f-reveal-x']} ${styles['f-d1']}`}>
+                  <div className={styles['sg-ops-dot']}></div>
+                  <div><h4>Shared Workspaces &amp; Business Centres</h4><p>Providing security for co-working spaces, university campuses, and professional business environments across London.</p></div>
+                </div>
+                <div className={`${styles['sg-ops-item']} ${styles['f-reveal-x']} ${styles['f-d2']}`}>
+                  <div className={styles['sg-ops-dot']}></div>
+                  <div><h4>Shopping Centres, Hotels &amp; Theatres</h4><p>Door supervisor and guard deployments for high-footfall retail and hospitality environments, ensuring guest safety and loss prevention.</p></div>
+                </div>
+                <div className={`${styles['sg-ops-item']} ${styles['f-reveal-x']} ${styles['f-d3']}`}>
+                  <div className={styles['sg-ops-dot']}></div>
+                  <div><h4>Overnight &amp; Construction Security</h4><p>Round-the-clock overnight security for unoccupied commercial buildings and construction sites — protecting assets and deterring trespass.</p></div>
+                </div>
+                <div className={`${styles['sg-ops-item']} ${styles['f-reveal-x']} ${styles['f-d4']}`}>
+                  <div className={styles['sg-ops-dot']}></div>
+                  <div><h4>Site Access &amp; Entry Control</h4><p>Managing and monitoring site access points, verifying credentials, and maintaining a secure, controlled entry environment.</p></div>
+                </div>
+                <div className={`${styles['sg-ops-item']} ${styles['f-reveal-x']} ${styles['f-d5']}`}>
+                  <div className={styles['sg-ops-dot']}></div>
+                  <div><h4>Foot Patrols &amp; Guest Relations</h4><p>Conducting routine foot patrols to maintain visible deterrence, while delivering professional guest relations and customer service at all times.</p></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* <!-- ── OTHER SERVICES ─────────────────────────────────────────── --> */}
+          <section className={styles['sg-other']}>
+            <div className={`${styles['sg-other-header']} ${styles['f-reveal']}`}>
+              <div className={styles['eyebrow']}>Explore Our Services</div>
+              <h2>More Ways We<br /><em>Protect You</em></h2>
+              <p>Beyond manned guarding, Big Cat Security Ltd offers a full suite of SIA-licensed security services across London and the UK.</p>
+            </div>
+            <div className={styles['sg-other-grid']}>
+              <div className={`${styles['sg-other-card']} ${styles['f-reveal']} ${styles['f-d1']}`} onClick={() => { window.location.href = "/#contact"; }}>
+                <div className={styles['sg-other-num']}>01</div>
+                <div><h3>Event Security</h3><p>Expert event security teams for public gatherings, private functions, film sets and music events.</p></div>
+                <div className={styles['sg-other-arrow']}>→</div>
+              </div>
+              <div className={`${styles['sg-other-card']} ${styles['f-reveal']} ${styles['f-d2']}`} onClick={() => { window.location.href = "/#contact"; }}>
+                <div className={styles['sg-other-num']}>02</div>
+                <div><h3>Door Supervisors</h3><p>SIA-licensed door supervisors for licensed premises, bars, restaurants, hotels and entertainment venues.</p></div>
+                <div className={styles['sg-other-arrow']}>→</div>
+              </div>
+              <div className={`${styles['sg-other-card']} ${styles['f-reveal']} ${styles['f-d3']}`} onClick={() => { window.location.href = "/#contact"; }}>
+                <div className={styles['sg-other-num']}>03</div>
+                <div><h3>Threat Intelligence</h3><p>Intelligence-led security decisions and risk assessments to keep you ahead of emerging threats.</p></div>
+                <div className={styles['sg-other-arrow']}>→</div>
+              </div>
+              <div className={`${styles['sg-other-card']} ${styles['f-reveal']} ${styles['f-d4']}`} onClick={() => { window.location.href = "/#contact"; }}>
+                <div className={styles['sg-other-num']}>04</div>
+                <div><h3>Retail &amp; Asset Protection</h3><p>Reducing shrinkage, deterring theft, and protecting high-value assets across retail and commercial environments.</p></div>
+                <div className={styles['sg-other-arrow']}>→</div>
+              </div>
+            </div>
+          </section>
+
+          {/* <!-- ── CTA ────────────────────────────────────────────────────── --> */}
+          <section className={styles['sg-cta']}>
+            <div className={styles['sg-cta-inner']}>
+              <div className={styles['f-reveal']}>
+                <div className={styles['eyebrow']} style={{ color: "var(--sea-light)", fontFamily: "'Barlow Condensed', sans-serif", fontSize: ".65rem", letterSpacing: ".3em", marginBottom: 16 }}>Get Started Today</div>
+                <h2>Recruit a<br /><em>Security Guard</em></h2>
+              </div>
+              <div className={`${styles['sg-cta-right']} ${styles['f-reveal']} ${styles['f-d2']}`}>
+                <p>Whether you need one officer or a full team, we respond fast and deploy professionals you can trust. All guards are SIA-licensed, fully vetted, and operationally ready.</p>
+                <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+                  <a href="/#contact" className={styles['btn-pill-white']}>Request a Quote</a>
+                  <a href="tel:+447722143162" className={styles['btn-pill-ghost']}>+44 (0)7722 143162</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <footer className={styles['footer']}>
+            <div className={styles['footer-inner']}>
+              <div className={styles['footer-logo']}><img src="/logo.png" alt="Big Cat Security Ltd" /></div>
+
+              <div className={styles['footer-center']}>
+                <div className={styles['footer-social']}>
+                  <a href="https://facebook.com/bigcatsecurity" target="_blank" rel="noopener" className={styles['soc-btn']} aria-label="Facebook">
+                    <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+                  </a>
+                  <a href="https://instagram.com/bigcatsecurity" target="_blank" rel="noopener" className={styles['soc-btn']} aria-label="Instagram">
+                    <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
+                  </a>
+                  <a href="https://linkedin.com/company/bigcatsecurity" target="_blank" rel="noopener" className={styles['soc-btn']} aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></svg>
+                  </a>
+                </div>
+                <div className={styles['footer-copy']}>© 2022–2026 Big Cat Security Ltd. All Rights Reserved.</div>
+              </div>
+
+              <div className={styles['footer-links']}>
+                <a href="#services">Services</a>
+                <a href="/about">About</a>
+                <a href="#contact">Contact</a>
+              </div>
+            </div>
+
+            <div className={styles['footer-bottom']}>
+              <div className={styles['footer-bottom-left']}>
+                SIA Licensed · Reg. No. 16568339 · 4 Radcot Point, London SE23 2AZ
+              </div>
+              <div className={styles['footer-signal']}>
+                <div className={styles['footer-signal-dot']}></div>
+                System Active · UK Coverage
+              </div>
+            </div>
+          </footer>
+    </div>
+  );
+}

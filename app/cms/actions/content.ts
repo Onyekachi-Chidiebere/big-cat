@@ -3,11 +3,21 @@
 import { createServiceRoleClient } from "@/app/lib/supabase/service";
 import { revalidatePath } from "next/cache";
 
-export async function upsertHomeSection(sectionKey: string, content: unknown) {
+/** Path on the public site for a CMS page slug (e.g. home → "/"). */
+function publicPathForSlug(pageSlug: string): string {
+  if (pageSlug === "home") return "/";
+  return `/${pageSlug}`;
+}
+
+export async function upsertSiteSection(
+  pageSlug: string,
+  sectionKey: string,
+  content: unknown
+) {
   const supabase = createServiceRoleClient();
   const { error } = await supabase.from("site_content").upsert(
     {
-      page_slug: "home",
+      page_slug: pageSlug,
       section_key: sectionKey,
       content,
     },
@@ -18,7 +28,12 @@ export async function upsertHomeSection(sectionKey: string, content: unknown) {
     return { ok: false as const, error: error.message };
   }
 
-  revalidatePath("/");
-  revalidatePath("/cms/home");
+  revalidatePath(publicPathForSlug(pageSlug));
+  revalidatePath(`/cms/${pageSlug}`);
+  revalidatePath("/cms");
   return { ok: true as const };
+}
+
+export async function upsertHomeSection(sectionKey: string, content: unknown) {
+  return upsertSiteSection("home", sectionKey, content);
 }
