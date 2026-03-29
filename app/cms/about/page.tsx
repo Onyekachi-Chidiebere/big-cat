@@ -15,7 +15,7 @@ export default async function CmsAboutPage() {
         </Link>
         <h1 className="mt-4 text-2xl font-semibold tracking-tight">About page</h1>
         <p className="mt-1 text-sm text-zinc-400">
-          Content in <code className="text-zinc-300">site_content</code> for page{" "}
+          Content in database for page{" "}
           <code className="text-zinc-300">about</code>.
         </p>
       </header>

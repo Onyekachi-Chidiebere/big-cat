@@ -17,10 +17,7 @@ export default function CmsHomePage() {
       <header className="border-b border-zinc-800 pb-6">
         <h1 className="text-2xl font-semibold tracking-tight">CMS</h1>
         <p className="mt-1 text-sm text-zinc-400">
-          Content is stored in Supabase (<code className="text-zinc-300">site_content</code>
-          ). Saving uses the service role on the server (set{" "}
-          <code className="text-zinc-300">SUPABASE_SERVICE_ROLE_KEY</code> in{" "}
-          <code className="text-zinc-300">.env.local</code>).
+          Content is stored in the database. and every page is fully editable from the CMS. Select a page from the list below to get started.
         </p>
       </header>
 
@@ -45,12 +42,7 @@ export default function CmsHomePage() {
         <h2 className="text-sm font-medium text-zinc-300">Setup</h2>
         <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm text-zinc-400">
           <li>
-            Run SQL in <code className="text-zinc-300">supabase/migrations/</code> in the
-            Supabase SQL editor.
-          </li>
-          <li>
-            Ensure Storage bucket <code className="text-zinc-300">cms</code> exists for image
-            uploads (see migration <code className="text-zinc-300">002_cms_storage.sql</code>).
+           This should be managed by the BigCat team
           </li>
         </ol>
       </section>

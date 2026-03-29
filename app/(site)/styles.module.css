@@ -117,6 +117,19 @@ body::before{
   box-shadow:0 1px 0 var(--border);
   height:64px;
 }
+/* Nav links on light bar — must live in module (hashed .navbar.scrolled); global site.css cannot target it */
+.navbar.scrolled nav a{
+  color:var(--navy);
+}
+.navbar.scrolled nav a:hover{
+  color:var(--navy-mid);
+}
+.navbar.scrolled nav a[style*="--sea"]{
+  color:var(--white)!important;
+}
+.navbar.scrolled nav a[style*="--sea"]:hover{
+  color:var(--white)!important;
+}
 .logo{
   font-family:'Bebas Neue',sans-serif;
   font-size:1.45rem;letter-spacing:.18em;
@@ -125,7 +138,7 @@ body::before{
   text-decoration:none;position:relative;z-index:1;
   transition:color .4s;
 }
-.navbar.scrolled .logo{color:var(--ink)}
+.navbar.scrolled .logo{color:var(--navy)}
 .logo-mark{
   width:28px;height:28px;
   background:rgba(255,255,255,.15);
@@ -144,9 +157,20 @@ body::before{
   color:rgba(255,255,255,.32);text-decoration:none;transition:color .3s;
   display:flex;align-items:center;gap:6px;
 }
-.navbar.scrolled .nav-phone{color:var(--ink-dim)}
+.navbar.scrolled .nav-phone{color:var(--navy-mid)}
 .nav-phone:hover{color:rgba(255,255,255,.8)}
-.navbar.scrolled .nav-phone:hover{color:var(--ink)}
+.navbar.scrolled .nav-phone:hover{color:var(--navy)}
+
+/* CTA in nav — match light header bar (ghost .btn-pill is built for dark heroes) */
+.navbar.scrolled .nav-right .btn-pill{
+  border-color:var(--border-dk);
+  color:var(--navy);
+}
+.navbar.scrolled .nav-right .btn-pill:hover{
+  background:rgba(13,27,46,.06);
+  border-color:var(--navy-mid);
+  color:var(--navy);
+}
 
 /* ── BUTTON STYLES ── */
 
@@ -232,7 +256,7 @@ body::before{
 .btn-text:hover{color:var(--ink);gap:14px}
 
 #menu-toggle{display:none;font-size:1.4rem;color:rgba(255,255,255,.8);cursor:pointer;background:none;border:none;transition:color .4s}
-.navbar.scrolled #menu-toggle{color:var(--ink)}
+.navbar.scrolled #menu-toggle{color:var(--navy)}
 
 /* ── FLOATING CTA ── */
 .floating-cta{

@@ -18,8 +18,7 @@ export default async function CmsHomeEditorPage() {
         </Link>
         <h1 className="mt-4 text-2xl font-semibold tracking-tight">Home page</h1>
         <p className="mt-1 text-sm text-zinc-400">
-          Content is stored in Supabase (<code className="text-zinc-300">site_content</code>,
-          page <code className="text-zinc-300">home</code>). Saving updates the live site.
+          Content is stored in database. Saving updates the live site.
         </p>
       </header>
 

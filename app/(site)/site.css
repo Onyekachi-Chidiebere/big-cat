@@ -220,9 +220,8 @@ nav a{
   font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
   color:rgba(255,255,255,.5);text-decoration:none;position:relative;transition:color .3s;
 }
-.navbar.scrolled nav a{color:var(--ink-soft)}
 nav a:hover{color:var(--white)}
-.navbar.scrolled nav a:hover{color:var(--ink)}
+/* Scrolled nav colors: styles.module.css (.navbar.scrolled is CSS-module-scoped) */
 /* What We Do: #float-cta hidden until scroll (home uses .floating-cta without this id) */
 #float-cta{
   opacity:0;

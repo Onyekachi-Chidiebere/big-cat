@@ -103,8 +103,7 @@ export function HomeCmsForm({ initialContent }: Props) {
       <p className="text-sm text-zinc-400">
         Edit each block as JSON. Use{" "}
         <strong className="text-zinc-300">Choose image</strong> where available to
-        upload from your computer (stored in Supabase Storage; the public URL is
-        inserted into the JSON). You can still paste URLs manually. The announce
+        upload from your computer. You can still paste URLs manually. The announce
         bar uses a small HTML snippet in <code className="text-zinc-300">html</code>.
       </p>
       {status && (
