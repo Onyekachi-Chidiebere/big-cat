@@ -69,13 +69,13 @@ export function WhatWeDoPageClient({ content }: { content: WhatWeDoContent }) {
             <div className={styles["wwd-hr-bl"]}></div>
             <div className={styles["wwd-hr-br"]}></div>
           </div>
-          <div className={styles["wwd-hero-card"]} id="hero-card">
+          {/* <div className={styles["wwd-hero-card"]} id="hero-card">
             <div className={styles["wwd-hero-card-n"]}>
               {m.hero.cardN}
               {m.hero.cardNEm ? <em>{m.hero.cardNEm}</em> : null}
             </div>
             <div className={styles["wwd-hero-card-l"]}>{m.hero.cardLabel}</div>
-          </div>
+          </div> */}
         </div>
       </section>
 
