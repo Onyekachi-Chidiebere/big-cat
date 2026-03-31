@@ -37,6 +37,8 @@ export type HomeContent = {
     quoteCta: string;
   };
   hero: {
+    /** Public URL for hero background; empty uses bundled CSS default image */
+    bgImageUrl: string;
     readoutLines: string[];
     eyebrow: string;
     classified: string;

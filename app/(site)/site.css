@@ -221,7 +221,7 @@ nav a{
   color:#fff;text-decoration:none;position:relative;transition:color .3s;
 }
 nav a:hover{color:var(--white)}
-/* Scrolled nav colors: styles.module.css (.navbar.scrolled is CSS-module-scoped) */
+/* Scrolled nav (navy bar + light text): styles.module.css — .navbar.scrolled is module-scoped */
 /* What We Do: #float-cta hidden until scroll (home uses .floating-cta without this id) */
 #float-cta{
   opacity:0;

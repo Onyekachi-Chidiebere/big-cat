@@ -51,7 +51,14 @@ export function HomePageClient({ content }: { content: HomeContent }) {
 
       {/* <!-- HERO --> */}
       <section className={styles.hero} id="hero-section">
-        <div className={styles['hero-bg']}></div>
+        <div
+          className={styles['hero-bg']}
+          style={
+            content.hero.bgImageUrl
+              ? { backgroundImage: `url(${content.hero.bgImageUrl})` }
+              : undefined
+          }
+        />
         <div className={styles['hero-phosphor']}></div>
         <div className={styles['hero-overlay']}></div>
         <div className={styles['hero-hud']}></div>

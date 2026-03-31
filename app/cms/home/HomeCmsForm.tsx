@@ -36,6 +36,16 @@ const SECTION_IMAGE_SLOTS: Record<
       },
     },
   ],
+  hero: [
+    {
+      label: "Hero background image",
+      prefix: "home/hero",
+      merge: (json, url) => {
+        const o = JSON.parse(json) as Record<string, unknown>;
+        return JSON.stringify({ ...o, bgImageUrl: url }, null, 2);
+      },
+    },
+  ],
   services_cards: [0, 1, 2, 3].map((i) => ({
     label: `Service card ${i + 1} image`,
     prefix: `home/services/${i + 1}`,

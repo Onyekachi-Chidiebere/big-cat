@@ -16,6 +16,7 @@ export const HOME_DEFAULTS: HomeContent = {
     quoteCta: "Get a Quote",
   },
   hero: {
+    bgImageUrl: "",
     readoutLines: ["TARGET ACQUIRED", "SIA LIC: ACTIVE", "THREAT LVL: LOW"],
     eyebrow: "SIA Licensed · Est. 2022 · UK Registered",
     classified: "System Online · Assets Protected · Threat Neutralised",

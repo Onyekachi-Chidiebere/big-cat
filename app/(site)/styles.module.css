@@ -112,20 +112,20 @@ body::before{
 }
 .navbar:global(.no-bar){top:0}
 .navbar.scrolled{
-  background:rgba(240,236,228,.96);
+  background:rgba(13,27,46,.96);
   backdrop-filter:blur(18px);
-  box-shadow:0 1px 0 var(--border);
+  box-shadow:0 1px 0 rgba(255,255,255,.08);
   height:64px;
 }
-/* Nav links on light bar — must live in module (hashed .navbar.scrolled); global site.css cannot target it */
+/* Nav on navy bar (scrolled) — same light text as over hero; module-scoped */
 .navbar.scrolled nav a{
-  color:var(--navy);
+  color:#fff;
 }
 .navbar.scrolled nav a:hover{
-  color:var(--navy-mid);
+  color:var(--white);
 }
 .navbar.scrolled nav a[style*="--sea"]{
-  color:var(--white)!important;
+  color:var(--sea-light)!important;
 }
 .navbar.scrolled nav a[style*="--sea"]:hover{
   color:var(--white)!important;
@@ -138,7 +138,7 @@ body::before{
   text-decoration:none;position:relative;z-index:1;
   transition:color .4s;
 }
-.navbar.scrolled .logo{color:var(--navy)}
+.navbar.scrolled .logo{color:var(--white)}
 .logo-mark{
   width:28px;height:28px;
   background:rgba(255,255,255,.15);
@@ -146,7 +146,7 @@ body::before{
   display:flex;align-items:center;justify-content:center;
   transition:all .4s;
 }
-.navbar.scrolled .logo-mark{background:var(--ink);border-color:var(--ink)}
+.navbar.scrolled .logo-mark{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.22)}
 .logo-mark svg{width:14px;height:14px;fill:var(--white);transition:fill .4s}
 .logo img{height:100px;width:auto;object-fit:contain;display:block}
 
@@ -157,19 +157,19 @@ body::before{
   color:#fff;text-decoration:none;transition:color .3s;
   display:flex;align-items:center;gap:6px;
 }
-.navbar.scrolled .nav-phone{color:var(--navy-mid)}
+.navbar.scrolled .nav-phone{color:#fff}
 .nav-phone:hover{color:#fff}
-.navbar.scrolled .nav-phone:hover{color:var(--navy)}
+.navbar.scrolled .nav-phone:hover{color:#fff}
 
-/* CTA in nav — match light header bar (ghost .btn-pill is built for dark heroes) */
+/* CTA in nav — ghost pill on navy (same as over hero) */
 .navbar.scrolled .nav-right .btn-pill{
-  border-color:var(--border-dk);
-  color:var(--navy);
+  border-color:rgba(255,255,255,.28);
+  color:#fff;
 }
 .navbar.scrolled .nav-right .btn-pill:hover{
-  background:rgba(13,27,46,.06);
-  border-color:var(--navy-mid);
-  color:var(--navy);
+  background:rgba(255,255,255,.08);
+  border-color:#fff;
+  color:#fff;
 }
 
 /* ── BUTTON STYLES ── */
@@ -256,7 +256,7 @@ body::before{
 .btn-text:hover{color:var(--ink);gap:14px}
 
 #menu-toggle{display:none;font-size:1.4rem;color:#fff;cursor:pointer;background:none;border:none;transition:color .4s}
-.navbar.scrolled #menu-toggle{color:var(--navy)}
+.navbar.scrolled #menu-toggle{color:#fff}
 
 /* ── FLOATING CTA ── */
 .floating-cta{
