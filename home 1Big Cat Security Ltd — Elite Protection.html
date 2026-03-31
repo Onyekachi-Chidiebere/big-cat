@@ -63,7 +63,7 @@ body::before{
 .announce-bar.hidden{transform:translateY(-100%)}
 .announce-text{font-size:.68rem;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:12px;margin:0 auto}
 .announce-text::before{content:'◈';opacity:.4}
-.announce-close{font-size:1rem;color:rgba(255,255,255,.3);cursor:pointer;background:none;border:none;line-height:1;transition:color .2s;flex-shrink:0}
+.announce-close{font-size:1rem;color:white;cursor:pointer;background:none;border:none;line-height:1;transition:color .2s;flex-shrink:0}
 .announce-close:hover{color:#fff}
 
 /* ── NAVBAR ── */
@@ -339,7 +339,7 @@ nav a:hover::after{width:100%}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:12px;
   font-size:.64rem;font-weight:400;letter-spacing:.36em;text-transform:uppercase;
-  color:rgba(255,255,255,.35);margin-bottom:32px;
+  color:white;margin-bottom:32px;
   opacity:0;animation:fadeUp .8s .2s forwards;
 }
 .hero-eyebrow span{width:24px;height:1px;background:var(--sea);opacity:.7;display:block}
@@ -382,7 +382,7 @@ nav a:hover::after{width:100%}
 
 .hero-sub{
   font-size:.95rem;font-weight:300;letter-spacing:.02em;
-  color:rgba(255,255,255,.42);
+  color:white;
   max-width:460px;line-height:1.82;margin-bottom:48px;
   opacity:0;animation:fadeUp .9s .7s forwards;
 }
@@ -409,7 +409,7 @@ nav a:hover::after{width:100%}
 .hero-stat-n em{font-style:normal;font-size:1.4rem;color:rgba(255,255,255,.28);margin-left:1px}
 .hero-stat-l{
   font-size:.58rem;font-weight:500;letter-spacing:.2em;
-  text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px;
+  text-transform:uppercase;color:white;margin-top:4px;
 }
 
 /* ── TRUST BAR ── */
@@ -419,7 +419,7 @@ nav a:hover::after{width:100%}
   flex:1;display:flex;align-items:center;justify-content:center;gap:9px;
   padding:22px 12px;
   font-size:.68rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(255,255,255,.35);
+  color:white;
   border-right:1px solid rgba(255,255,255,.06);
   transition:color .3s;
 }
@@ -474,8 +474,8 @@ section{padding:140px 7vw}
   padding:120px 7vw 88px;
   display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;
 }
-.services-intro .eyebrow{color:rgba(255,255,255,.3)}
-.services-intro .eyebrow::before{background:rgba(255,255,255,.3)}
+.services-intro .eyebrow{color:white}
+.services-intro .eyebrow::before{background:white}
 .services-intro .section-h{color:var(--white);margin-bottom:0}
 .services-intro-right p{
   font-size:.95rem;font-weight:300;letter-spacing:.02em;
@@ -515,8 +515,8 @@ section{padding:140px 7vw}
   content:'';position:absolute;
   top:16px;right:16px;
   width:28px;height:28px;
-  border-top:1px solid rgba(255,255,255,.3);
-  border-right:1px solid rgba(255,255,255,.3);
+  border-top:1px solid white;
+  border-right:1px solid white;
   z-index:1;
 }
 
@@ -556,7 +556,7 @@ section{padding:140px 7vw}
 }
 .svc-card p{
   font-size:.88rem;font-weight:300;letter-spacing:.02em;
-  color:rgba(255,255,255,.35);line-height:1.85;
+  color:white;line-height:1.85;
   flex:1;margin-bottom:44px;
 }
 .svc-cta{
@@ -568,7 +568,7 @@ section{padding:140px 7vw}
   width:fit-content;
   transition:border-color .3s,color .3s,background .3s;
 }
-.svc-card:hover .svc-cta{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.75);background:rgba(255,255,255,.05)}
+.svc-card:hover .svc-cta{border-color:white;color:rgba(255,255,255,.75);background:rgba(255,255,255,.05)}
 
 /* ── ABOUT ── */
 .about{background:var(--linen-dk);position:relative;overflow:hidden}

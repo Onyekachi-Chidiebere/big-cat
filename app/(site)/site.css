@@ -111,7 +111,7 @@ nav a:hover::after{width:100%}
 }
 .client-item::before{content:'◈';font-size:.5rem;opacity:.4}
 .eyebrow::before{content:'';width:24px;height:1px;background:var(--sea);display:block}
-.services-intro .eyebrow::before{background:rgba(255,255,255,.3)}
+.services-intro .eyebrow::before{background:white}
 .svc-img::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(to bottom,transparent 40%,rgba(8,14,26,.95) 100%);
@@ -121,8 +121,8 @@ nav a:hover::after{width:100%}
   content:'';position:absolute;
   top:16px;right:16px;
   width:28px;height:28px;
-  border-top:1px solid rgba(255,255,255,.3);
-  border-right:1px solid rgba(255,255,255,.3);
+  border-top:1px solid white;
+  border-right:1px solid white;
   z-index:1;
 }
 .about-img-wrap::before{

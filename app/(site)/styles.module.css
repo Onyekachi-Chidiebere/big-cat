@@ -98,7 +98,7 @@ body::before{
 .announce-bar:global(.hidden){transform:translateY(-100%)}
 .announce-text{font-size:.68rem;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:12px;margin:0 auto}
 .announce-text::before{content:'◈';opacity:.4}
-.announce-close{font-size:1rem;color:rgba(255,255,255,.3);cursor:pointer;background:none;border:none;line-height:1;transition:color .2s;flex-shrink:0}
+.announce-close{font-size:1rem;color:white;cursor:pointer;background:none;border:none;line-height:1;transition:color .2s;flex-shrink:0}
 .announce-close:hover{color:#fff}
 
 @media (max-width: 768px) {.announce-bar {transform:translateY(-100%)} .navbar{top:0 !important}.navbar:global(.no-bar){top:0 !important}}
@@ -443,7 +443,7 @@ body::before{
 .hero-sub{
   font-family:'Barlow Condensed',sans-serif;
   font-size:.95rem;font-weight:300;letter-spacing:.03em;
-  color:rgba(255,255,255,.42);
+  color:white;
   max-width:480px;line-height:1.85;margin-bottom:48px;
   opacity:0;animation:fadeUp .9s .7s forwards;
 }
@@ -471,7 +471,7 @@ body::before{
 .hero-stat-l{
   font-family:'Barlow Condensed',sans-serif;
   font-size:.6rem;font-weight:400;letter-spacing:.22em;
-  text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:4px;
+  text-transform:uppercase;color:white;margin-top:4px;
 }
 
 /* ── TRUST BAR ── */
@@ -481,7 +481,7 @@ body::before{
   flex:1;display:flex;align-items:center;justify-content:center;gap:9px;
   padding:22px 12px;
   font-size:.68rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(255,255,255,.35);
+  color:white;
   border-right:1px solid rgba(255,255,255,.06);
   transition:color .3s;
 }
@@ -536,8 +536,8 @@ body::before{
   padding:120px 7vw 88px;
   display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;
 }
-.services-intro .eyebrow{color:rgba(255,255,255,.3)}
-.services-intro .eyebrow::before{background:rgba(255,255,255,.3)}
+.services-intro .eyebrow{color:white}
+.services-intro .eyebrow::before{background:white}
 .services-intro .section-h{color:var(--white);margin-bottom:0}
 .services-intro-right p{
   font-size:.95rem;font-weight:300;letter-spacing:.02em;
@@ -577,8 +577,8 @@ body::before{
   content:'';position:absolute;
   top:16px;right:16px;
   width:28px;height:28px;
-  border-top:1px solid rgba(255,255,255,.3);
-  border-right:1px solid rgba(255,255,255,.3);
+  border-top:1px solid white;
+  border-right:1px solid white;
   z-index:1;
 }
 
@@ -618,7 +618,7 @@ body::before{
 }
 .svc-card p{
   font-size:.88rem;font-weight:300;letter-spacing:.02em;
-  color:rgba(255,255,255,.35);line-height:1.85;
+  color:white;line-height:1.85;
   flex:1;margin-bottom:44px;
 }
 .svc-cta{
@@ -630,7 +630,7 @@ body::before{
   width:fit-content;
   transition:border-color .3s,color .3s,background .3s;
 }
-.svc-card:hover .svc-cta{border-color:rgba(255,255,255,.35);color:rgba(255,255,255,.75);background:rgba(255,255,255,.05)}
+.svc-card:hover .svc-cta{border-color:white;color:rgba(255,255,255,.75);background:rgba(255,255,255,.05)}
 
 /* ── ABOUT ── */
 .about{background:var(--linen-dk);position:relative;overflow:hidden}
@@ -962,7 +962,7 @@ body::before{
   width:36px;height:36px;
   border:1px solid rgba(42,127,165,.25);
   display:flex;align-items:center;justify-content:center;
-  color:rgba(255,255,255,.3);text-decoration:none;
+  color:white;text-decoration:none;
   transition:border-color .3s,color .3s,background .3s,box-shadow .3s;
   position:relative;
 }
@@ -1535,7 +1535,7 @@ body::before{
   font-weight: 500;
   letter-spacing: .22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.3);
+  color: white;
   margin-top: 6px;
 }
 /* Scan line on right panel */
@@ -1626,7 +1626,7 @@ body::before{
   font-family: 'Barlow Condensed', sans-serif;
   font-size: .78rem;
   font-weight: 300;
-  color: rgba(255,255,255,.35);
+  color: white;
   letter-spacing: .06em;
   line-height: 1.5;
 }
@@ -1936,7 +1936,7 @@ body::before{
   font-weight: 400;
   letter-spacing: .24em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.3);
+  color: white;
 }
 
 /* ── STRATEGY ────────────────────────────────────────────── */
@@ -2166,7 +2166,7 @@ body::before{
   font-family: 'Barlow Condensed', sans-serif;
   font-size: .88rem;
   font-weight: 300;
-  color: rgba(255,255,255,.35);
+  color: white;
   letter-spacing: .04em;
   margin-bottom: 20px;
 }
@@ -2349,7 +2349,7 @@ body::before{
 .about-hero-desc {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: .93rem; font-weight: 300;
-  line-height: 1.88; color: rgba(255,255,255,.42);
+  line-height: 1.88; color: white;
   max-width: 420px; letter-spacing: .02em;
   margin-bottom: 44px;
   opacity: 0; transform: translateY(14px);
@@ -2392,7 +2392,7 @@ body::before{
   font-family: 'Barlow Condensed', sans-serif;
   font-size: .6rem; font-weight: 400;
   letter-spacing: .2em; text-transform: uppercase;
-  color: rgba(255,255,255,.3); margin-top: 5px;
+  color: white; margin-top: 5px;
 }
 
 /* ── STATS STRIP ────────────────────────────────────────── */
@@ -2420,7 +2420,7 @@ body::before{
   font-family: 'Barlow Condensed', sans-serif;
   font-size: .68rem; font-weight: 400;
   letter-spacing: .24em; text-transform: uppercase;
-  color: rgba(255,255,255,.3);
+  color: white;
 }
 
 /* ── STORY / IDENTITY SECTION ───────────────────────────── */
@@ -2650,7 +2650,7 @@ body::before{
 .about-exp-left p {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: .93rem; font-weight: 300;
-  line-height: 1.9; color: rgba(255,255,255,.42); letter-spacing: .02em;
+  line-height: 1.9; color: white; letter-spacing: .02em;
   margin-bottom: 14px;
 }
 /* Industry tags */
@@ -2887,7 +2887,7 @@ body::before{
 .careers-hero-sub {
   font-family:'Barlow Condensed',sans-serif;
   font-size:1rem; font-weight:300; line-height:1.85;
-  color:rgba(255,255,255,.42); max-width:520px; letter-spacing:.02em;
+  color:white; max-width:520px; letter-spacing:.02em;
   margin-bottom:52px; opacity:0; transform:translateY(14px);
 }
 
@@ -2954,7 +2954,7 @@ body::before{
 .careers-why-text {
   font-family:'Barlow Condensed',sans-serif;
   font-size:.82rem; font-weight:300;
-  color:rgba(255,255,255,.35); line-height:1.7; letter-spacing:.01em;
+  color:white; line-height:1.7; letter-spacing:.01em;
 }
 
 /* ── MISSION SECTION ─────────────────────────────────────────── */
@@ -3151,7 +3151,7 @@ body::before{
 .careers-apply-left p {
   font-family:'Barlow Condensed',sans-serif;
   font-size:.93rem; font-weight:300; line-height:1.9;
-  color:rgba(255,255,255,.42); letter-spacing:.02em; margin-bottom:36px;
+  color:white; letter-spacing:.02em; margin-bottom:36px;
 }
 .careers-apply-left a.careers-email {
   font-family:'Cormorant Garamond',serif;
@@ -3182,14 +3182,14 @@ body::before{
 .careers-form-wrap .careers-form-sub {
   font-family:'Barlow Condensed',sans-serif;
   font-size:.82rem; font-weight:300; letter-spacing:.05em;
-  color:rgba(255,255,255,.3); margin-bottom:28px;
+  color:white; margin-bottom:28px;
 }
 .careers-form { display:flex; flex-direction:column; gap:14px; }
 .careers-fg { display:flex; flex-direction:column; gap:6px; }
 .careers-fg label {
   font-family:'Barlow Condensed',sans-serif;
   font-size:.6rem; font-weight:500; letter-spacing:.22em; text-transform:uppercase;
-  color:rgba(255,255,255,.3);
+  color:white;
 }
 .careers-fg input,
 .careers-fg select,
@@ -3392,7 +3392,7 @@ body::before{
 .sg-hero-stat-l {
   font-family:'Barlow Condensed',sans-serif;
   font-size:.6rem; font-weight:400; letter-spacing:.2em; text-transform:uppercase;
-  color:rgba(255,255,255,.3); margin-top:5px;
+  color:white; margin-top:5px;
 }
 
 /* ── SERVICE INTRO STRIP ─────────────────────────────────────── */
@@ -3424,7 +3424,7 @@ body::before{
 .sg-intro-text {
   font-family:'Barlow Condensed',sans-serif;
   font-size:.8rem; font-weight:300;
-  color:rgba(255,255,255,.3); line-height:1.65; letter-spacing:.01em;
+  color:white; line-height:1.65; letter-spacing:.01em;
 }
 
 /* ── MAIN OVERVIEW ───────────────────────────────────────────── */
@@ -3793,7 +3793,7 @@ body::before{
 .es-hero-sub {
   font-family:'Barlow Condensed',sans-serif;
   font-size:.95rem; font-weight:300; line-height:1.88;
-  color:rgba(255,255,255,.42); max-width:520px; letter-spacing:.02em;
+  color:white; max-width:520px; letter-spacing:.02em;
   margin-bottom:52px; opacity:0; transform:translateY(14px);
 }
 .es-hero-actions { display:flex; gap:14px; flex-wrap:wrap; opacity:0; transform:translateY(14px); }
@@ -3817,7 +3817,7 @@ body::before{
 .es-stat-l {
   font-family:'Barlow Condensed',sans-serif;
   font-size:.6rem; font-weight:400; letter-spacing:.2em;
-  text-transform:uppercase; color:rgba(255,255,255,.3); margin-top:5px;
+  text-transform:uppercase; color:white; margin-top:5px;
 }
 
 /* ── EVENT TYPE STRIP ───────────────────────────────── */
@@ -4166,7 +4166,7 @@ body::before{
 .ds-hero-sub {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: .93rem; font-weight: 300; line-height: 1.88;
-  color: rgba(255,255,255,.42); max-width: 400px; letter-spacing: .02em;
+  color: white; max-width: 400px; letter-spacing: .02em;
   margin-bottom: 48px; opacity: 0; transform: translateY(14px);
 }
 .ds-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; transform: translateY(14px); }
@@ -4268,7 +4268,7 @@ body::before{
 .ds-stat-l {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: .65rem; font-weight: 400; letter-spacing: .2em;
-  text-transform: uppercase; color: rgba(255,255,255,.3);
+  text-transform: uppercase; color: white;
 }
 
 /* ── OVERVIEW ────────────────────────────────────────────────── */
@@ -4604,7 +4604,7 @@ body::before{
 .ti-hero-sub {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: .95rem; font-weight: 300; line-height: 1.88;
-  color: rgba(255,255,255,.42); max-width: 520px; letter-spacing: .02em;
+  color: white; max-width: 520px; letter-spacing: .02em;
   margin-bottom: 52px; opacity: 0; transform: translateY(14px);
 }
 .ti-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; transform: translateY(14px); }
@@ -4628,7 +4628,7 @@ body::before{
 .ti-intel-l {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: .6rem; font-weight: 400; letter-spacing: .2em;
-  text-transform: uppercase; color: rgba(255,255,255,.3); margin-top: 5px;
+  text-transform: uppercase; color: white; margin-top: 5px;
 }
 
 /* ── CAPABILITY STRIP ────────────────────────────────────────── */
@@ -4747,7 +4747,7 @@ body::before{
 }
 .ti-step:hover .ti-step-num { background: rgba(42,127,165,.2); border-color: var(--sea); }
 .ti-step h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; color: var(--white); margin-bottom: 10px; text-align: center; }
-.ti-step p { font-family: 'Barlow Condensed', sans-serif; font-size: .84rem; font-weight: 300; line-height: 1.72; color: rgba(255,255,255,.35); letter-spacing: .01em; text-align: center; }
+.ti-step p { font-family: 'Barlow Condensed', sans-serif; font-size: .84rem; font-weight: 300; line-height: 1.72; color: white; letter-spacing: .01em; text-align: center; }
 
 /* ── ACCREDITATION + IMAGE SECTION ───────────────────────────── */
 .ti-accred {
