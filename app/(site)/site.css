@@ -234,15 +234,18 @@ nav a:hover{color:var(--white)}
   pointer-events:auto;
   transform:translateY(0);
 }
+#menu-toggle{display:none;}
 @media(max-width:960px){
+  #menu-toggle{display:block; color: #fff;}
   nav{display:none}
   nav.open{
     display:flex;flex-direction:column;
     position:fixed;top:64px;left:0;width:100%;
     background:var(--linen);border-bottom:1px solid var(--border);
+    background-color: #162a46;
     padding:40px 7vw;gap:28px;
     box-shadow:0 16px 40px rgba(26,24,20,.1);z-index:999;
   }
-  nav.open a{color:var(--ink);font-size:1rem}
-  section{padding:140px 7vw}
+  nav.open a{color:var(--white);font-size:1rem}
+  /* section{padding:140px 7vw} */
 }
