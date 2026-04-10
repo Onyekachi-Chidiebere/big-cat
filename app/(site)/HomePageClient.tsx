@@ -219,7 +219,7 @@ export function HomePageClient({ content }: { content: HomeContent }) {
                         <img src={card.imageUrl} alt={card.title} />
                       </div>
                       <div className={styles['svc-body-inner']}>
-                        <div className={styles['svc-ghost']}>{card.ghost}</div>
+                        {/* <div className={styles['svc-ghost']}>{card.ghost}</div> */}
                         <div className={styles['svc-meta']}>
                           <span className={styles['svc-meta-line']}></span>
                           {card.metaLine}

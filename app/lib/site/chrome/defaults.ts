@@ -18,5 +18,18 @@ export const CHROME_AF_DEFAULTS: SiteAfContent = {
     bottomLeft:
       "SIA Licensed · Reg. No. 16568339 · 4 Radcot Point, London SE23 2AZ",
     signalLine: "System Active · UK Coverage",
+    accred: {
+      logos: [
+        {
+          src: "/SIA approved contractor.svg",
+          alt: "SIA Approved Contractor",
+        },
+        {
+          src: "/SIA Security Industry Authority.svg",
+          alt: "SIA Security Industry Authority",
+          small: true,
+        },
+      ],
+    },
   },
 };

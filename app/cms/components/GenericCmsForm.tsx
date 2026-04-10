@@ -24,6 +24,34 @@ function mergeFooterLogo(json: string, url: string) {
   return JSON.stringify({ ...o, logoUrl: url }, null, 2);
 }
 
+function mergeFooterAccredLogo(
+  json: string,
+  url: string,
+  index: 0 | 1
+) {
+  const o = JSON.parse(json) as {
+    accred?: {
+      logos?: [
+        { src: string; alt: string },
+        { src: string; alt: string; small?: boolean },
+      ];
+    };
+  };
+  const logos = o.accred?.logos ?? [
+    { src: "", alt: "" },
+    { src: "", alt: "", small: true },
+  ];
+  const next =
+    index === 0
+      ? [{ ...logos[0], src: url }, logos[1]]
+      : [logos[0], { ...logos[1], src: url }];
+  return JSON.stringify(
+    { ...o, accred: { ...o.accred, logos: next } },
+    null,
+    2
+  );
+}
+
 /** Image pickers for partial (announce+footer) CMS routes — keyed by page slug + DB section key. */
 const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
   "what-we-do": {
@@ -57,6 +85,16 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
         prefix: "what-we-do/footer",
         merge: mergeFooterLogo,
       },
+      {
+        label: "Footer accreditation logo 1",
+        prefix: "what-we-do/footer-accred-1",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+      },
+      {
+        label: "Footer accreditation logo 2",
+        prefix: "what-we-do/footer-accred-2",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
+      },
     ],
   },
   "door-supervisors": {
@@ -89,6 +127,16 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
         label: "Footer logo",
         prefix: "door-supervisors/footer",
         merge: mergeFooterLogo,
+      },
+      {
+        label: "Footer accreditation logo 1",
+        prefix: "door-supervisors/footer-accred-1",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+      },
+      {
+        label: "Footer accreditation logo 2",
+        prefix: "door-supervisors/footer-accred-2",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
       },
     ],
   },
@@ -134,6 +182,16 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
         label: "Footer logo",
         prefix: "event-security/footer",
         merge: mergeFooterLogo,
+      },
+      {
+        label: "Footer accreditation logo 1",
+        prefix: "event-security/footer-accred-1",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+      },
+      {
+        label: "Footer accreditation logo 2",
+        prefix: "event-security/footer-accred-2",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
       },
     ],
   },
@@ -223,6 +281,16 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
         label: "Footer logo",
         prefix: "security-guards/footer",
         merge: mergeFooterLogo,
+      },
+      {
+        label: "Footer accreditation logo 1",
+        prefix: "security-guards/footer-accred-1",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+      },
+      {
+        label: "Footer accreditation logo 2",
+        prefix: "security-guards/footer-accred-2",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
       },
     ],
   },
@@ -327,6 +395,16 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
         prefix: "threat-intelligence/footer",
         merge: mergeFooterLogo,
       },
+      {
+        label: "Footer accreditation logo 1",
+        prefix: "threat-intelligence/footer-accred-1",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+      },
+      {
+        label: "Footer accreditation logo 2",
+        prefix: "threat-intelligence/footer-accred-2",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
+      },
     ],
   },
   "work-for-us": {
@@ -360,6 +438,16 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
         prefix: "work-for-us/footer",
         merge: mergeFooterLogo,
       },
+      {
+        label: "Footer accreditation logo 1",
+        prefix: "work-for-us/footer-accred-1",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+      },
+      {
+        label: "Footer accreditation logo 2",
+        prefix: "work-for-us/footer-accred-2",
+        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
+      },
     ],
   },
 };
@@ -385,13 +473,40 @@ export function GenericCmsForm({
     return JSON.stringify(v ?? {}, null, 2);
   }
 
-  async function handleSave(sectionKey: string, raw: string) {
+  function coerceSectionJson(contentKey: string, raw: string): unknown {
+    try {
+      return JSON.parse(raw) as unknown;
+    } catch {
+      // Footer convenience: allow pasting just logos snippet:
+      // { ...logo1... }, { ...logo2... }
+      if (contentKey !== "footer") throw new Error("Invalid JSON");
+      const existing = (initialContent[contentKey] ?? {}) as Record<string, unknown>;
+      const tryArray = (text: string) => JSON.parse(text) as unknown;
+      let logos: unknown;
+      try {
+        logos = tryArray(raw);
+      } catch {
+        logos = tryArray(`[${raw}]`);
+      }
+      if (!Array.isArray(logos)) throw new Error("Invalid footer logos JSON");
+      return {
+        ...existing,
+        accred: {
+          ...((existing.accred as Record<string, unknown> | undefined) ?? {}),
+          logos,
+        },
+      };
+    }
+  }
+
+  async function handleSave(sectionKey: string, contentKey: string, raw: string) {
     setStatus(null);
     let parsed: unknown;
     try {
-      parsed = JSON.parse(raw) as unknown;
-    } catch {
-      setStatus(`Invalid JSON for ${sectionKey}`);
+      parsed = coerceSectionJson(contentKey, raw);
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Invalid JSON";
+      setStatus(`${msg} for ${sectionKey}`);
       return;
     }
     const res = await upsertSiteSection(pageSlug, sectionKey, parsed);
@@ -424,7 +539,7 @@ export function GenericCmsForm({
             2
           )}
           initialJson={sectionToJson(contentKey)}
-          onSave={handleSave}
+          onSave={(sectionKey, raw) => handleSave(sectionKey, contentKey, raw)}
           imageSlots={PARTIAL_PAGE_IMAGE_SLOTS[pageSlug]?.[dbKey]}
         />
       ))}

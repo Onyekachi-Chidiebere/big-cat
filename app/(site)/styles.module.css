@@ -4769,9 +4769,9 @@ body::before{
 .ti-accred-left p { font-family: 'Barlow Condensed', sans-serif; font-size: .93rem; font-weight: 300; line-height: 1.9; color: var(--ink-soft); letter-spacing: .02em; margin-bottom: 14px; }
 /* SIA logos */
 .ti-sia-logos { display: flex; align-items: center; gap: 28px; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border-dk); }
-.ti-sia-logos img { height: 56px; width: auto; filter: grayscale(1) brightness(.6); transition: filter .4s; opacity: .7; }
+.ti-sia-logos img { height: 56px; width: auto; }
 .ti-sia-logos img:hover { filter: none; opacity: 1; }
-.ti-sia-logos img:global(.sm) { height: 40px; }
+.ti-sia-logo-sm { height: 40px !important; }
 /* Checklist */
 .ti-accred-checks { border-top: 1px solid var(--border-dk); }
 .ti-accred-check { padding: 20px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 14px; opacity: 0; transform: translateX(20px); }

@@ -13,5 +13,11 @@ export type SiteAfContent = {
     linkContact: string;
     bottomLeft: string;
     signalLine: string;
+    accred: {
+      logos: [
+        { src: string; alt: string },
+        { src: string; alt: string; small?: boolean },
+      ];
+    };
   };
 };

@@ -33,6 +33,13 @@ type FooterProps = {
     linkContact: string;
     bottomLeft: string;
     signalLine: string;
+    accred: {
+      logos: Array<{
+        src: string;
+        alt: string;
+        small?: boolean;
+      }>;
+    };
   };
 };
 
@@ -88,10 +95,19 @@ export function SiteFooter({ footer }: FooterProps) {
         </div>
 
         <div className={styles["footer-links"]}>
+        {footer.accred.logos.map((logo, idx) => (
+              <img
+                key={`${logo.src}-${idx}`}
+                src={logo.src}
+                alt={logo.alt}
+                className={styles["ti-sia-logo-sm"] }
+              />
+            ))}
           <a href={footer.linkServices}>Services</a>
           <a href={footer.linkAbout}>About</a>
           <a href={footer.linkContact}>Contact</a>
         </div>
+       
       </div>
 
       <div className={styles["footer-bottom"]}>
