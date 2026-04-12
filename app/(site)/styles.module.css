@@ -4645,6 +4645,11 @@ body::before{
   border: 1px solid rgba(42,127,165,.22); padding: 22px 28px; min-width: 210px;
   opacity: 0; transform: translateY(20px);
 }
+@media (max-width: 768px) {
+  .ti-intel-card {
+    display: none;
+  }
+}
 .ti-intel-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
   background: linear-gradient(to right, var(--sea), transparent);
