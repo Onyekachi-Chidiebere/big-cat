@@ -95,19 +95,24 @@ export function SiteFooter({ footer }: FooterProps) {
         </div>
 
         <div className={styles["footer-links"]}>
-        {footer.accred.logos.map((logo, idx) => (
+          <div className={styles["footer-links-inner"]}>
+            {footer.accred.logos.map((logo, idx) => (
               <img
                 key={`${logo.src}-${idx}`}
                 src={logo.src}
                 alt={logo.alt}
-                className={styles["ti-sia-logo-sm"] }
+                className={styles["ti-sia-logo-sm"]}
               />
             ))}
-          <a href={footer.linkServices}>Services</a>
-          <a href={footer.linkAbout}>About</a>
-          <a href={footer.linkContact}>Contact</a>
+          </div>
+          <div className={styles["footer-links-inner"]}>
+            <a href={footer.linkServices}>Services</a>
+            <a href={footer.linkAbout}>About</a>
+            <a href={footer.linkContact}>Contact</a>
+          </div>
+
         </div>
-       
+
       </div>
 
       <div className={styles["footer-bottom"]}>
