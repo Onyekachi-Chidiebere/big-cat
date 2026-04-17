@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { mergeFooterAccredLogoJson } from "../lib/footerAccredMerge";
 import { upsertHomeSection } from "../actions/content";
 import { HOME_DEFAULTS } from "@/app/lib/site/home/defaults";
 import type { HomeContent } from "@/app/lib/site/home/types";
@@ -76,6 +77,16 @@ const SECTION_IMAGE_SLOTS: Record<
         const o = JSON.parse(json) as Record<string, unknown>;
         return JSON.stringify({ ...o, logoUrl: url }, null, 2);
       },
+    },
+    {
+      label: "Footer accreditation logo 1",
+      prefix: "home/footer-accred-1",
+      merge: (json, url) => mergeFooterAccredLogoJson(json, url, 0),
+    },
+    {
+      label: "Footer accreditation logo 2",
+      prefix: "home/footer-accred-2",
+      merge: (json, url) => mergeFooterAccredLogoJson(json, url, 1),
     },
   ],
 };

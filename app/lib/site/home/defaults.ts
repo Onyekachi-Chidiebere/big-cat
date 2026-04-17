@@ -1,3 +1,4 @@
+import { CHROME_AF_DEFAULTS } from "@/app/lib/site/chrome/defaults";
 import type { HomeContent } from "./types";
 
 export const HOME_PAGE_SLUG = "home";
@@ -235,5 +236,6 @@ export const HOME_DEFAULTS: HomeContent = {
     linkServices: "/#services",
     linkAbout: "/about",
     linkContact: "/contact",
+    accred: CHROME_AF_DEFAULTS.footer.accred,
   },
 };

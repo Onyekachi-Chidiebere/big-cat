@@ -358,9 +358,21 @@ export function HomePageClient({ content }: { content: HomeContent }) {
                 </div>
 
                 <div className={styles['footer-links']}>
-                  <a href={footerNavHref(content.footer.linkServices)}>Services</a>
-                  <a href={footerNavHref(content.footer.linkAbout)}>About</a>
-                  <a href={footerNavHref(content.footer.linkContact)}>Contact</a>
+                  <div className={styles['footer-links-inner']}>
+                    {content.footer.accred.logos.map((logo, idx) => (
+                      <img
+                        key={`${logo.src}-${idx}`}
+                        src={logo.src}
+                        alt={logo.alt}
+                        className={logo.small ? styles['ti-sia-logo-sm'] : undefined}
+                      />
+                    ))}
+                  </div>
+                  <div className={styles['footer-links-inner']}>
+                    <a href={footerNavHref(content.footer.linkServices)}>Services</a>
+                    <a href={footerNavHref(content.footer.linkAbout)}>About</a>
+                    <a href={footerNavHref(content.footer.linkContact)}>Contact</a>
+                  </div>
                 </div>
               </div>
 

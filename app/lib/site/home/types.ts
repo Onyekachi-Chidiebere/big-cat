@@ -129,5 +129,12 @@ export type HomeContent = {
     linkServices: string;
     linkAbout: string;
     linkContact: string;
+    accred: {
+      logos: Array<{
+        src: string;
+        alt: string;
+        small?: boolean;
+      }>;
+    };
   };
 };

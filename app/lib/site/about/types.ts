@@ -78,5 +78,12 @@ export type AboutContent = {
     linkContact: string;
     bottomLeft: string;
     signalLine: string;
+    accred: {
+      logos: Array<{
+        src: string;
+        alt: string;
+        small?: boolean;
+      }>;
+    };
   };
 };

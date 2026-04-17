@@ -1,3 +1,4 @@
+import { CHROME_AF_DEFAULTS } from "@/app/lib/site/chrome/defaults";
 import type { AboutContent } from "./types";
 
 export const ABOUT_PAGE_SLUG = "about";
@@ -193,5 +194,6 @@ export const ABOUT_DEFAULTS: AboutContent = {
     bottomLeft:
       "SIA Licensed · Reg. No. 16568339 · 4 Radcot Point, London SE23 2AZ",
     signalLine: "System Active · UK Coverage",
+    accred: CHROME_AF_DEFAULTS.footer.accred,
   },
 };

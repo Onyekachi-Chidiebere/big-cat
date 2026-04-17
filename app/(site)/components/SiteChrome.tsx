@@ -102,7 +102,7 @@ export function SiteFooter({ footer }: FooterProps) {
                 key={`${logo.src}-${idx}`}
                 src={logo.src}
                 alt={logo.alt}
-                className={styles["ti-sia-logo-sm"]}
+                className={logo.small ? styles["ti-sia-logo-sm"] : undefined}
               />
             ))}
           </div>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { upsertSiteSection } from "../actions/content";
+import { mergeFooterAccredLogoJson } from "../lib/footerAccredMerge";
 import { CmsImageRow } from "../home/CmsImageRow";
 
 export type GenericSectionDef = {
@@ -22,34 +23,6 @@ export type ImageSlot = {
 function mergeFooterLogo(json: string, url: string) {
   const o = JSON.parse(json) as Record<string, unknown>;
   return JSON.stringify({ ...o, logoUrl: url }, null, 2);
-}
-
-function mergeFooterAccredLogo(
-  json: string,
-  url: string,
-  index: 0 | 1
-) {
-  const o = JSON.parse(json) as {
-    accred?: {
-      logos?: [
-        { src: string; alt: string },
-        { src: string; alt: string; small?: boolean },
-      ];
-    };
-  };
-  const logos = o.accred?.logos ?? [
-    { src: "", alt: "" },
-    { src: "", alt: "", small: true },
-  ];
-  const next =
-    index === 0
-      ? [{ ...logos[0], src: url }, logos[1]]
-      : [logos[0], { ...logos[1], src: url }];
-  return JSON.stringify(
-    { ...o, accred: { ...o.accred, logos: next } },
-    null,
-    2
-  );
 }
 
 /** Image pickers for partial (announce+footer) CMS routes — keyed by page slug + DB section key. */
@@ -88,12 +61,14 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
       {
         label: "Footer accreditation logo 1",
         prefix: "what-we-do/footer-accred-1",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 0),
       },
       {
         label: "Footer accreditation logo 2",
         prefix: "what-we-do/footer-accred-2",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 1),
       },
     ],
   },
@@ -131,12 +106,14 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
       {
         label: "Footer accreditation logo 1",
         prefix: "door-supervisors/footer-accred-1",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 0),
       },
       {
         label: "Footer accreditation logo 2",
         prefix: "door-supervisors/footer-accred-2",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 1),
       },
     ],
   },
@@ -186,12 +163,14 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
       {
         label: "Footer accreditation logo 1",
         prefix: "event-security/footer-accred-1",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 0),
       },
       {
         label: "Footer accreditation logo 2",
         prefix: "event-security/footer-accred-2",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 1),
       },
     ],
   },
@@ -285,12 +264,14 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
       {
         label: "Footer accreditation logo 1",
         prefix: "security-guards/footer-accred-1",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 0),
       },
       {
         label: "Footer accreditation logo 2",
         prefix: "security-guards/footer-accred-2",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 1),
       },
     ],
   },
@@ -398,12 +379,14 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
       {
         label: "Footer accreditation logo 1",
         prefix: "threat-intelligence/footer-accred-1",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 0),
       },
       {
         label: "Footer accreditation logo 2",
         prefix: "threat-intelligence/footer-accred-2",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 1),
       },
     ],
   },
@@ -441,12 +424,14 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
       {
         label: "Footer accreditation logo 1",
         prefix: "work-for-us/footer-accred-1",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 0),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 0),
       },
       {
         label: "Footer accreditation logo 2",
         prefix: "work-for-us/footer-accred-2",
-        merge: (json: string, url: string) => mergeFooterAccredLogo(json, url, 1),
+        merge: (json: string, url: string) =>
+          mergeFooterAccredLogoJson(json, url, 1),
       },
     ],
   },
