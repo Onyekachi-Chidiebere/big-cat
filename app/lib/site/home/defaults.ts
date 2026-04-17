@@ -232,5 +232,8 @@ export const HOME_DEFAULTS: HomeContent = {
     facebookUrl: "https://facebook.com/bigcatsecurity",
     instagramUrl: "https://instagram.com/bigcatsecurity",
     linkedinUrl: "https://linkedin.com/company/bigcatsecurity",
+    linkServices: "/#services",
+    linkAbout: "/about",
+    linkContact: "/contact",
   },
 };

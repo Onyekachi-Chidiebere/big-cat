@@ -3,6 +3,7 @@
 import "./site.css";
 import styles from "./styles.module.css";
 import { AboutPageEffects } from "./AboutPageEffects";
+import { footerNavHref } from "@/app/lib/site/footerNavHref";
 import type { AboutContent } from "@/app/lib/site/about/types";
 
 const FD = [styles["f-d1"], styles["f-d2"], styles["f-d3"], styles["f-d4"]] as const;
@@ -386,9 +387,9 @@ export function AboutPageClient({ content }: { content: AboutContent }) {
           </div>
 
           <div className={styles["footer-links"]}>
-            <a href={content.footer.linkServices}>Services</a>
-            <a href={content.footer.linkAbout}>About</a>
-            <a href={content.footer.linkContact}>Contact</a>
+            <a href={footerNavHref(content.footer.linkServices)}>Services</a>
+            <a href={footerNavHref(content.footer.linkAbout)}>About</a>
+            <a href={footerNavHref(content.footer.linkContact)}>Contact</a>
           </div>
         </div>
 

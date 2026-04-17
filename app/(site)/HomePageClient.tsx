@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import { ClientsMarquee } from "./ClientsMarquee";
 import { HomePageEffects } from "./HomePageEffects";
 import { SecurityNewsSection } from "./SecurityNewsSection";
+import { footerNavHref } from "@/app/lib/site/footerNavHref";
 import type { HomeContent } from "@/app/lib/site/home/types";
 
 export function HomePageClient({ content }: { content: HomeContent }) {
@@ -357,9 +358,9 @@ export function HomePageClient({ content }: { content: HomeContent }) {
                 </div>
 
                 <div className={styles['footer-links']}>
-                  <a href="#services">Services</a>
-                  <a href="#about">About</a>
-                  <a href="#contact">Contact</a>
+                  <a href={footerNavHref(content.footer.linkServices)}>Services</a>
+                  <a href={footerNavHref(content.footer.linkAbout)}>About</a>
+                  <a href={footerNavHref(content.footer.linkContact)}>Contact</a>
                 </div>
               </div>
 

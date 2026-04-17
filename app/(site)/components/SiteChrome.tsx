@@ -1,5 +1,6 @@
 "use client";
 
+import { footerNavHref } from "@/app/lib/site/footerNavHref";
 import styles from "../styles.module.css";
 
 export function SiteAnnounce({ html }: { html: string }) {
@@ -106,9 +107,9 @@ export function SiteFooter({ footer }: FooterProps) {
             ))}
           </div>
           <div className={styles["footer-links-inner"]}>
-            <a href={footer.linkServices}>Services</a>
-            <a href={footer.linkAbout}>About</a>
-            <a href={footer.linkContact}>Contact</a>
+            <a href={footerNavHref(footer.linkServices)}>Services</a>
+            <a href={footerNavHref(footer.linkAbout)}>About</a>
+            <a href={footerNavHref(footer.linkContact)}>Contact</a>
           </div>
 
         </div>

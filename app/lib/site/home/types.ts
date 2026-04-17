@@ -126,5 +126,8 @@ export type HomeContent = {
     facebookUrl: string;
     instagramUrl: string;
     linkedinUrl: string;
+    linkServices: string;
+    linkAbout: string;
+    linkContact: string;
   };
 };
