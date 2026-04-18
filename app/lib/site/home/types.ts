@@ -121,8 +121,8 @@ export type HomeContent = {
     logoUrl: string;
     logoAlt: string;
     copyright: string;
-    line: string;
-    signal: string;
+    bottomLeft: string;
+    signalLine: string;
     facebookUrl: string;
     instagramUrl: string;
     linkedinUrl: string;
