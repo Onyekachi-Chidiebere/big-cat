@@ -286,9 +286,7 @@ export function WorkForUsPageClient({ content }: { content: WorkForUsContent }) 
               {m.apply.eyebrow}
             </div>
             <h2 style={{ color: "white" }}>
-              {m.apply.h2Line1}
-              <br />
-              <em>{m.apply.h2Em}</em>
+              {m.apply.h2Line1}  <em>{m.apply.h2Em}</em>
             </h2>
             <p style={{ color: "white" }}>{m.apply.intro}</p>
             <a style={{ color: "white" }} href={m.apply.emailHref} className={styles["careers-email"]}>
