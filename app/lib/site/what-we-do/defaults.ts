@@ -12,7 +12,7 @@ export const WHAT_WE_DO_NAV_DEFAULT: ServiceNavContent = {
   links: [
     { href: "/", label: "Home" },
     { href: "/what-we-do", label: "What We Do", active: true },
-    { href: "/#about", label: "About" },
+    { href: "/about", label: "About" },
     { href: "/work-for-us", label: "Work for Us", cta: true },
   ],
 };
