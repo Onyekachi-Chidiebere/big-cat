@@ -24,10 +24,10 @@ function CareersWhyIcon({ index }: { index: number }) {
       );
     case 2:
       return (
-        <svg viewBox="0 0 24 24">
-          <line x1="12" y1="1" x2="12" y2="23" />
-          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+          <text x="50" y="78" font-family="Georgia, serif"  stroke-width="5" font-size="90" text-anchor="middle">£</text>
         </svg>
+
       );
     case 3:
       return (

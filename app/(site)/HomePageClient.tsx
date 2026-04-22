@@ -270,7 +270,7 @@ export function HomePageClient({ content }: { content: HomeContent }) {
             </section>
 
             {/* <!-- NEWS --> */}
-            <SecurityNewsSection />
+            {/* <SecurityNewsSection /> */}
 
             {/* <!-- CTA STRIP --> */}
             <section className={styles['cta-strip']}>

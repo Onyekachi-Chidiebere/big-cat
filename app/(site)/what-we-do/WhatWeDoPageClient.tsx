@@ -44,7 +44,7 @@ export function WhatWeDoPageClient({ content }: { content: WhatWeDoContent }) {
             <a href={m.hero.primaryCta.href} className={styles["btn-pill-fill"]}>
               {m.hero.primaryCta.label}
             </a>
-            <a href={m.hero.secondaryCta.href} className={styles["btn-pill-dark"]}>
+            <a href={m.hero.secondaryCta.href} className={styles["btn-pill-fill"]}>
               {m.hero.secondaryCta.label}
             </a>
           </div>
