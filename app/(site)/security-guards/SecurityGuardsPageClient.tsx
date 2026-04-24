@@ -173,11 +173,7 @@ export function SecurityGuardsPageClient({
               {m.overview.eyebrow}
             </div>
             <h2 className={`${styles["f-reveal"]} ${styles["f-d1"]}`}>
-              {m.overview.h2Line1}
-              <br />
-              <em>{m.overview.h2Em}</em>
-              <br />
-              {m.overview.h2Line2}
+              {m.overview.h2Line1}  <em>{m.overview.h2Em}</em> {m.overview.h2Line2}
             </h2>
             <p className={`${styles["f-reveal"]} ${styles["f-d2"]}`}>
               {m.overview.paragraphs[0]}

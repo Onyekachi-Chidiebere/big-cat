@@ -4832,8 +4832,8 @@ body::before{
 /* SIA logos */
 .ti-sia-logos { display: flex; align-items: center; gap: 28px; margin-top: 32px; padding-top: 28px; border-top: 1px solid var(--border-dk); }
 .ti-sia-logos img { height: 56px; width: auto; }
-.ti-sia-logos img:hover { filter: none; opacity: 1; }
-.ti-sia-logo-sm { height: 40px !important; }
+/* .ti-sia-logos img:hover { filter: none; opacity: 1; } */
+.ti-sia-logo-sm { height: 40px !important; width: auto !important; }
 /* Checklist */
 .ti-accred-checks { border-top: 1px solid var(--border-dk); }
 .ti-accred-check { padding: 20px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 14px; opacity: 0; transform: translateX(20px); }

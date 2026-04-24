@@ -338,21 +338,17 @@ export function ThreatIntelligencePageClient({
               {m.accred.eyebrow}
             </div>
             <h2>
-              {m.accred.h2Line1}
-              <br />
-              {m.accred.h2Line2}
-              <br />
-              <em>{m.accred.h2Em}</em>
+              {m.accred.h2Line1} {m.accred.h2Line2} <em>{m.accred.h2Em}</em>
             </h2>
             <p>{m.accred.paragraphs[0]}</p>
             <p>{m.accred.paragraphs[1]}</p>
             <div className={styles["ti-sia-logos"]}>
               <img src={m.accred.logos[0].src} alt={m.accred.logos[0].alt} />
-              <img
+              {/* <img
                 src={m.accred.logos[1].src}
                 alt={m.accred.logos[1].alt}
                 className={m.accred.logos[1].small ? "sm" : undefined}
-              />
+              /> */}
             </div>
           </div>
           <div className={styles["ti-accred-checks"]}>
