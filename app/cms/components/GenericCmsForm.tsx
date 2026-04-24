@@ -51,6 +51,63 @@ const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
           );
         },
       },
+      {
+        label: "Service card image 1",
+        prefix: "what-we-do/services-card-1",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as {
+            services?: {
+              cards?: Array<Record<string, unknown>>;
+            };
+          };
+          const cards = o.services?.cards ?? [];
+          const next = [...cards];
+          next[0] = { ...(next[0] ?? {}), imageSrc: url };
+          return JSON.stringify(
+            { ...o, services: { ...o.services, cards: next } },
+            null,
+            2
+          );
+        },
+      },
+      {
+        label: "Service card image 2",
+        prefix: "what-we-do/services-card-2",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as {
+            services?: {
+              cards?: Array<Record<string, unknown>>;
+            };
+          };
+          const cards = o.services?.cards ?? [];
+          const next = [...cards];
+          next[1] = { ...(next[1] ?? {}), imageSrc: url };
+          return JSON.stringify(
+            { ...o, services: { ...o.services, cards: next } },
+            null,
+            2
+          );
+        },
+      },
+      {
+        label: "Service card image 3",
+        prefix: "what-we-do/services-card-3",
+        merge: (json: string, url: string) => {
+          const o = JSON.parse(json) as {
+            services?: {
+              cards?: Array<Record<string, unknown>>;
+            };
+          };
+          const cards = o.services?.cards ?? [];
+          const next = [...cards];
+          next[2] = { ...(next[2] ?? {}), imageSrc: url };
+          return JSON.stringify(
+            { ...o, services: { ...o.services, cards: next } },
+            null,
+            2
+          );
+        },
+      },
     ],
     footer: [
       {

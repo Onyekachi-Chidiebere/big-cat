@@ -2,6 +2,12 @@ import type { ServiceNavContent } from "@/app/lib/site/service-nav/types";
 
 type Css = { readonly [key: string]: string };
 
+function normalizeNavHref(href: string): string {
+  const t = href.trim().toLowerCase();
+  if (t === "/#about" || t === "#about" || t === "about") return "/about";
+  return href;
+}
+
 export function SiteServiceNav({
   nav,
   styles,
@@ -18,7 +24,7 @@ export function SiteServiceNav({
         {nav.links.map((l) => (
           <a
             key={`${l.href}-${l.label}`}
-            href={l.href}
+            href={normalizeNavHref(l.href)}
             className={l.cta ? styles["nav-cta"] : undefined}
             style={l.active ? { background: "var(--sea)" } : undefined}
           >

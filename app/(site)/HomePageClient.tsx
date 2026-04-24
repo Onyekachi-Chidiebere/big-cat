@@ -38,9 +38,9 @@ export function HomePageClient({ content }: { content: HomeContent }) {
         </a>
         <nav id="nav">
           <a href="#">Home</a>
-          <a href="what-we-do">What We Do</a>
-          <a href="about">About</a>
-          <a href="work-for-us" className={styles['nav-cta']}>Work for Us</a>
+          <a href="/what-we-do">What We Do</a>
+          <a href="/about">About</a>
+          <a href="/work-for-us" className={styles['nav-cta']}>Work for Us</a>
         </nav>
         <div className={styles['nav-right']}>
           <a href={content.nav.phoneHref} className={styles['nav-phone']}>{content.nav.phone}</a>
