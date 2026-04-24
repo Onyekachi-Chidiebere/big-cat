@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { upsertSiteSection } from "../actions/content";
 import { mergeFooterAccredLogoJson } from "../lib/footerAccredMerge";
 import { CmsImageRow } from "../home/CmsImageRow";
@@ -19,11 +19,46 @@ export type ImageSlot = {
   merge: (json: string, url: string) => string;
 };
 
+export type TextSlot = {
+  label: string;
+  merge: (json: string, text: string) => string;
+  /** Current value read from JSON (prefills input; syncs when JSON below changes). */
+  read?: (json: string) => string;
+};
+
 /** Footer logo merge — must live in this client module (not passed from Server Components). */
 function mergeFooterLogo(json: string, url: string) {
   const o = JSON.parse(json) as Record<string, unknown>;
   return JSON.stringify({ ...o, logoUrl: url }, null, 2);
 }
+
+/** Text fields merged into JSON (same sections as image slots). */
+const PARTIAL_PAGE_TEXT_SLOTS: Record<string, Record<string, TextSlot[]>> = {
+  "event-security": {
+    main: [
+      {
+        label: "Overview image caption (overview.imageCap)",
+        merge: (json: string, text: string) => {
+          const o = JSON.parse(json) as { overview?: Record<string, unknown> };
+          return JSON.stringify(
+            { ...o, overview: { ...o.overview, imageCap: text } },
+            null,
+            2
+          );
+        },
+        read: (json: string) => {
+          try {
+            const o = JSON.parse(json) as { overview?: { imageCap?: unknown } };
+            const v = o.overview?.imageCap;
+            return typeof v === "string" ? v : "";
+          } catch {
+            return "";
+          }
+        },
+      },
+    ],
+  },
+};
 
 /** Image pickers for partial (announce+footer) CMS routes — keyed by page slug + DB section key. */
 const PARTIAL_PAGE_IMAGE_SLOTS: Record<string, Record<string, ImageSlot[]>> = {
@@ -563,7 +598,8 @@ export function GenericCmsForm({
     <div className="space-y-10">
       <p className="text-sm text-zinc-400">
         Edit each block as JSON. Use <strong className="text-zinc-300">Choose image</strong>{" "}
-        when available. Page slug: <code className="text-zinc-300">{pageSlug}</code>.
+        or <strong className="text-zinc-300">Apply to JSON</strong> for text helpers when
+        available. Page slug: <code className="text-zinc-300">{pageSlug}</code>.
       </p>
       {status && (
         <p className="rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-300">
@@ -583,8 +619,53 @@ export function GenericCmsForm({
           initialJson={sectionToJson(contentKey)}
           onSave={(sectionKey, raw) => handleSave(sectionKey, contentKey, raw)}
           imageSlots={PARTIAL_PAGE_IMAGE_SLOTS[pageSlug]?.[dbKey]}
+          textSlots={PARTIAL_PAGE_TEXT_SLOTS[pageSlug]?.[dbKey]}
         />
       ))}
+    </div>
+  );
+}
+
+function CmsTextMergeRow({
+  label,
+  jsonSource,
+  readFromJson,
+  onApply,
+}: {
+  label: string;
+  /** Section JSON from the textarea (used to prefill / sync). */
+  jsonSource: string;
+  readFromJson?: (json: string) => string;
+  onApply: (text: string) => void;
+}) {
+  const [text, setText] = useState(() =>
+    readFromJson ? readFromJson(jsonSource) : ""
+  );
+
+  useEffect(() => {
+    if (!readFromJson) return;
+    setText(readFromJson(jsonSource));
+  }, [jsonSource, readFromJson]);
+
+  return (
+    <div className="flex flex-col gap-2 rounded-md border border-zinc-800 bg-zinc-950/80 px-3 py-2 sm:flex-row sm:flex-wrap sm:items-end sm:gap-3">
+      <label className="flex min-w-0 flex-1 flex-col gap-1">
+        <span className="text-xs font-medium text-zinc-400">{label}</span>
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          className="w-full rounded-md border border-zinc-700 bg-zinc-950 px-2 py-1.5 text-xs text-zinc-200"
+          spellCheck={true}
+        />
+      </label>
+      <button
+        type="button"
+        className="shrink-0 rounded-md border border-zinc-600 bg-zinc-900 px-3 py-1.5 text-xs text-zinc-200 hover:bg-zinc-800"
+        onClick={() => onApply(text)}
+      >
+        Apply to JSON
+      </button>
     </div>
   );
 }
@@ -596,6 +677,7 @@ function SectionBlock({
   initialJson,
   onSave,
   imageSlots,
+  textSlots,
 }: {
   sectionKey: string;
   label: string;
@@ -603,6 +685,7 @@ function SectionBlock({
   initialJson: string;
   onSave: (sectionKey: string, raw: string) => void | Promise<void>;
   imageSlots?: ImageSlot[];
+  textSlots?: TextSlot[];
 }) {
   const [value, setValue] = useState(initialJson);
   const [saving, setSaving] = useState(false);
@@ -613,6 +696,28 @@ function SectionBlock({
         <h2 className="text-sm font-medium text-zinc-200">{label}</h2>
         <code className="text-xs text-zinc-500">{sectionKey}</code>
       </div>
+      {textSlots && textSlots.length > 0 && (
+        <div className="mb-3 space-y-2">
+          <p className="text-xs text-zinc-500">Text helpers (updates JSON below)</p>
+          {textSlots.map((slot) => (
+            <CmsTextMergeRow
+              key={slot.label}
+              label={slot.label}
+              jsonSource={value}
+              readFromJson={slot.read}
+              onApply={(text) => {
+                try {
+                  setValue(slot.merge(value, text));
+                } catch {
+                  alert(
+                    "Could not merge text — check that the textarea contains valid JSON for this section."
+                  );
+                }
+              }}
+            />
+          ))}
+        </div>
+      )}
       {imageSlots && imageSlots.length > 0 && (
         <div className="mb-3 space-y-2">
           <p className="text-xs text-zinc-500">Upload images (updates JSON below)</p>
