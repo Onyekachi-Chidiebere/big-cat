@@ -2527,11 +2527,11 @@ body::before{
 }
 .about-story-img img {
   width: 100%; display: block;
-  filter: saturate(.3) brightness(.7);
-  transition: filter .7s cubic-bezier(.25,.46,.45,.94);
+  /* filter: saturate(.3) brightness(.7); */
+  /* transition: filter .7s cubic-bezier(.25,.46,.45,.94); */
 }
 .about-story-img:hover img {
-  filter: saturate(.8) brightness(.85);
+  /* filter: saturate(.8) brightness(.85); */
 }
 .about-story-img-caption {
   position: absolute; bottom: 16px; left: 16px;
@@ -3514,9 +3514,9 @@ body::before{
 .sg-overview-img img {
   width:100%; display:block;
   filter:saturate(.3) brightness(.7);
-  transition:filter .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94);
+  /* transition:filter .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); */
 }
-.sg-overview-img:hover img { filter:saturate(.85) brightness(.85); transform:scale(1.03); }
+/* .sg-overview-img:hover img { filter:saturate(.85) brightness(.85); transform:scale(1.03); } */
 .sg-overview-img-cap {
   position:absolute; bottom:20px; left:20px; right:20px;
   background:rgba(8,14,26,.7); backdrop-filter:blur(8px);
@@ -3951,10 +3951,10 @@ body::before{
 }
 .es-overview-img img {
   width:100%; display:block;
-  filter:saturate(.25) brightness(.7);
+  /* filter:saturate(.25) brightness(.7); */
   transition:filter .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94);
 }
-.es-overview-img:hover img { filter:saturate(.85) brightness(.85); transform:scale(1.03); }
+/* .es-overview-img:hover img { filter:saturate(.85) brightness(.85); transform:scale(1.03); } */
 .es-overview-img-cap {
   position:absolute; bottom:0; left:0; right:0;
   background:rgba(8,14,26,.72); backdrop-filter:blur(6px);
@@ -4257,10 +4257,10 @@ body::before{
 .ds-hero-img img {
   width: 100%; height: 100%;
   object-fit: cover; object-position: center top;
-  filter: saturate(.22) brightness(.3);
+  /* filter: saturate(.22) brightness(.3); */
   transition: filter 1.6s ease;
 }
-.ds-hero:hover .ds-hero-img img { filter: saturate(.5) brightness(.38); }
+/* .ds-hero:hover .ds-hero-img img { filter: saturate(.5) brightness(.38); } */
 .ds-hero-img::after {
   content: ''; position: absolute; inset: 0;
   background:
