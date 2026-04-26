@@ -4742,8 +4742,8 @@ body::before{
 /* Right: CCTV panorama + quote */
 .ti-overview-right { position: relative; }
 .ti-overview-img { overflow: hidden; position: relative; }
-.ti-overview-img img { width: 100%; display: block; filter: saturate(.25) brightness(.7); transition: filter .8s, transform .8s cubic-bezier(.25,.46,.45,.94); }
-.ti-overview-img:hover img { filter: saturate(.85) brightness(.85); transform: scale(1.03); }
+.ti-overview-img img { width: 100%; display: block; transition: filter .8s, transform .8s cubic-bezier(.25,.46,.45,.94); }
+/* .ti-overview-img:hover img { filter: saturate(.85) brightness(.85); transform: scale(1.03); } */
 .ti-overview-img-cap { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(8,14,26,.72); backdrop-filter: blur(6px); border-left: 2px solid var(--sea); padding: 14px 20px; }
 .ti-overview-img-cap p { font-family: 'Inter', sans-serif; font-size: .78rem; font-weight: 300; color:#fff; letter-spacing: .06em; }
 .ti-overview-quote { margin-top: 24px; border-left: 2px solid var(--sea); padding: 20px 0 20px 24px; }
