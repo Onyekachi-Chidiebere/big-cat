@@ -3513,7 +3513,7 @@ body::before{
 }
 .sg-overview-img img {
   width:100%; display:block;
-  filter:saturate(.3) brightness(.7);
+  /* filter:saturate(.3) brightness(.7); */
   /* transition:filter .8s cubic-bezier(.25,.46,.45,.94), transform .8s cubic-bezier(.25,.46,.45,.94); */
 }
 /* .sg-overview-img:hover img { filter:saturate(.85) brightness(.85); transform:scale(1.03); } */
