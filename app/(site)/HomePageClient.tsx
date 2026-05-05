@@ -1,5 +1,6 @@
 "use client";
 
+import type { FormEvent } from "react";
 import "./site.css";
 import styles from "./styles.module.css";
 import { ClientsMarquee } from "./ClientsMarquee";
@@ -9,6 +10,40 @@ import { SiteFooter } from "./components/SiteChrome";
 import type { HomeContent } from "@/app/lib/site/home/types";
 
 export function HomePageClient({ content }: { content: HomeContent }) {
+  async function handleContactSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const phone = String(formData.get("phone") ?? "").trim();
+    const service = String(formData.get("service") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (btn) btn.disabled = true;
+
+    try {
+      const res = await fetch("/api/forms/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, phone, service, message }),
+      });
+      if (!res.ok) {
+        const payload = (await res.json().catch(() => null)) as
+          | { error?: string }
+          | null;
+        throw new Error(payload?.error || "Contact submit failed");
+      }
+      form.reset();
+      window.alert("Enquiry sent successfully.");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Contact submit failed";
+      window.alert(`Could not send enquiry: ${message}`);
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  }
+
   return (
     <div>
       <HomePageEffects />
@@ -299,22 +334,22 @@ export function HomePageClient({ content }: { content: HomeContent }) {
                   </div>
                 </div>
                 <div className={`${styles['contact-form']} ${styles.reveal}`}>
-                  <div className={styles['form-row']}>
+                  <form className={styles['form-row']} onSubmit={handleContactSubmit}>
                     <div className={styles.fg}>
                       <label>{content.contact.formNameLabel}</label>
-                      <input type="text" placeholder={content.contact.formNamePlaceholder} />
+                      <input type="text" name="name" placeholder={content.contact.formNamePlaceholder} required />
                     </div>
                     <div className={styles.fg}>
                       <label>{content.contact.formEmailLabel}</label>
-                      <input type="email" placeholder={content.contact.formEmailPlaceholder} />
+                      <input type="email" name="email" placeholder={content.contact.formEmailPlaceholder} required />
                     </div>
                     <div className={styles.fg}>
                       <label>{content.contact.formPhoneLabel}</label>
-                      <input type="tel" placeholder={content.contact.formPhonePlaceholder} />
+                      <input type="tel" name="phone" placeholder={content.contact.formPhonePlaceholder} />
                     </div>
                     <div className={styles.fg}>
                       <label>{content.contact.formServiceLabel}</label>
-                      <select defaultValue="">
+                      <select name="service" defaultValue="">
                         <option value="" disabled>
                           {content.contact.formServicePlaceholder}
                         </option>
@@ -325,13 +360,13 @@ export function HomePageClient({ content }: { content: HomeContent }) {
                     </div>
                     <div className={`${styles.fg} ${styles.wide}`}>
                       <label>{content.contact.formMessageLabel}</label>
-                      <textarea placeholder={content.contact.formMessagePlaceholder}></textarea>
+                      <textarea name="message" placeholder={content.contact.formMessagePlaceholder} required></textarea>
                     </div>
-                  </div>
-                  <div className={styles['form-submit']}>
-                    <button className={styles['btn-pill-white']} type="submit">{content.contact.submitLabel}</button>
-                    <span className={styles['form-note']}>{content.contact.formNote}</span>
-                  </div>
+                    <div className={styles['form-submit']}>
+                      <button className={styles['btn-pill-white']} type="submit">{content.contact.submitLabel}</button>
+                      <span className={styles['form-note']}>{content.contact.formNote}</span>
+                    </div>
+                  </form>
                 </div>
               </div>
             </section>

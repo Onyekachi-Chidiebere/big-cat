@@ -1,6 +1,6 @@
 "use client";
 
-import type { FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import "../site.css";
 import styles from "../styles.module.css";
 import { WorkForUsEffects } from "../WorkForUsEffects";
@@ -82,21 +82,65 @@ const d4 = ["f-d1", "f-d2", "f-d3", "f-d4"] as const;
 
 export function WorkForUsPageClient({ content }: { content: WorkForUsContent }) {
   const m = content.main;
+  const [submitState, setSubmitState] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  function handleApply(e: FormEvent<HTMLFormElement>) {
+  async function handleApply(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const btn = e.currentTarget.querySelector<HTMLButtonElement>(
-      'button[type="submit"]'
-    );
-    if (!btn) return;
-    btn.textContent = "Application Sent ✓";
-    btn.style.background = "var(--sea-light)";
-    btn.disabled = true;
-    window.setTimeout(() => {
-      btn.textContent = m.apply.submitLabel;
-      btn.style.background = "";
-      btn.disabled = false;
-    }, 4000);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const firstName = String(formData.get("firstName") ?? "").trim();
+    const lastName = String(formData.get("lastName") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const phone = String(formData.get("phone") ?? "").trim();
+    const role = String(formData.get("role") ?? "").trim();
+    const licence = String(formData.get("licence") ?? "").trim();
+    const about = String(formData.get("about") ?? "").trim();
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (btn) btn.disabled = true;
+    setSubmitState("sending");
+    setSubmitMessage("Sending application...");
+
+    try {
+      const controller = new AbortController();
+      const timeoutId = window.setTimeout(() => controller.abort(), 45000);
+      const res = await fetch("/api/forms/careers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phone,
+          role,
+          licence,
+          about,
+        }),
+      });
+      window.clearTimeout(timeoutId);
+      if (!res.ok) {
+        const payload = (await res.json().catch(() => null)) as
+          | { error?: string }
+          | null;
+        throw new Error(payload?.error || "Careers submit failed");
+      }
+      form.reset();
+      setSubmitState("success");
+      setSubmitMessage("Application sent successfully.");
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Careers submit failed";
+      setSubmitState("error");
+      if (message === "This operation was aborted") {
+        setSubmitMessage("Request timed out. Please retry in a moment.");
+      } else {
+        setSubmitMessage(`Could not send application: ${message}`);
+      }
+    } finally {
+      if (btn) btn.disabled = false;
+    }
   }
 
   return (
@@ -304,6 +348,7 @@ export function WorkForUsPageClient({ content }: { content: WorkForUsContent }) 
                 <div className={styles["careers-fg"]}>
                   <label>{m.apply.labels.firstName}</label>
                   <input
+                    name="firstName"
                     type="text"
                     placeholder={m.apply.placeholders.firstName}
                     required
@@ -312,6 +357,7 @@ export function WorkForUsPageClient({ content }: { content: WorkForUsContent }) 
                 <div className={styles["careers-fg"]}>
                   <label>{m.apply.labels.lastName}</label>
                   <input
+                    name="lastName"
                     type="text"
                     placeholder={m.apply.placeholders.lastName}
                     required
@@ -321,6 +367,7 @@ export function WorkForUsPageClient({ content }: { content: WorkForUsContent }) 
               <div className={styles["careers-fg"]}>
                 <label>{m.apply.labels.email}</label>
                 <input
+                  name="email"
                   type="email"
                   placeholder={m.apply.placeholders.email}
                   required
@@ -329,13 +376,14 @@ export function WorkForUsPageClient({ content }: { content: WorkForUsContent }) 
               <div className={styles["careers-fg"]}>
                 <label>{m.apply.labels.phone}</label>
                 <input
+                  name="phone"
                   type="tel"
                   placeholder={m.apply.placeholders.phone}
                 />
               </div>
               <div className={styles["careers-fg"]}>
                 <label>{m.apply.labels.role}</label>
-                <select defaultValue="">
+                <select name="role" defaultValue="">
                   <option value="" disabled>
                     {m.apply.roleSelectEmpty}
                   </option>
@@ -348,7 +396,7 @@ export function WorkForUsPageClient({ content }: { content: WorkForUsContent }) 
               </div>
               <div className={styles["careers-fg"]}>
                 <label>{m.apply.labels.licence}</label>
-                <select defaultValue="">
+                <select name="licence" defaultValue="">
                   <option value="" disabled>
                     {m.apply.licenceSelectEmpty}
                   </option>
@@ -362,12 +410,16 @@ export function WorkForUsPageClient({ content }: { content: WorkForUsContent }) 
               <div className={styles["careers-fg"]}>
                 <label>{m.apply.labels.about}</label>
                 <textarea
+                  name="about"
                   placeholder={m.apply.placeholders.about}
                 ></textarea>
               </div>
               <button type="submit" className={styles["careers-submit"]}>
-                {m.apply.submitLabel}
+                {submitState === "sending" ? "Sending..." : m.apply.submitLabel}
               </button>
+              {submitState !== "idle" ? (
+                <p style={{ color: "white", marginTop: 8 }}>{submitMessage}</p>
+              ) : null}
             </form>
           </div>
         </div>
